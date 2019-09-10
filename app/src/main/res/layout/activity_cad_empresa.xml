@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".CadEmpresaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/tela"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="118dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:contentDescription="TODO"
+            app:srcCompat="@drawable/icone" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="177dp"
+        android:layout_height="42dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="0dp"
+        android:contentDescription="TODO"
+        app:srcCompat="@drawable/texto" />
+
+    <EditText
+        android:id="@+id/ctNomeemp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="60dp"
+        android:autoText="false"
+        android:autofillHints=""
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:hint="@string/nomeemp"
+        android:inputType="textPersonName"
+        android:lineSpacingExtra="18sp"
+        android:textAppearance="@style/Base.AlertDialog.AppCompat"
+        android:textColor="@android:color/darker_gray"
+        android:textIsSelectable="false"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/ctHoraFunc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="60dp"
+        android:autoText="false"
+        android:autofillHints=""
+        android:drawableStart="@android:drawable/ic_menu_recent_history"
+        android:drawableLeft="@android:drawable/ic_menu_recent_history"
+        android:drawingCacheQuality="auto"
+        android:hint="@string/horafunc"
+        android:inputType="textPersonName"
+        android:textAppearance="@style/Base.AlertDialog.AppCompat"
+        android:textColor="@android:color/darker_gray"
+        android:textIsSelectable="false"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/ctCnpj"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:hint="@string/cnpj"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/ctDescricao"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:hint="@string/desc"
+        android:importantForAutofill="no"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/ctUsuarioemp"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:hint="@string/usu"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14dp" />
+
+    <EditText
+        android:id="@+id/ctSenhaemp"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:drawableLeft="@drawable/ic_https_black_24dp"
+        android:hint="@string/senha"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14dp"
+        android:inputType="textPassword"/>
+
+    <EditText
+        android:id="@+id/ctRepSenhaemp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:contentDescription="@string/comfsenha"
+        android:drawableLeft="@drawable/ic_https_black_24dp"
+        android:editable="true"
+        android:hint="@string/comfsenha"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14dp"
+        android:inputType="textPassword"/>
+
+    <Button
+        android:id="@+id/btCademp"
+        android:layout_width="151dp"
+        android:layout_height="29dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/custom_bt"
+        android:text="@string/cad"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+</LinearLayout>

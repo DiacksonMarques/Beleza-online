@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Beleza Online</string>
+    <string name="nome">Nome</string>
+    <string name="nomeemp">Nome Fictício</string>
+    <string name="horafunc">Horário de funcionamento(Ex.:07:00 ás 12:30)</string>
+    <string name="cnpj">CNPJ</string>
+    <string name="desc">Descrição</string>
+    <string name="obs">Observação</string>
+    <string name="email">Email</string>
+    <string name="usu">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="comfsenha">Confirma Senha</string>
+    <string name="cad">Cadastrar</string>
+    <string name="login">Login</string>
+    <string name="title_activity_pos_cad">PosCadActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_main">Beleza Online</string>
+    <string name="post">Posts?</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
