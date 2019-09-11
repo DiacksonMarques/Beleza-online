@@ -27,13 +27,14 @@ public class MainActivity extends AppCompatActivity {
                         openFragment(homeFragment);
                         break;
                     case R.id.navigation_maps:
-                        Fragment mapsFragment = MapsFragment.newInstance();
-                        openFragment(mapsFragment);
-                        //Intent reinica = getIntent();
-                        //startActivity(reinica);
-                        //finish();
-                        //Intent intent = new Intent(getBaseContext(), MapsActivity.class);
-                        //startActivity(intent);
+                        //Fragment mapsFragment = MapsFragment.newInstance();
+                        //openFragment(mapsFragment);
+                        Intent reinica = getIntent();
+                        startActivity(reinica);
+                        finish();
+                        Intent intent = new Intent(getBaseContext(), MapsActivity.class);
+                        startActivity(intent);
+                        break;
                     case R.id.navigation_areausu:
                         Fragment areausuFragment = AreaUsuFragment.newInstance();
                         openFragment(areausuFragment);
@@ -60,8 +61,8 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        String id = bundle.getString("id");
-        String nome = bundle.getString("nome");
-        String tipo_usuario = bundle.getString("tipo_usuario");
+        //String id = bundle.getString("id");
+        //String nome = bundle.getString("nome");
+        //String tipo_usuario = bundle.getString("tipo_usuario");
     }
 }

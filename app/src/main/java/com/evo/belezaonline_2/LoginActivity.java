@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         btIrCad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentircad = new Intent(getBaseContext(), EsCadActivity.class);
+                Intent intentircad = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intentircad);
             }
         });
