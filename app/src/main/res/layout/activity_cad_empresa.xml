@@ -7,7 +7,7 @@
     android:background="@color/colorPrimary"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".CadEmpresaActivity">
+    tools:context=".Cadastros.CadEmpresaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

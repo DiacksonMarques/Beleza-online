@@ -27,19 +27,19 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name=".MapsActivity"
+            android:name=".Maps.MapsActivity"
             android:label="@string/title_activity_maps" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".CadEmpresaActivity" />
-        <activity android:name=".CadClienteActivity" />
-        <activity android:name=".EsCadActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".Cadastros.CadEmpresaActivity" />
+        <activity android:name=".Cadastros.CadClienteActivity" />
+        <activity android:name=".Activis.EsCadActivity" />
+        <activity android:name=".Activis.MainActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".Activis.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
