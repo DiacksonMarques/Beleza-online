@@ -181,17 +181,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Latitude = Double.parseDouble(location.get(i).get("lat").toString());
             Longitude = Double.parseDouble(location.get(i).get("longe").toString());
             String name = location.get(i).get("nome_emp").toString();
-            MarkerOptions marker = new MarkerOptions().position(new LatLng(Latitude, Longitude)).title(name);
+            String id_centros_de_beleza = location.get(i).get("id_centros_de_beleza").toString();
+            MarkerOptions marker = new MarkerOptions().position(new LatLng(Latitude, Longitude)).title(name).snippet(id_centros_de_beleza);
             mMap.addMarker(marker);
+
         }
 
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
-                String id= marker.getId();
+                String nome= marker.getTitle();
+                String id_centros_de_beleza = marker.getSnippet();
                 Intent intent = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(intent);
-                Toast.makeText(getBaseContext(),id,Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),nome+id_centros_de_beleza,Toast.LENGTH_LONG).show();
                 return false;
             }
         });

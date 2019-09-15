@@ -3,23 +3,22 @@ package com.evo.belezaonline_2.Activis;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.evo.belezaonline_2.Fragemnts.AreaUsuFragment;
-import com.evo.belezaonline_2.Fragemnts.HomeFragment;
-import com.evo.belezaonline_2.Maps.MapsActivity;
+import com.evo.belezaonline_2.Fragemnts.AreaEmpFragment;
+import com.evo.belezaonline_2.Fragemnts.HomeFragmentEmp;
+import com.evo.belezaonline_2.Maps.MapsActivityEmp;
 import com.evo.belezaonline_2.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityEmp extends AppCompatActivity {
+    String abremaps = "nada";
     private OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
-
     {
         mOnNavigationItemSelectedListener = new OnNavigationItemSelectedListener() {
 
@@ -27,21 +26,12 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@Nullable MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
-                        Fragment homeFragment = HomeFragment.newInstance();
-                        openFragment(homeFragment);
-                        break;
-                    case R.id.navigation_maps:
-                        //Fragment mapsFragment = MapsFragment.newInstance();
-                        //openFragment(mapsFragment);
-                        Intent reinica = getIntent();
-                        startActivity(reinica);
-                        finish();
-                        Intent intent = new Intent(getBaseContext(), MapsActivity.class);
-                        startActivity(intent);
+                        Fragment homeFragmentemp = HomeFragmentEmp.newInstance();
+                        openFragment(homeFragmentemp);
                         break;
                     case R.id.navigation_areausu:
-                        Fragment areausuFragment = AreaUsuFragment.newInstance();
-                        openFragment(areausuFragment);
+                        Fragment areaempFragment = AreaEmpFragment.newInstance();
+                        openFragment(areaempFragment);
                         break;
                 }
                 return true;
@@ -51,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void openFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.fgContainer, fragment);
+        transaction.replace(R.id.fgContaineremp, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
@@ -59,14 +49,31 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
+        setContentView(R.layout.activity_main_emp);
+        BottomNavigationView navView = findViewById(R.id.nav_view_emp);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        //Dados login
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         String id = bundle.getString("id");
         String nome = bundle.getString("nome");
         String tipo_usuario = bundle.getString("tipo_usuario");
+
+        //Dados Maps
+        Intent intentmaps = this.getIntent();
+        Bundle bundlemaps = intentmaps.getExtras();
+        if ( bundlemaps.getString("abremaps")==null){
+            abremaps="nada";
+        }else {
+            abremaps = bundlemaps.getString("abremaps");
+        }
+        if (abremaps.equals("abremaps")){
+            Intent abreMaps = new Intent(getBaseContext(), MapsActivityEmp.class);
+            abreMaps.putExtra("id",id);
+            abreMaps.putExtra("nome",nome);
+            startActivity(abreMaps);
+            finish();
+        }
     }
 }

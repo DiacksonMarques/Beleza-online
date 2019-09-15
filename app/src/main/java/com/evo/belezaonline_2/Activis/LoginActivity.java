@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.evo.belezaonline_2.Activis.MainActivity;
@@ -23,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     String url="";
     String paramentros="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         btIrCad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentircad = new Intent(getBaseContext(), EsCadActivity.class);
+                Intent intentircad = new Intent(getBaseContext(), EsCadActivity
+                        .class);
                 startActivity(intentircad);
             }
         });
@@ -73,13 +76,21 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String resultado) {
             String dados[] = resultado.split(",");
-            if(resultado != null && !resultado.isEmpty() && resultado.contains("Login_Ok")){
+            if(resultado != null && !resultado.isEmpty() && resultado.contains("Login_c")){
                 Intent abreInicio = new Intent(getBaseContext(),MainActivity.class);
                 abreInicio.putExtra("id",dados[1]);
                 abreInicio.putExtra("nome",dados[2]);
                 abreInicio.putExtra("tipo_usuario",dados[3]);
                 startActivity(abreInicio);
-                Toast.makeText(getBaseContext(),"Bem vindo: "+dados[2],Toast.LENGTH_LONG).show();
+                finish();
+            }
+            if(resultado != null && !resultado.isEmpty() && resultado.contains("Login_n")){
+                Intent abreInicio = new Intent(getBaseContext(),MainActivityEmp.class);
+                abreInicio.putExtra("id",dados[1]);
+                abreInicio.putExtra("nome",dados[2]);
+                abreInicio.putExtra("tipo_usuario",dados[3]);
+                startActivity(abreInicio);
+                finish();
             }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Login_Erro")){
                 Toast.makeText(getBaseContext(),"Usuario ou senha incorretos!",Toast.LENGTH_LONG).show();
             }else{
