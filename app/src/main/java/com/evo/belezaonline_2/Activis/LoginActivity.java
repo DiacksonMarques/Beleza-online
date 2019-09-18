@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.evo.belezaonline_2.Activis.MainActivity;
 import com.evo.belezaonline_2.Banco.Conexao;
+import com.evo.belezaonline_2.Cadastros.CadEmpresaServicoActivity;
 import com.evo.belezaonline_2.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -38,8 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         btIrCad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentircad = new Intent(getBaseContext(), EsCadActivity
-                        .class);
+                Intent intentircad = new Intent(getBaseContext(), CadEmpresaServicoActivity.class);
                 startActivity(intentircad);
             }
         });

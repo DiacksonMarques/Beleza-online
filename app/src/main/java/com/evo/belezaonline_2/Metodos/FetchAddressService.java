@@ -13,7 +13,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

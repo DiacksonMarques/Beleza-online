@@ -22,4 +22,101 @@
     <string name="cliente">Cliente</string>
     <string name="negocio">Negocio</string>
     <string name="title_activity_maps_emp">Map</string>
+    <string name="servico">Escolha o tipo de serviço</string>
+    <string name="tempoexecução">Tempo de execução do serviço</string>
+    <string name="valor">Valor</string>
+
+    <string-array name="servico_array">
+        <item>---Selecione o segmento---</item>
+        <item>Cabelos</item>
+        <item>Barba</item>
+        <item>Produção visual</item>
+        <item>Corporais</item>
+        <item>Massagem</item>
+        <item>Faciais</item>
+        <item>Olhos</item>
+        <item>Unhas</item>
+        <item>Depilação</item>
+    </string-array>
+
+    <string-array name="cabelo">
+        <item>Relaxamento Guanidina</item>
+        <item>Blindagem siliconada</item>
+        <item>Escova</item>
+        <item>Escova 3D</item>
+        <item>Escova de chocolate</item>
+        <item>Tintura base</item>
+        <item>Retoque de raiz</item>
+        <item>Luzes</item>
+        <item>Ballayage</item>
+        <item>Acetinagem</item>
+        <item>Corte masculino</item>
+        <item>Corte feminino</item>
+        <item>Tratamento capilar</item>
+        <item>Hidratação capilar (Sleek)</item>
+        <item>Hidratação com cápsula</item>
+        <item>Hidratação de queratina</item>
+        <item>Hidratação Bonacure</item>
+        <item>Lavagem de cabelo</item>
+        <item>Lavar e secar</item>
+    </string-array>
+
+    <string-array name="barba">
+        <item>Barba</item>
+    </string-array>
+
+    <string-array name="producao_visual">
+        <item>Maquiagem</item>
+        <item>Aplicação de cílios</item>
+        <item>Penteado</item>
+    </string-array>
+
+    <string-array name="corporais">
+        <item>Photon Dome</item>
+        <item>Photon Roller</item>
+    </string-array>
+
+    <string-array name="massagem">
+        <item>Relaxante</item>
+        <item>Reflexoterapia podal</item>
+        <item>Drenagem linfática</item>
+        <item>Esfoliação corporal com hidratação</item>
+        <item>Terapia de pedras quentes</item>
+        <item>Relaxante c/ aplic. de pedras quentes</item>
+        <item>Banho de imersão</item>
+        <item>Banho de lua</item>
+        <item>Perna inteira</item>
+        <item>Meia perna</item>
+        <item>Braço</item>
+    </string-array>
+
+    <string-array name="faciais">
+        <item>Limpeza de pele profunda</item>
+        <item>Peeling (pele com acne)</item>
+        <item>Peeling rejuvenescimento</item>
+        <item>Peeling clareamento</item>
+    </string-array>
+
+    <string-array name="olhos">
+        <item>Designer de sobrancelhas</item>
+        <item>Pintura de sobrancelhas c/ designer</item>
+        <item>Pintura de sobrancelhas</item>
+        <item>Pintura de cílios</item>
+    </string-array>
+
+    <string-array name="unhas">
+        <item>Mãos</item>
+        <item>Pés</item>
+        <item>Hidratação com parafina para mãos</item>
+        <item>Hidratação com parafina para pés</item>
+    </string-array>
+
+    <string-array name="depilacao">
+        <item>Perna inteira</item>
+        <item>Meia perna</item>
+        <item>Virilha</item>
+        <item>Axila</item>
+        <item>Buço</item>
+        <item>Parte initmas</item>
+    </string-array>
 </resources>
