@@ -62,7 +62,7 @@
         android:layout_marginRight="60dp"/>
 
     <EditText
-        android:id="@+id/ctHoraFunc"
+        android:id="@+id/ctTempoExecucao"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
@@ -82,7 +82,7 @@
 
 
     <EditText
-        android:id="@+id/ctCnpj"
+        android:id="@+id/ctValor"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_marginLeft="60dp"
@@ -96,7 +96,7 @@
         android:textSize="14dp" />
 
     <EditText
-        android:id="@+id/ctDescricao"
+        android:id="@+id/ctDescricaoServico"
         android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_marginLeft="60dp"
@@ -109,7 +109,7 @@
         android:textSize="14dp" />
 
     <Button
-        android:id="@+id/btCademp"
+        android:id="@+id/btCadempserrv"
         android:layout_width="151dp"
         android:layout_height="29dp"
         android:layout_marginLeft="100dp"

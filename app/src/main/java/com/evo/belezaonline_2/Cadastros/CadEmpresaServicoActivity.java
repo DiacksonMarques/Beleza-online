@@ -2,19 +2,36 @@ package com.evo.belezaonline_2.Cadastros;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.evo.belezaonline_2.Activis.LoginActivity;
+import com.evo.belezaonline_2.Banco.Conexao;
+import com.evo.belezaonline_2.Metodos.StringFormate;
 import com.evo.belezaonline_2.R;
 
 public class CadEmpresaServicoActivity extends AppCompatActivity {
     Spinner tiposervico,definicaoservico;
-    String tipov,tipod,aux;
+    EditText ctTempoExecucao,ctValor,ctDescricaoServico;
+    Button btCadEmpSer;
+    String tipov,tipod;
+
+    String url="";
+    String parametros="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +39,10 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
 
         tiposervico = findViewById(R.id.tiposervico);
         definicaoservico = findViewById(R.id.definicaoservico);
+        ctTempoExecucao = findViewById(R.id.ctTempoExecucao);
+        ctValor = findViewById(R.id.ctValor);
+        ctDescricaoServico = findViewById(R.id.ctDescricaoServico);
+        btCadEmpSer = findViewById(R.id.btCadempserrv);
 
         final ArrayAdapter<CharSequence> tiposerv = ArrayAdapter.createFromResource(this, R.array.servico_array, android.R.layout.simple_spinner_item);
         tiposerv.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -203,5 +224,68 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
             }
         };
         tiposervico.setOnItemSelectedListener(item);
+
+        btCadEmpSer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+                if(networkInfo !=null && networkInfo.isConnected()){
+                    SharedPreferences idg = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+
+                    String nome = tipod;
+                    String tipo_servico = tipov;
+                    double tempo_execucao = Double.parseDouble(String.valueOf(ctTempoExecucao.getText()));
+                    double valor = Double.parseDouble(String.valueOf(ctValor.getText()));
+                    String descricao  = ctDescricaoServico.getText().toString();
+                    int id_centro_de_beleza = idg.getInt("idg",0);
+
+                    nome= StringFormate.convertStringUTF8(nome);
+                    tipo_servico= StringFormate.convertStringUTF8(tipo_servico);
+                    descricao= StringFormate.convertStringUTF8(descricao);
+
+                    if (nome.isEmpty()|| tipo_servico.isEmpty()|| descricao.isEmpty() || ctTempoExecucao.getText()==null|| ctValor.getText()==null){
+                        Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
+                    }else{
+                            url = "https://beleza-online.000webhostapp.com/cadastroservico.php";
+                                parametros = "nome=" + nome +"&tempo_execucao="+tempo_execucao+ "&valor=" + valor + "&descricao="+descricao+"&id_centro_de_beleza="+id_centro_de_beleza;
+                            new SolicitaDados().execute(url);
+                    }
+                }else{
+                    Toast.makeText(getBaseContext(),"Não há conexão com a internet.",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+
+    private class SolicitaDados extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Conexao.postDados(urls[0], parametros);
+        }
+        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        @Override
+        protected void onPostExecute(String resultado) {
+            if(resultado != null && !resultado.isEmpty() && resultado.contains("Servico_Erro")){
+                Toast.makeText(getBaseContext(),"Este serviço já foi cadastrado",Toast.LENGTH_LONG).show();
+            }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
+                Toast.makeText(getBaseContext(),"Registro concluído com sucesso!",Toast.LENGTH_LONG).show();
+                Intent abreInicio = new Intent(getBaseContext(), LoginActivity.class);
+                startActivity(abreInicio);
+                // Fechar fragment getBaseContext().getFragmentManager().popBackStack();
+                finish();
+            }else{
+                Toast.makeText(getBaseContext(),"Ocorreu um erro: "+resultado,Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        finish();
     }
 }
