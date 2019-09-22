@@ -25,6 +25,7 @@
     <string name="servico">Escolha o tipo de serviço</string>
     <string name="tempoexecução">Tempo de execução do serviço</string>
     <string name="valor">Valor</string>
+    <string name="cadastrar_localiza_o">Cadastrar Localização</string>
 
     <string-array name="servico_array">
         <item>---Selecione o segmento---</item>

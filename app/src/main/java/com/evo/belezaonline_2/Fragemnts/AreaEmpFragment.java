@@ -9,25 +9,40 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
-import com.evo.belezaonline_2.Activis.MainActivity;
-import com.evo.belezaonline_2.Activis.MainActivityEmp;
+import com.evo.belezaonline_2.Cadastros.CadEmpresaServicoActivity;
+import com.evo.belezaonline_2.Maps.MapsActivityEmp;
 import com.evo.belezaonline_2.R;
 
 public class AreaEmpFragment extends Fragment {
-    Button btCadloca;
+    Button btCadloca,btCadserv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup fgContainer, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_area_emp, fgContainer, false);
         btCadloca= v.findViewById(R.id.btCadloca);
-        final String abremaps = "abremaps";
+        btCadserv = v.findViewById(R.id.btCadserv);
+
+        Intent intent = getActivity().getIntent();
+        Bundle bundle = intent.getExtras();
+        final String id = bundle.getString("id");
+        final String nome = bundle.getString("nome");
 
         btCadloca.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent abreMaps = new Intent(getContext(), MainActivityEmp.class);
-                abreMaps.putExtra("abremaps",abremaps);
+                Intent abreMaps = new Intent(getContext(), MapsActivityEmp.class);
+                abreMaps.putExtra("id",id);
+                abreMaps.putExtra("nome",nome);
                 startActivity(abreMaps);
+            }
+        });
+
+        btCadserv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent abrecadserv = new Intent(getContext(), CadEmpresaServicoActivity.class);
+                abrecadserv.putExtra("id",id);
+                startActivity(abrecadserv);
             }
         });
 

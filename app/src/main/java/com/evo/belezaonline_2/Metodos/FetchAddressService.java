@@ -32,8 +32,8 @@ public class FetchAddressService extends IntentService {
         }
 
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-        Location location = intent.getParcelableExtra(Constants.LOCATION_DATA_EXTRA);
-        reciver = intent.getParcelableExtra(Constants.RECEIVER);
+        Location location = intent.getParcelableExtra("data");
+        reciver = intent.getParcelableExtra("receiver");
 
         List<Address> addresses = null;
 

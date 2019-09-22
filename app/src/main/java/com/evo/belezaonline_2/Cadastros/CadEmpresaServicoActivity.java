@@ -20,6 +20,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.evo.belezaonline_2.Activis.LoginActivity;
+import com.evo.belezaonline_2.Activis.MainActivity;
+import com.evo.belezaonline_2.Activis.MainActivityEmp;
 import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.Metodos.StringFormate;
 import com.evo.belezaonline_2.R;
@@ -28,7 +30,7 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
     Spinner tiposervico,definicaoservico;
     EditText ctTempoExecucao,ctValor,ctDescricaoServico;
     Button btCadEmpSer;
-    String tipov,tipod;
+    String tipov,tipod,aux;
 
     String url="";
     String parametros="";
@@ -52,8 +54,9 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 if (pos > 0) {
-                    tipov = ((TextView) view).getText().toString();
-                    if (tipov.equals("Cabelos")){
+                    aux = ((TextView) view).getText().toString();
+                    tipov=aux;
+                    if (aux.equals("Cabelos")){
                         final ArrayAdapter<CharSequence> definicaoserv = ArrayAdapter.createFromResource(getBaseContext(), R.array.cabelo, android.R.layout.simple_spinner_item);
                         definicaoserv.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         definicaoservico.setAdapter(definicaoserv);
@@ -225,6 +228,10 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
         };
         tiposervico.setOnItemSelectedListener(item);
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        final String id = bundle.getString("id");
+
         btCadEmpSer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -232,15 +239,12 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
                 if(networkInfo !=null && networkInfo.isConnected()){
-                    SharedPreferences idg = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-
-
                     String nome = tipod;
                     String tipo_servico = tipov;
                     double tempo_execucao = Double.parseDouble(String.valueOf(ctTempoExecucao.getText()));
                     double valor = Double.parseDouble(String.valueOf(ctValor.getText()));
                     String descricao  = ctDescricaoServico.getText().toString();
-                    int id_centro_de_beleza = idg.getInt("idg",0);
+                    int id_centro_de_beleza= Integer.parseInt(id);
 
                     nome= StringFormate.convertStringUTF8(nome);
                     tipo_servico= StringFormate.convertStringUTF8(tipo_servico);
@@ -250,7 +254,7 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
                             url = "https://beleza-online.000webhostapp.com/cadastroservico.php";
-                                parametros = "nome=" + nome +"&tempo_execucao="+tempo_execucao+ "&valor=" + valor + "&descricao="+descricao+"&id_centro_de_beleza="+id_centro_de_beleza;
+                                parametros = "nome=" + nome +"&tipo_servico="+tipo_servico+"&tempo_execucao="+tempo_execucao+ "&valor=" + valor + "&descricao="+descricao+"&id_centro_de_beleza="+id_centro_de_beleza;
                             new SolicitaDados().execute(url);
                     }
                 }else{
@@ -272,7 +276,7 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(),"Este serviço já foi cadastrado",Toast.LENGTH_LONG).show();
             }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
                 Toast.makeText(getBaseContext(),"Registro concluído com sucesso!",Toast.LENGTH_LONG).show();
-                Intent abreInicio = new Intent(getBaseContext(), LoginActivity.class);
+                Intent abreInicio = new Intent(getBaseContext(), MainActivity.class);
                 startActivity(abreInicio);
                 // Fechar fragment getBaseContext().getFragmentManager().popBackStack();
                 finish();

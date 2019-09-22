@@ -57,14 +57,13 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        SharedPreferences idg = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
-        SharedPreferences nomeg = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -72,8 +71,9 @@ public class MainActivity extends AppCompatActivity {
         String nome = bundle.getString("nome");
         String tipo_usuario = bundle.getString("tipo_usuario");
 
-        idg.edit().putInt("idc", Integer.parseInt(id)).apply();
-        nomeg.edit().putString("nomec",nome).apply();
+
+
 
     }
+
 }
