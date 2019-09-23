@@ -1,27 +1,22 @@
 package com.evo.belezaonline_2.Maps;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
 import android.widget.Toast;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.StatusLine;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.annotation.*;
 
-import com.evo.belezaonline_2.Activis.MainActivity;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.evo.belezaonline_2.Controller.MakerApp;
 import com.evo.belezaonline_2.R;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,25 +26,14 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -63,44 +47,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private CameraPosition mCameraPosition;
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
-    ArrayList<HashMap<String, String>> location = null;
+    MarkerOptions markerOptions = new MarkerOptions();
+    LatLng latLng;
+    String title;
+    CameraPosition cameraPosition;
+
+    public static final String ID = "id_centros_de_beleza";
+    public static final String TITLE = "nome_emp";
+    public static final String LAT = "lat";
+    public static final String LNG = "longe";
+
+    private String url = "https://beleza-online.000webhostapp.com/getLatLon.php";
+
+    String tag_json_obj = "json_obj_req";
 
     @SuppressLint("ObsoleteSdkInt")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-        //*** Permission StrictMode
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-
-        String url = "https://beleza-online.000webhostapp.com/getLatLon.php";
-        try {
-
-            JSONArray data = new JSONArray(getHttpGet(url));
-
-            location = new ArrayList<HashMap<String, String>>();
-            HashMap<String, String> map;
-
-            for(int i = 0; i < data.length(); i++){
-                JSONObject c = data.getJSONObject(i);
-
-                map = new HashMap<String, String>();
-                map.put("id", c.getString("id"));
-                map.put("lat", c.getString("lat"));
-                map.put("longe", c.getString("longe"));
-                map.put("nome_emp", c.getString("nome_emp"));
-                map.put("id_centros_de_beleza", c.getString("id_centros_de_beleza"));
-                location.add(map);
-
-            }
-
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -113,36 +78,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Construct a FusedLocationProviderClient.
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
     }
 
-
-    @NotNull
-    public static String getHttpGet(String url) {
-        StringBuilder str = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(url);
-        try {
-            HttpResponse response = client.execute(httpGet);
-            StatusLine statusLine = response.getStatusLine();
-            int statusCode = statusLine.getStatusCode();
-            if (statusCode == 200) { // Download OK
-                HttpEntity entity = response.getEntity();
-                InputStream content = entity.getContent();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(content));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    str.append(line);
-                }
-            } else {
-                Log.e("Log", "Failed to download result..");
-            }
-        } catch (ClientProtocolException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return str.toString();
-    }
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (mMap != null) {
@@ -162,43 +100,62 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         updateLocationUI();
         getDeviceLocation();
 
-        try {
-            // Customise the styling of the base map using a JSON object defined
-            // in a raw resource file.
-            boolean success = googleMap.setMapStyle(
-                    MapStyleOptions.loadRawResourceStyle((this), R.raw.style_json));
+        getMarkers();
+    }
 
-            if (!success) {
-                Log.e(TAG, "Style parsing failed.");
-            }
-        } catch (Resources.NotFoundException e) {
-            Log.e(TAG, "Can't find style. Error: ", e);
-        }
+    // Fungsi get JSON marker
+    private void getMarkers() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
 
-         Double Latitude = 0.00;
-         Double Longitude = 0.00;
-        for (int i = 0; i < location.size(); i++) {
-            Latitude = Double.parseDouble(location.get(i).get("lat").toString());
-            Longitude = Double.parseDouble(location.get(i).get("longe").toString());
-            String name = location.get(i).get("nome_emp").toString();
-            String id_centros_de_beleza = location.get(i).get("id_centros_de_beleza").toString();
-            MarkerOptions marker = new MarkerOptions().position(new LatLng(Latitude, Longitude)).title(name).snippet(id_centros_de_beleza);
-            mMap.addMarker(marker);
-
-        }
-
-        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
-            public boolean onMarkerClick(Marker marker) {
-                String nome= marker.getTitle();
-                String id_centros_de_beleza = marker.getSnippet();
-                Intent intent = new Intent(getBaseContext(), MainActivity.class);
-                startActivity(intent);
-                Toast.makeText(getBaseContext(),nome+id_centros_de_beleza,Toast.LENGTH_LONG).show();
-                return false;
+            public void onResponse(String response) {
+                Log.e("Response: ", response.toString());
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    String getObject = jObj.getString("localizacao");
+                    JSONArray jsonArray = new JSONArray(getObject);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        title = jsonObject.getString(TITLE);
+                        latLng = new LatLng(Double.parseDouble(jsonObject.getString(LAT)), Double.parseDouble(jsonObject.getString(LNG)));
+
+                        // Menambah data marker untuk di tampilkan ke google map
+                        markerOptions.position(latLng);
+                        markerOptions.title(title);
+                        mMap.addMarker(markerOptions);
+                    }
+
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error: ", error.getMessage());
+                Toast.makeText(MapsActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
+        MakerApp.getInstance().addToRequestQueue(strReq, tag_json_obj);
     }
+
+    /*private void addMarker(LatLng latlng, final String title) {
+        markerOptions.position(latlng);
+        markerOptions.title(title);
+        mMap.addMarker(markerOptions);
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Toast.makeText(getApplicationContext(), marker.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
 
     private void getDeviceLocation() {
         /*

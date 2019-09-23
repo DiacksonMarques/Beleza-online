@@ -5,10 +5,14 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.Location;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,6 +20,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.evo.belezaonline_2.Activis.MainActivity;
+import com.evo.belezaonline_2.Activis.MainActivityEmp;
+import com.evo.belezaonline_2.Banco.Conexao;
+import com.evo.belezaonline_2.Cadastros.CadEmpresaServicoActivity;
+import com.evo.belezaonline_2.Metodos.StringFormate;
 import com.evo.belezaonline_2.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -46,6 +54,9 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
     Button btCadLocaEmp;
     double lat,longe;
 
+    String url="";
+    String parametros="";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +70,7 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
         btCadLocaEmp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                getCadLoc();
             }
         });
 
@@ -72,7 +83,6 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
     }
 
-
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -83,9 +93,9 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
      * installed Google Play services and returned to the app.
      */
 
-        //LatLng sydney = new LatLng(-34, 151);
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    //LatLng sydney = new LatLng(-34, 151);
+    //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+    //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         if (mMap != null) {
@@ -127,6 +137,10 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
         try {
             if (mLocationPermissionGranted) {
                 Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
+                Intent intent = this.getIntent();
+                Bundle bundle = intent.getExtras();
+                final String id = bundle.getString("id");
+                final String nome = bundle.getString("nome");
                 locationResult.addOnCompleteListener(this, new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {
@@ -136,6 +150,14 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                     new LatLng(mLastKnownLocation.getLatitude(),
                                             mLastKnownLocation.getLongitude()), 20.0f));
+
+                            LatLng locacli = new LatLng(mLastKnownLocation.getLatitude(),
+                                    mLastKnownLocation.getLongitude());
+                            mMap.addMarker(new MarkerOptions().position(locacli)
+                                    .title(nome)
+                                    .draggable(true));
+                            mMap.moveCamera(CameraUpdateFactory.newLatLng(locacli));
+
                         } else {
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
@@ -184,8 +206,8 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
         }
         try {
             if (mLocationPermissionGranted) {
-                mMap.setMyLocationEnabled(true);
-                mMap.getUiSettings().setMyLocationButtonEnabled(true);
+                //mMap.setMyLocationEnabled(true);
+                //mMap.getUiSettings().setMyLocationButtonEnabled(true);
             } else {
                 mMap.setMyLocationEnabled(false);
                 mMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -195,5 +217,64 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
         } catch (SecurityException e) {
             Log.e("Exception: %s", e.getMessage());
         }
+    }
+
+    private void getCadLoc(){
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        final String id = bundle.getString("id");
+        final String nomep = bundle.getString("nome");
+
+        ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+        if(networkInfo !=null && networkInfo.isConnected()){
+            double lat = Double.parseDouble(String.valueOf(mLastKnownLocation.getLatitude()));
+            double longe = Double.parseDouble(String.valueOf(mLastKnownLocation.getLatitude()));
+            String nome  = nomep;
+            int id_centro_de_beleza= Integer.parseInt(id);
+
+            nome= StringFormate.convertStringUTF8(nome);
+
+            if (nome.isEmpty()){
+                Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
+            }else{
+                url = "https://beleza-online.000webhostapp.com/cadastrolocalizacao.php";
+                parametros = "lat=" + lat +"&longe="+longe+"&nome="+nome+ "&id_centro_de_beleza=" + id_centro_de_beleza;
+                new MapsActivityEmp.SolicitaDados().execute(url);
+            }
+        }else{
+            Toast.makeText(getBaseContext(),"Não há conexão com a internet.",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private class SolicitaDados extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Conexao.postDados(urls[0], parametros);
+        }
+        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        @Override
+        protected void onPostExecute(String resultado) {
+            if(resultado != null && !resultado.isEmpty() && resultado.contains("Loca_Erro")){
+                Toast.makeText(getBaseContext(),"Localização já cadastrada.",Toast.LENGTH_LONG).show();
+            }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
+                Toast.makeText(getBaseContext(),"Registro concluído com sucesso!",Toast.LENGTH_LONG).show();
+                Intent abreInicio = new Intent(getBaseContext(), MainActivityEmp.class);
+                startActivity(abreInicio);
+                // Fechar fragment getBaseContext().getFragmentManager().popBackStack();
+                finish();
+            }else{
+                Toast.makeText(getBaseContext(),"Ocorreu um erro: "+resultado,Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        finish();
     }
 }

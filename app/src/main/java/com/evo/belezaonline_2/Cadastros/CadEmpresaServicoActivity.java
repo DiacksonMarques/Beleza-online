@@ -276,7 +276,7 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(),"Este serviço já foi cadastrado",Toast.LENGTH_LONG).show();
             }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
                 Toast.makeText(getBaseContext(),"Registro concluído com sucesso!",Toast.LENGTH_LONG).show();
-                Intent abreInicio = new Intent(getBaseContext(), MainActivity.class);
+                Intent abreInicio = new Intent(getBaseContext(), MainActivityEmp.class);
                 startActivity(abreInicio);
                 // Fechar fragment getBaseContext().getFragmentManager().popBackStack();
                 finish();
