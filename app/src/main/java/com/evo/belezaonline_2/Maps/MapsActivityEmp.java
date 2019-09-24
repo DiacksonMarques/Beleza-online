@@ -231,7 +231,7 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
 
         if(networkInfo !=null && networkInfo.isConnected()){
             double lat = Double.parseDouble(String.valueOf(mLastKnownLocation.getLatitude()));
-            double longe = Double.parseDouble(String.valueOf(mLastKnownLocation.getLatitude()));
+            double longe = Double.parseDouble(String.valueOf(mLastKnownLocation.getLongitude()));
             String nome  = nomep;
             int id_centro_de_beleza= Integer.parseInt(id);
 

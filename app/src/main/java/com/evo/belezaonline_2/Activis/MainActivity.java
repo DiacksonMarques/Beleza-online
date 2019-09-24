@@ -71,9 +71,8 @@ public class MainActivity extends AppCompatActivity {
         String nome = bundle.getString("nome");
         String tipo_usuario = bundle.getString("tipo_usuario");
 
-
-
-
+        Fragment homeFragment = HomeFragment.newInstance();
+        openFragment(homeFragment);
     }
 
 }

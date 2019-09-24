@@ -41,6 +41,7 @@
     </string-array>
 
     <string-array name="cabelo">
+        <item>---Selecione o segmento---</item>
         <item>Relaxamento Guanidina</item>
         <item>Blindagem siliconada</item>
         <item>Escova</item>
@@ -63,21 +64,25 @@
     </string-array>
 
     <string-array name="barba">
+        <item>---Selecione o segmento---</item>
         <item>Barba</item>
     </string-array>
 
     <string-array name="producao_visual">
+        <item>---Selecione o segmento---</item>
         <item>Maquiagem</item>
         <item>Aplicação de cílios</item>
         <item>Penteado</item>
     </string-array>
 
     <string-array name="corporais">
+        <item>---Selecione o segmento---</item>
         <item>Photon Dome</item>
         <item>Photon Roller</item>
     </string-array>
 
     <string-array name="massagem">
+        <item>---Selecione o segmento---</item>
         <item>Relaxante</item>
         <item>Reflexoterapia podal</item>
         <item>Drenagem linfática</item>
@@ -92,6 +97,7 @@
     </string-array>
 
     <string-array name="faciais">
+        <item>---Selecione o segmento---</item>
         <item>Limpeza de pele profunda</item>
         <item>Peeling (pele com acne)</item>
         <item>Peeling rejuvenescimento</item>
@@ -99,6 +105,7 @@
     </string-array>
 
     <string-array name="olhos">
+        <item>---Selecione o segmento---</item>
         <item>Designer de sobrancelhas</item>
         <item>Pintura de sobrancelhas c/ designer</item>
         <item>Pintura de sobrancelhas</item>
@@ -106,6 +113,7 @@
     </string-array>
 
     <string-array name="unhas">
+        <item>---Selecione o segmento---</item>
         <item>Mãos</item>
         <item>Pés</item>
         <item>Hidratação com parafina para mãos</item>
@@ -113,6 +121,7 @@
     </string-array>
 
     <string-array name="depilacao">
+        <item>---Selecione o segmento---</item>
         <item>Perna inteira</item>
         <item>Meia perna</item>
         <item>Virilha</item>
@@ -120,4 +129,18 @@
         <item>Buço</item>
         <item>Parte initmas</item>
     </string-array>
+    <string name="title_activity_perfil">PerfilActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
 </resources>

@@ -29,8 +29,8 @@ public class CadEmpresaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cad_empresa);
 
-        btCademp= findViewById(R.id.btCademp);
-        ctNomeemp= findViewById(R.id.ctNomeemp);
+        btCademp= findViewById(R.id.btCadfunc);
+        ctNomeemp= findViewById(R.id.ctNomefunc);
         ctHoraFunc= findViewById(R.id.ctHoraFunc);
         ctCnpj= findViewById(R.id.ctCnpj);
         ctDescricao= findViewById(R.id.ctDescricao);

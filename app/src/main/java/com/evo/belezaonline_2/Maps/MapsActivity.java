@@ -51,6 +51,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LatLng latLng;
     String title;
     CameraPosition cameraPosition;
+    private String aux;
 
     public static final String ID = "id_centros_de_beleza";
     public static final String TITLE = "nome_emp";
@@ -102,60 +103,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         getMarkers();
     }
-
-    // Fungsi get JSON marker
-    private void getMarkers() {
-        StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-                Log.e("Response: ", response.toString());
-
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    String getObject = jObj.getString("localizacao");
-                    JSONArray jsonArray = new JSONArray(getObject);
-
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        title = jsonObject.getString(TITLE);
-                        latLng = new LatLng(Double.parseDouble(jsonObject.getString(LAT)), Double.parseDouble(jsonObject.getString(LNG)));
-
-                        // Menambah data marker untuk di tampilkan ke google map
-                        markerOptions.position(latLng);
-                        markerOptions.title(title);
-                        mMap.addMarker(markerOptions);
-                    }
-
-                } catch (JSONException e) {
-                    // JSON error
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Error: ", error.getMessage());
-                Toast.makeText(MapsActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-            }
-        });
-
-        MakerApp.getInstance().addToRequestQueue(strReq, tag_json_obj);
-    }
-
-    /*private void addMarker(LatLng latlng, final String title) {
-        markerOptions.position(latlng);
-        markerOptions.title(title);
-        mMap.addMarker(markerOptions);
-
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
-            @Override
-            public void onInfoWindowClick(Marker marker) {
-                Toast.makeText(getApplicationContext(), marker.getTitle(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }*/
 
     private void getDeviceLocation() {
         /*
@@ -233,5 +180,57 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         } catch (SecurityException e)  {
             Log.e("Exception: %s", e.getMessage());
         }
+    }
+
+    private void addMarker(LatLng latlng, final String title) {
+        markerOptions.position(latlng);
+        markerOptions.title(title);
+        mMap.addMarker(markerOptions);
+
+        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            @Override
+            public void onInfoWindowClick(Marker marker) {
+                Toast.makeText(getApplicationContext(), marker.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getMarkers() {
+        StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.e("Response: ", response.toString());
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    String getObject = jObj.getString("localizacao");
+                    JSONArray jsonArray = new JSONArray(getObject);
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        title = jsonObject.getString(TITLE);
+                        latLng = new LatLng(Double.parseDouble(jsonObject.getString(LAT)), Double.parseDouble(jsonObject.getString(LNG)));
+
+                        // Menambah data marker untuk di tampilkan ke google map
+                        addMarker(latLng, title);
+                    }
+
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("Error: ", error.getMessage());
+                Toast.makeText(MapsActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        MakerApp.getInstance().addToRequestQueue(strReq, tag_json_obj);
     }
 }

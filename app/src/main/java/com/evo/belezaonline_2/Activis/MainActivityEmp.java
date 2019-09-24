@@ -55,8 +55,6 @@ public class MainActivityEmp extends AppCompatActivity {
         nome = bundle.getString("nome");
         String tipo_usuario = bundle.getString("tipo_usuario");
 
-        Toast.makeText(getBaseContext(),id,Toast.LENGTH_LONG).show();
-
         //Dados Maps
         Intent intentmaps = this.getIntent();
         Bundle bundlemaps = intentmaps.getExtras();

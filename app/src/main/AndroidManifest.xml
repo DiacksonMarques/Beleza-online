@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.evo.belezaonline_2">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -21,7 +20,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
+        <activity android:name=".Cadastros.CadFuncActivity"></activity>
+        <activity android:name=".Activis.CadAgendaEmpActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -33,15 +33,17 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".Maps.MapsActivityEmp"
-            android:label="@string/title_activity_maps_emp"></activity>
+            android:label="@string/title_activity_maps_emp" />
         <activity android:name=".Cadastros.CadEmpresaServicoActivity" />
         <activity
             android:name=".Maps.MapsActivity"
             android:label="@string/title_activity_maps" />
-
         <activity android:name=".Cadastros.CadEmpresaActivity" />
         <activity android:name=".Cadastros.CadClienteActivity" />
         <activity android:name=".Activis.EsCadActivity" />
