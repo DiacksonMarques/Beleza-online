@@ -33,4 +33,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Cadastar Serviço"/>
+
+    <Button
+        android:id="@+id/btCadAgend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cadastar Agendamento"/>
 </LinearLayout>

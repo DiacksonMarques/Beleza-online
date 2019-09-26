@@ -9,13 +9,14 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
+import com.evo.belezaonline_2.Activis.CadAgendaEmpActivity;
 import com.evo.belezaonline_2.Cadastros.CadEmpresaServicoActivity;
 import com.evo.belezaonline_2.Cadastros.CadFuncActivity;
 import com.evo.belezaonline_2.Maps.MapsActivityEmp;
 import com.evo.belezaonline_2.R;
 
 public class AreaEmpFragment extends Fragment {
-    Button btCadloca,btCadserv,btCadFunc;
+    Button btCadloca,btCadserv,btCadFunc,btCadAgend;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup fgContainer, Bundle savedInstanceState){
@@ -23,6 +24,7 @@ public class AreaEmpFragment extends Fragment {
         btCadloca= v.findViewById(R.id.btCadloca);
         btCadserv = v.findViewById(R.id.btCadserv);
         btCadFunc= v.findViewById(R.id.btCadFunc);
+        btCadAgend= v.findViewById(R.id.btCadAgend);
 
         Intent intent = getActivity().getIntent();
         Bundle bundle = intent.getExtras();
@@ -54,6 +56,15 @@ public class AreaEmpFragment extends Fragment {
                 Intent abrecadfunc = new Intent(getContext(), CadFuncActivity.class);
                 abrecadfunc.putExtra("id",id);
                 startActivity(abrecadfunc);
+            }
+        });
+
+        btCadAgend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent abrecadagend = new Intent(getContext(), CadAgendaEmpActivity.class);
+                abrecadagend.putExtra("id",id);
+                startActivity(abrecadagend);
             }
         });
 

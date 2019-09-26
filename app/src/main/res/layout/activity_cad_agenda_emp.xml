@@ -36,12 +36,12 @@
                 android:textColor="#FAFAFA" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tvData"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
                 android:layout_marginTop="50dp"
-                android:text="Sáb, 17 de ago, 2019"
+                android:text="Selecione uma data"
                 android:textColor="#FAFAFA" />
 
             <TextView
@@ -82,6 +82,33 @@
                 android:layout_marginTop="21dp"
                 android:text="Cadastrar Tipos de Serviço:"
                 android:textColor="#FAFAFA" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="200dp"
+                android:orientation="vertical">
+
+                <Spinner
+                    android:id="@+id/tiposervicoagend"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="28dp" />
+
+                <Spinner
+                    android:id="@+id/servicoagend"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginLeft="35dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
+                    android:layout_marginBottom="66dp" />
+            </LinearLayout>
 
 
         </RelativeLayout>
