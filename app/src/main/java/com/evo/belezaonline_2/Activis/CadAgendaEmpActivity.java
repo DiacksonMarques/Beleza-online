@@ -2,8 +2,12 @@ package com.evo.belezaonline_2.Activis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.icu.util.ULocale;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,19 +15,30 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.evo.belezaonline_2.Controller.GetServico;
+import com.evo.belezaonline_2.Controller.PopularSpinner;
 import com.evo.belezaonline_2.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.util.AbstractQueue;
+import java.util.ArrayList;
+import java.util.Locale;
 
-public class CadAgendaEmpActivity extends AppCompatActivity{
+public class CadAgendaEmpActivity extends AppCompatActivity {
 
-    String parametros="";
-    String tipov,tipod,aux;
-
-    Spinner tiposervico,definicaoservico;
+    String parametros = "";
+    String result;
+    String[] servico;
+    Spinner tiposervico, definicaoservico;
     TextView tvData;
+    AbstractQueue list1;
+    private ArrayList<Locale.Category> listaServico;
+    ProgressDialog pDialog;
+    private String URL_CATEGORIES = "https://beleza-online.000webhostapp.com/getListaServico.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,199 +49,80 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
         Bundle bundle = intent.getExtras();
         final String id = bundle.getString("id");
 
-        parametros= "id_centros_de_beleza="+id;
+        parametros = "id_centros_de_beleza=" + id;
 
         tiposervico = findViewById(R.id.tiposervicoagend);
         definicaoservico = findViewById(R.id.servicoagend);
         tvData = findViewById(R.id.tvData);
 
-        final ArrayAdapter<CharSequence> tiposerv = ArrayAdapter.createFromResource(this, R.array.servico_array, android.R.layout.simple_spinner_item);
-        tiposerv.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        tiposervico.setAdapter(tiposerv);
+        listaServico = new ArrayList<Locale.Category>();
 
-        AdapterView.OnItemSelectedListener item = new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                if (pos > 0) {
-                    aux = ((TextView) view).getText().toString();
-                    tipov=aux;
-                    if (aux.equals("Cabelos")){
-                        final ArrayAdapter<CharSequence> definicaoserv = ArrayAdapter.createFromResource(getBaseContext(), R.array.cabelo, android.R.layout.simple_spinner_item);
-                        definicaoserv.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        definicaoservico.setAdapter(definicaoserv);
 
-                        AdapterView.OnItemSelectedListener cabelo = new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                if (pos > 0) {
-                                    tipod = ((TextView) view).getText().toString();
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
+        new GetServico().execute();
+    }
 
-                            }
-                        };
-                        definicaoservico.setOnItemSelectedListener(cabelo);
-                    }if(tipov.equals("Barba")){
-                        final ArrayAdapter<CharSequence> definicaoba = ArrayAdapter.createFromResource(getBaseContext(), R.array.barba, android.R.layout.simple_spinner_item);
-                        definicaoba.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        definicaoservico.setAdapter(definicaoba);
-                        AdapterView.OnItemSelectedListener barba = new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                if (pos > 0) {
-                                    tipod = ((TextView) view).getText().toString();
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
+    private class GetServico extends AsyncTask<Void, Void, Void> {
 
-                            }
-                        };
-                        definicaoservico.setOnItemSelectedListener(barba);
-                    }if(tipov.equals("Produção visual")){
-                        ArrayAdapter<CharSequence> definicaopv = ArrayAdapter.createFromResource(getBaseContext(), R.array.producao_visual, android.R.layout.simple_spinner_item);
-                        definicaopv.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        definicaoservico.setAdapter(definicaopv);
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(CadAgendaEmpActivity.this);
+            pDialog.setMessage("Fetching food categories..");
+            pDialog.setCancelable(false);
+            pDialog.show();
 
-                        AdapterView.OnItemSelectedListener pv = new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                if (pos > 0) {
-                                    tipod = ((TextView) view).getText().toString();
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
+        }
 
-                            }
-                        };
-                        definicaoservico.setOnItemSelectedListener(pv);
-                    }if(tipov.equals("Corporais")){
-                        ArrayAdapter<CharSequence> definicaoco = ArrayAdapter.createFromResource(getBaseContext(), R.array.corporais, android.R.layout.simple_spinner_item);
-                        definicaoco.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        definicaoservico.setAdapter(definicaoco);
+        @Override
+        protected Void doInBackground(Void... voids) {
 
-                        AdapterView.OnItemSelectedListener corporais = new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                if (pos > 0) {
-                                    tipod = ((TextView) view).getText().toString();
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
+            JSONArray JA = null;
+            try {
+                JA = new JSONArray(result);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            JSONObject json = null;
 
-                            }
-                        };
-                        definicaoservico.setOnItemSelectedListener(corporais);
-                    }if(tipov.equals("Massagem")){
-                        ArrayAdapter<CharSequence> definicam = ArrayAdapter.createFromResource(getBaseContext(), R.array.massagem, android.R.layout.simple_spinner_item);
-                        definicam.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        definicaoservico.setAdapter(definicam);
+            servico = new String[JA.length()];
 
-                        AdapterView.OnItemSelectedListener massagem = new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                if (pos > 0) {
-                                    tipod = ((TextView) view).getText().toString();
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        };
-                        definicaoservico.setOnItemSelectedListener(massagem);
-                    }if(tipov.equals("Faciais")){
-                        ArrayAdapter<CharSequence> definicaf = ArrayAdapter.createFromResource(getBaseContext(), R.array.faciais, android.R.layout.simple_spinner_item);
-                        definicaf.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        definicaoservico.setAdapter(definicaf);
-
-                        AdapterView.OnItemSelectedListener faciais = new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                if (pos > 0) {
-                                    tipod = ((TextView) view).getText().toString();
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        };
-                        definicaoservico.setOnItemSelectedListener(faciais);
-                    }
-                    if (tipov.equals("Olhos")){
-                        ArrayAdapter<CharSequence> definicao= ArrayAdapter.createFromResource(getBaseContext(), R.array.olhos, android.R.layout.simple_spinner_item);
-                        definicao.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        definicaoservico.setAdapter(definicao);
-
-                        AdapterView.OnItemSelectedListener olhos = new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                if (pos > 0) {
-                                    tipod = ((TextView) view).getText().toString();
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        };
-                        definicaoservico.setOnItemSelectedListener(olhos);
-                    }if(tipov.equals("Unhas")){
-                        ArrayAdapter<CharSequence> definicau= ArrayAdapter.createFromResource(getBaseContext(), R.array.unhas, android.R.layout.simple_spinner_item);
-                        definicau.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        definicaoservico.setAdapter(definicau);
-
-                        AdapterView.OnItemSelectedListener unhas = new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                if (pos > 0) {
-                                    tipod = ((TextView) view).getText().toString();
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        };
-                        definicaoservico.setOnItemSelectedListener(unhas);
-                    }if(tipov.equals("Depilação")){
-                        ArrayAdapter<CharSequence> definicad= ArrayAdapter.createFromResource(getBaseContext(), R.array.depilacao, android.R.layout.simple_spinner_item);
-                        definicad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        definicaoservico.setAdapter(definicad);
-
-                        AdapterView.OnItemSelectedListener depilacao = new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                                if (pos > 0) {
-                                    tipod = ((TextView) view).getText().toString();
-                                }
-                            }
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {
-
-                            }
-                        };
-                        definicaoservico.setOnItemSelectedListener(depilacao);
-                    }
+            for (int i = 0; i < JA.length(); i++) {
+                try {
+                    json = JA.getJSONObject(i);
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
+                try {
+                    servico[i] = json.getString("descricao");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+            Toast.makeText(getApplicationContext(), "sss", Toast.LENGTH_LONG).show();
+            for (int i = 0; i < servico.length; i++) {
+                list1.add(servico[i]);
+            }
+            Toast.makeText(getApplicationContext(), "len", Toast.LENGTH_LONG).show();
+            spinner_fn();
+            return null;
+        }
+    }
+
+    private void spinner_fn() {
+        ArrayAdapter<String> dataAdapter1 = new ArrayAdapter<String>(CadAgendaEmpActivity.this, android.R.layout.simple_spinner_item, servico);
+        tiposervico.setAdapter(dataAdapter1);
+        tiposervico.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+                tiposervico.setSelection(position);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        };
-        tiposervico.setOnItemSelectedListener(item);
-
-        tvData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+            public void onNothingSelected(AdapterView<?> arg0) {
             }
         });
+
     }
 }
