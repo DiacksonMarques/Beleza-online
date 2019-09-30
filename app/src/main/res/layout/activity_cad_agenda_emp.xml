@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fuund"
     android:orientation="vertical"
-    tools:context=".Activis.CadAgendaEmpActivity">
+    tools:context=".Cadastros.CadAgendaEmpActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -100,7 +100,7 @@
                     android:layout_marginBottom="28dp" />
 
                 <Spinner
-                    android:id="@+id/servicoagend"
+                    android:id="@+id/definicaoservicoagend"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="35dp"

@@ -12,20 +12,20 @@ import java.net.URL;
 import java.util.List;
 
 public class PopularSpinner {
-
+    private String result = null;
     public PopularSpinner(){
 
     }
 
     public String makerServiceCall(String url, int method) {
-        return this.makerServiceCall(url, method, null);
+        return this.makerServiceCall();
     }
 
-    public String makerServiceCall(String url, int method, List<Settings.NameValueTable> params){
+    public String makerServiceCall(){
         InputStream is = null;
-        String result = null;
+
         try{
-            URL urlspinner = new URL("http://homecar.16mb.com/android/spinnercarro2.php");
+            URL urlspinner = new URL("https://beleza-online.000webhostapp.com/getListaServico.php");
             HttpURLConnection urlConnection = (HttpURLConnection) urlspinner.openConnection();
             urlConnection.connect();
             is = urlConnection.getInputStream();
@@ -49,4 +49,5 @@ public class PopularSpinner {
         }
         return result;
     }
+
 }
