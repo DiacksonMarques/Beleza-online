@@ -20,6 +20,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.evo.belezaonline_2.Activis.LoginActivity;
+import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.Controller.GetServico;
 import com.evo.belezaonline_2.Controller.PopularSpinner;
 import com.evo.belezaonline_2.Metodos.Config;
@@ -40,7 +42,7 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
     Spinner tiposervico, definicaoservico;
     TextView tvData;
 
-    private ArrayList<String> servico;
+    private ArrayList<String> servico =  new ArrayList<String>();
     private JSONArray tipo_servico;
 
     @Override
@@ -58,8 +60,28 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
         definicaoservico = findViewById(R.id.definicaoservicoagend);
         tvData = findViewById(R.id.tvData);
 
+        new SolicitaDados().execute(Config.DATA_URL);
         tiposervico.setOnItemSelectedListener(this);
-        getData();
+        //getData();
+    }
+
+    private class SolicitaDados extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Conexao.postDados(urls[0], parametros);
+        }
+        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        @Override
+        protected void onPostExecute(String resultado) {
+            getData();
+        }
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        finish();
     }
 
     private void getData(){
@@ -90,7 +112,7 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
         for (int i=0; i<jsonArray.length();i++){
             try{
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
-                servico.add(jsonObject.getString(Config.TAG_TIPOSERVICO));
+                servico.add(jsonObject.getString(Config.TAG_TIPOSERVICO1));
             } catch (JSONException e) {
                 e.printStackTrace();
             }
