@@ -55,8 +55,8 @@ public class CadFuncActivity extends AppCompatActivity {
                     if (nome.isEmpty()){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
-                        url = "https://beleza-online.000webhostapp.com/cadastrofuncionario.php";
-                        parametros = "nome=" + nome +"&id_centros_de_beleza="+id_centros_de_beleza;
+                        url = "https://diackson.000webhostapp.com/cadastrofuncionario.php";
+                        parametros = "nome=" + nome +"&id_centro_de_beleza="+id_centros_de_beleza;
                         new CadFuncActivity.SolicitaDados().execute(url);
                     }
                 }else{

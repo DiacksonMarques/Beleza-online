@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(usuario.isEmpty() || senha.isEmpty()){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_SHORT).show();
                     }else{
-                        url = "https://beleza-online.000webhostapp.com/logar.php";
+                        url = "https://diackson.000webhostapp.com/logar.php";
                         paramentros = "usuario="+ usuario + "&senha=" + senha;
                         new SolicitaDados().execute(url);
                     }
@@ -76,15 +76,16 @@ public class LoginActivity extends AppCompatActivity {
                 Intent abreInicio = new Intent(getBaseContext(),MainActivity.class);
                 abreInicio.putExtra("id",dados[1]);
                 abreInicio.putExtra("nome",dados[2]);
-                abreInicio.putExtra("tipo_usuario",dados[3]);
+                //abreInicio.putExtra("tipo_usuario",dados[3]);
                 startActivity(abreInicio);
                 finish();
             }
-            if(resultado != null && !resultado.isEmpty() && resultado.contains("Login_n")){
+
+            else if(resultado != null && !resultado.isEmpty() && resultado.contains("Login_n")){
                 Intent abreInicio = new Intent(getBaseContext(),MainActivityEmp.class);
                 abreInicio.putExtra("id",dados[1]);
                 abreInicio.putExtra("nome",dados[2]);
-                abreInicio.putExtra("tipo_usuario",dados[3]);
+                //abreInicio.putExtra("tipo_usuario",dados[3]);
                 startActivity(abreInicio);
                 finish();
             }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Login_Erro")){

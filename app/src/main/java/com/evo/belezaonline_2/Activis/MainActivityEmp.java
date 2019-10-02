@@ -19,8 +19,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 
 public class MainActivityEmp extends AppCompatActivity {
-    String abremaps = "nada";
-    String abrecadser = "nada";
     private OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
     {
         mOnNavigationItemSelectedListener = new OnNavigationItemSelectedListener() {
@@ -51,40 +49,10 @@ public class MainActivityEmp extends AppCompatActivity {
         //Dados login
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
+        assert bundle != null;
         id = bundle.getString("id");
         nome = bundle.getString("nome");
-        String tipo_usuario = bundle.getString("tipo_usuario");
-
-        //Dados Maps
-        Intent intentmaps = this.getIntent();
-        Bundle bundlemaps = intentmaps.getExtras();
-        if ( bundlemaps.getString("abremaps")==null){
-            abremaps="nada";
-        }else {
-            abremaps = bundlemaps.getString("abremaps");
-        }
-        if (abremaps.equals("abremaps")){
-            Intent abreMaps = new Intent(getBaseContext(), MapsActivityEmp.class);
-            abreMaps.putExtra("id",id);
-            abreMaps.putExtra("nome",nome);
-            startActivity(abreMaps);
-            finish();
-        }
-
-        //Dados CadServ
-        Intent intentserve = this.getIntent();
-        Bundle bundleserv = intentserve.getExtras();
-        if ( bundleserv.getString("abrecadserv")==null){
-            abrecadser="nada";
-        }else {
-            abrecadser = bundleserv.getString("abrecadser");
-        }
-        if (abrecadser.equals("abrecadserd")){
-            Intent abreCadServe = new Intent(getBaseContext(), CadEmpresaServicoActivity.class);
-            abreCadServe.putExtra("id",id);
-            startActivity(abreCadServe);
-            finish();
-        }
+        //String tipo_usuario = bundle.getString("tipo_usuario");
     }
 
     private void openFragment(Fragment fragment){

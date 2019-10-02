@@ -31,7 +31,6 @@ public class CadEmpresaActivity extends AppCompatActivity {
 
         btCademp= findViewById(R.id.btCadfunc);
         ctNomeemp= findViewById(R.id.ctNomefunc);
-        ctHoraFunc= findViewById(R.id.ctHoraFunc);
         ctCnpj= findViewById(R.id.ctCnpj);
         ctDescricao= findViewById(R.id.ctDescricao);
         ctUsuarioemp= findViewById(R.id.ctUsuarioemp);
@@ -46,7 +45,6 @@ public class CadEmpresaActivity extends AppCompatActivity {
 
                 if (networkInfo !=null && networkInfo.isConnected()){
                     String nome = ctNomeemp.getText().toString();
-                    String horario_de_funcionamento = ctHoraFunc.getText().toString();
                     String cnpj = ctCnpj.getText().toString();
                     String descricao = ctDescricao.getText().toString();
                     String usuario = ctUsuarioemp.getText().toString();
@@ -55,7 +53,6 @@ public class CadEmpresaActivity extends AppCompatActivity {
                     String tipo_usuario= "negocio";
 
                     nome= StringFormate.convertStringUTF8(nome);
-                    horario_de_funcionamento= StringFormate.convertStringUTF8(horario_de_funcionamento);
                     cnpj= StringFormate.convertStringUTF8(cnpj);
                     descricao= StringFormate.convertStringUTF8(descricao);
                     usuario= StringFormate.convertStringUTF8(usuario);
@@ -63,14 +60,14 @@ public class CadEmpresaActivity extends AppCompatActivity {
                     repsenha= StringFormate.convertStringUTF8(repsenha);
                     tipo_usuario= StringFormate.convertStringUTF8(tipo_usuario);
 
-                    if (nome.isEmpty()|| horario_de_funcionamento.isEmpty()|| cnpj.isEmpty()|| descricao.isEmpty()|| usuario.isEmpty()|| senha.isEmpty()|| repsenha.isEmpty()){
+                    if (nome.isEmpty()|| cnpj.isEmpty()|| descricao.isEmpty()|| usuario.isEmpty()|| senha.isEmpty()|| repsenha.isEmpty()){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
                         if (!senha.equals(repsenha)){
                             Toast.makeText(getBaseContext(),"As senha não coincidem",Toast.LENGTH_SHORT).show();
                         }else{
-                            url = "https://beleza-online.000webhostapp.com/cadastroemp.php";
-                            parametros = "nome=" + nome +"&horario_de_funcionamento="+horario_de_funcionamento+ "&cnpj=" + cnpj + "&descricao="+descricao+"&usuario="+usuario+"&senha="+senha+"&tipo_usuario="+tipo_usuario;
+                            url = "https://diackson.000webhostapp.com/cadastroemp.php";
+                            parametros = "nome=" + nome +"&cnpj=" + cnpj + "&descricao="+descricao+"&usuario="+usuario+"&senha="+senha+"&tipo_usuario="+tipo_usuario;
                             new SolicitaDados().execute(url);
                         }
                     }

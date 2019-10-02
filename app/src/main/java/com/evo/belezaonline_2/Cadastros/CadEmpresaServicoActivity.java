@@ -28,12 +28,15 @@ import com.evo.belezaonline_2.R;
 
 public class CadEmpresaServicoActivity extends AppCompatActivity {
     Spinner tiposervico,definicaoservico;
-    EditText ctTempoExecucao,ctValor,ctDescricaoServico;
+    EditText ctValor,ctDescricaoServico;
     Button btCadEmpSer;
     String tipov,tipod,aux;
 
     String url="";
     String parametros="";
+
+    String id ;
+    String nome ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,10 +44,14 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
 
         tiposervico = findViewById(R.id.tiposervico);
         definicaoservico = findViewById(R.id.definicaoservico);
-        ctTempoExecucao = findViewById(R.id.ctTempoExecucao);
         ctValor = findViewById(R.id.ctValor);
         ctDescricaoServico = findViewById(R.id.ctDescricaoServico);
         btCadEmpSer = findViewById(R.id.btCadempserrv);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        final String id = bundle.getString("id");
+        final String nome = bundle.getString("nome");
 
         final ArrayAdapter<CharSequence> tiposerv = ArrayAdapter.createFromResource(this, R.array.servico_array, android.R.layout.simple_spinner_item);
         tiposerv.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -227,11 +234,6 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
             }
         };
         tiposervico.setOnItemSelectedListener(item);
-
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        final String id = bundle.getString("id");
-
         btCadEmpSer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,7 +243,6 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
                 if(networkInfo !=null && networkInfo.isConnected()){
                     String nome = tipod;
                     String tipo_servico = tipov;
-                    double tempo_execucao = Double.parseDouble(String.valueOf(ctTempoExecucao.getText()));
                     double valor = Double.parseDouble(String.valueOf(ctValor.getText()));
                     String descricao  = ctDescricaoServico.getText().toString();
                     int id_centro_de_beleza= Integer.parseInt(id);
@@ -250,11 +251,11 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
                     tipo_servico= StringFormate.convertStringUTF8(tipo_servico);
                     descricao= StringFormate.convertStringUTF8(descricao);
 
-                    if (nome.isEmpty()|| tipo_servico.isEmpty()|| descricao.isEmpty() || ctTempoExecucao.getText()==null|| ctValor.getText()==null){
+                    if (nome.isEmpty()|| tipo_servico.isEmpty()|| descricao.isEmpty() || ctValor.getText()==null){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
-                            url = "https://beleza-online.000webhostapp.com/cadastroservico.php";
-                                parametros = "nome=" + nome +"&tipo_servico="+tipo_servico+"&tempo_execucao="+tempo_execucao+ "&valor=" + valor + "&descricao="+descricao+"&id_centro_de_beleza="+id_centro_de_beleza;
+                            url = "https://diackson.000webhostapp.com/cadastroservico.php";
+                                parametros = "nome=" + nome +"&tipo_servico="+tipo_servico+"&valor=" + valor + "&descricao="+descricao+"&id_centro_de_beleza="+id_centro_de_beleza;
                             new SolicitaDados().execute(url);
                     }
                 }else{
@@ -277,6 +278,8 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
             }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
                 Toast.makeText(getBaseContext(),"Registro concluído com sucesso!",Toast.LENGTH_LONG).show();
                 Intent abreInicio = new Intent(getBaseContext(), MainActivityEmp.class);
+                abreInicio.putExtra("id",id);
+                abreInicio.putExtra("nome",nome);
                 startActivity(abreInicio);
                 // Fechar fragment getBaseContext().getFragmentManager().popBackStack();
                 finish();

@@ -53,6 +53,7 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
     private static final String KEY_LOCATION = "location";
     Button btCadLocaEmp;
     double lat,longe;
+    String ida,nomea;
 
     String url="";
     String parametros="";
@@ -81,6 +82,11 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
 
         // Construct a FusedLocationProviderClient.
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        final String ida = bundle.getString("id");
+        final String nomea = bundle.getString("nome");
     }
 
     /**
@@ -220,7 +226,6 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
     }
 
     private void getCadLoc(){
-
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         final String id = bundle.getString("id");
@@ -240,7 +245,7 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
             if (nome.isEmpty()){
                 Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
             }else{
-                url = "https://beleza-online.000webhostapp.com/cadastrolocalizacao.php";
+                url = "https://diackson.000webhostapp.com/cadastrolocalizacao.php";
                 parametros = "lat=" + lat +"&longe="+longe+"&nome="+nome+ "&id_centro_de_beleza=" + id_centro_de_beleza;
                 new MapsActivityEmp.SolicitaDados().execute(url);
             }
@@ -248,13 +253,12 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
             Toast.makeText(getBaseContext(),"Não há conexão com a internet.",Toast.LENGTH_LONG).show();
         }
     }
-
     private class SolicitaDados extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             return Conexao.postDados(urls[0], parametros);
         }
-        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        //onPostExecute mostra os resultados obtidos com a classe AsyncTask.
         @Override
         protected void onPostExecute(String resultado) {
             if(resultado != null && !resultado.isEmpty() && resultado.contains("Loca_Erro")){
@@ -262,8 +266,10 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
             }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
                 Toast.makeText(getBaseContext(),"Registro concluído com sucesso!",Toast.LENGTH_LONG).show();
                 Intent abreInicio = new Intent(getBaseContext(), MainActivityEmp.class);
+                abreInicio.putExtra("id",ida);
+                abreInicio.putExtra("nome",nomea);
                 startActivity(abreInicio);
-                // Fechar fragment getBaseContext().getFragmentManager().popBackStack();
+                //Fechar fragment getBaseContext().getFragmentManager().popBackStack();
                 finish();
             }else{
                 Toast.makeText(getBaseContext(),"Ocorreu um erro: "+resultado,Toast.LENGTH_LONG).show();

@@ -56,25 +56,6 @@
         android:textSize="14dp" />
 
     <EditText
-        android:id="@+id/ctHoraFunc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginRight="60dp"
-        android:autoText="false"
-        android:autofillHints=""
-        android:drawableStart="@android:drawable/ic_menu_recent_history"
-        android:drawableLeft="@android:drawable/ic_menu_recent_history"
-        android:drawingCacheQuality="auto"
-        android:hint="@string/horafunc"
-        android:inputType="textPersonName"
-        android:textAppearance="@style/Base.AlertDialog.AppCompat"
-        android:textColor="@android:color/darker_gray"
-        android:textIsSelectable="false"
-        android:textSize="14dp" />
-
-    <EditText
         android:id="@+id/ctCnpj"
         android:layout_width="match_parent"
         android:layout_height="46dp"
