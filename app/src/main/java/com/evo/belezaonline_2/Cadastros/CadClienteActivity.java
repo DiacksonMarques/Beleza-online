@@ -84,8 +84,7 @@ public class CadClienteActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String resultado) {
             if(resultado != null && !resultado.isEmpty() && resultado.contains("Usuario_Erro")){
-                Toast.makeText(getBaseContext(),"Este usuário" +
-                        " já está cadastrado",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),"Este usuário já está cadastrado",Toast.LENGTH_LONG).show();
             }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
                 Toast.makeText(getBaseContext(),"Registro concluído com sucesso!",Toast.LENGTH_LONG).show();
                 Intent abreInicio = new Intent(getBaseContext(), LoginActivity.class);

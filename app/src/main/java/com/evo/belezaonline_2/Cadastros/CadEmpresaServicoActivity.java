@@ -35,8 +35,8 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
     String url="";
     String parametros="";
 
-    String id ;
-    String nome ;
+    String id;
+    String nome;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,8 +50,8 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        final String id = bundle.getString("id");
-        final String nome = bundle.getString("nome");
+        id = bundle.getString("id");
+        nome = bundle.getString("nome");
 
         final ArrayAdapter<CharSequence> tiposerv = ArrayAdapter.createFromResource(this, R.array.servico_array, android.R.layout.simple_spinner_item);
         tiposerv.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

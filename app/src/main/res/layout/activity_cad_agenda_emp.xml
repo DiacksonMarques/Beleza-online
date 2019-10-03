@@ -21,7 +21,7 @@
 
         <RelativeLayout
             android:layout_width="350dp"
-            android:layout_height="360dp"
+            android:layout_height="300dp"
             android:layout_gravity="center"
             android:orientation="horizontal">
 
@@ -61,25 +61,24 @@
                 android:text="Funcionário Para o Serviço"
                 android:textColor="#FAFAFA" />
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView2"
-                android:layout_marginTop="-10dp"
-                android:backgroundTint="#FAFAFA"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textColor="#FFFFFF" />
+            <Spinner
+                android:id="@+id/funcionario"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="133dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="28dp" />
 
             <TextView
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText"
+                android:layout_alignBottom="@+id/funcionario"
                 android:layout_marginLeft="2dp"
-                android:layout_marginTop="21dp"
+                android:layout_marginBottom="-31dp"
                 android:text="Cadastrar Tipos de Serviço:"
                 android:textColor="#FAFAFA" />
 
@@ -98,20 +97,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="60dp"
                     android:layout_marginBottom="28dp" />
-
-                <Spinner
-                    android:id="@+id/definicaoservicoagend"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="35dp"
-                    android:layout_marginLeft="35dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginRight="24dp"
-                    android:layout_marginBottom="66dp" />
             </LinearLayout>
 
-
         </RelativeLayout>
+
     </ScrollView>
 
     <Switch
@@ -170,5 +159,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="Salvar" />
+        android:text="Salvar"
+        android:textColor="@color/colorPrimary" />
 </LinearLayout>

@@ -39,11 +39,15 @@ import java.util.Locale;
 public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener {
 
     String parametros = "";
-    Spinner tiposervico, definicaoservico;
+    Spinner tiposervico, funcionario;
     TextView tvData;
+    String id;
 
     private ArrayList<String> servico =  new ArrayList<String>();
     private JSONArray tipo_servico;
+
+    private ArrayList<String> funcionarioa =  new ArrayList<String>();
+    private JSONArray Jfuncionario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,40 +56,23 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        final String id = bundle.getString("id");
+        id = bundle.getString("id");
 
         parametros = "id_centros_de_beleza=" + id;
 
         tiposervico = findViewById(R.id.tiposervicoagend);
-        definicaoservico = findViewById(R.id.definicaoservicoagend);
+        funcionario = findViewById(R.id.funcionario);
         tvData = findViewById(R.id.tvData);
 
-        new SolicitaDados().execute(Config.DATA_URL);
         tiposervico.setOnItemSelectedListener(this);
-        //getData();
+        getSepinnerServico();
+
+        funcionario.setOnItemSelectedListener(this);
+        getSepinnerFuncionario();
     }
 
-    private class SolicitaDados extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-            return Conexao.postDados(urls[0], parametros);
-        }
-        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
-        @Override
-        protected void onPostExecute(String resultado) {
-            getData();
-        }
-
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        finish();
-    }
-
-    private void getData(){
-        StringRequest stringRequest = new StringRequest(Config.DATA_URL,
+    private void getSepinnerServico(){
+        StringRequest stringRequest = new StringRequest(Config.DATA_URL+id,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -134,9 +121,61 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
         return tipo_servicoa;
     }
 
+    private void getSepinnerFuncionario(){
+        StringRequest stringRequest = new StringRequest(Config.DATA_URLF+id,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        JSONObject jsonObject = null;
+                        try {
+                            jsonObject = new JSONObject(response);
+                            Jfuncionario = jsonObject.getJSONArray(Config.JSON_ARRAYF);
+                            getFuncionario(Jfuncionario);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private void getFuncionario(JSONArray jsonArray){
+        for (int i=0; i<jsonArray.length();i++){
+            try{
+                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                funcionarioa.add(jsonObject.getString(Config.TAG_FUNCIONARIO1));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        funcionario.setAdapter(new ArrayAdapter<String>(CadAgendaEmpActivity.this, android.R.layout.simple_spinner_dropdown_item, funcionarioa));
+    }
+
+    private String getFuncionarioAdd(int position){
+        String funcionarioaux="";
+        try {
+            //Getting object of given index
+            JSONObject json = Jfuncionario.getJSONObject(position);
+            //Fetching name from that object
+            funcionarioaux = json.getString(Config.TAG_FUNCIONARIO1);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //Returning the name
+        return funcionarioaux;
+    }
+
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getBaseContext(), getTipoServico(position), Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), getFuncionarioAdd(position), Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(), getTipoServico(position), Toast.LENGTH_LONG).show();
     }
 
     @Override
