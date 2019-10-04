@@ -171,12 +171,12 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
         return funcionarioaux;
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        Toast.makeText(getBaseContext(), getFuncionarioAdd(position), Toast.LENGTH_LONG).show();
-        //Toast.makeText(getBaseContext(), getTipoServico(position), Toast.LENGTH_LONG).show();
+        String tipof = ((TextView) view).getText().toString();
+        Toast.makeText(getBaseContext(), tipof, Toast.LENGTH_LONG).show();
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
