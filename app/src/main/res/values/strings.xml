@@ -143,4 +143,6 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="selecionar_a_data">Selecionar a data</string>
+    <string name="selecione_a_hora">Selecione a hora</string>
 </resources>

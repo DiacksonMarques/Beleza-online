@@ -1,18 +1,21 @@
 package com.evo.belezaonline_2.Cadastros;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
-import android.app.ProgressDialog;
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.icu.util.ULocale;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -20,10 +23,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.evo.belezaonline_2.Activis.LoginActivity;
-import com.evo.belezaonline_2.Banco.Conexao;
-import com.evo.belezaonline_2.Controller.GetServico;
-import com.evo.belezaonline_2.Controller.PopularSpinner;
 import com.evo.belezaonline_2.Metodos.Config;
 import com.evo.belezaonline_2.R;
 
@@ -31,17 +30,19 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.InputStream;
-import java.util.AbstractQueue;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Calendar;
 
-public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.OnItemSelectedListener {
+public class CadAgendaEmpActivity extends AppCompatActivity{
 
     String parametros = "";
     Spinner tiposervico, funcionario;
-    TextView tvData;
-    String id;
+    TextView tvData, tvHora;
+    String id,tipof,tipos;
+    Calendar calendar;
+    DatePickerDialog data;
+    TimePickerDialog horad;
+    TextView tvValor;
 
     private ArrayList<String> servico =  new ArrayList<String>();
     private JSONArray tipo_servico;
@@ -63,12 +64,55 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
         tiposervico = findViewById(R.id.tiposervicoagend);
         funcionario = findViewById(R.id.funcionario);
         tvData = findViewById(R.id.tvData);
+        tvHora = findViewById(R.id.tvHora);
+        tvValor = findViewById(R.id.tvValor);
 
-        tiposervico.setOnItemSelectedListener(this);
-        getSepinnerServico();
+        tvData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               calendar = Calendar.getInstance();
+               int dia = calendar.get(Calendar.DAY_OF_MONTH);
+               final int mes = calendar.get(Calendar.MONTH);
+               int ano = calendar.get(Calendar.YEAR);
 
-        funcionario.setOnItemSelectedListener(this);
+               data = new DatePickerDialog(CadAgendaEmpActivity.this, new DatePickerDialog.OnDateSetListener() {
+                   @Override
+                   public void onDateSet(DatePicker view, int mAno, int mMes, int mDia) {
+                       if((mMes+1)>=10){
+                           tvData.setText(mDia+"/"+(mMes+1)+"/"+mAno);
+                       }else{
+                           tvData.setText(mDia+"/0"+(mMes+1)+"/"+mAno);
+                       }
+                   }
+               }, ano, mes, dia);
+                data.show();
+            }
+        });
+
+        tvHora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int hora = calendar.get(Calendar.HOUR_OF_DAY);
+                int minuto = calendar.get(Calendar.MINUTE);
+                boolean is24Hours = DateFormat.is24HourFormat(CadAgendaEmpActivity.this);
+
+                horad = new TimePickerDialog(CadAgendaEmpActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        if(minute>=10){
+                            tvHora.setText(hourOfDay+":"+minute);
+                        }else {
+                            tvHora.setText(hourOfDay+":0"+minute);
+                        }
+                    }
+                }, hora, minuto, is24Hours);
+                horad.show();
+            }
+        });
+
         getSepinnerFuncionario();
+        getSepinnerServico();
     }
 
     private void getSepinnerServico(){
@@ -105,6 +149,21 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
             }
         }
         tiposervico.setAdapter(new ArrayAdapter<String>(CadAgendaEmpActivity.this, android.R.layout.simple_spinner_dropdown_item, servico));
+        AdapterView.OnItemSelectedListener servicoad = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0) {
+                    tipos = getTipoServico(position);
+                    getValor();
+                    //Toast.makeText(getBaseContext(), tipos, Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+        tiposervico.setOnItemSelectedListener(servicoad);
     }
 
     private String getTipoServico(int position){
@@ -155,6 +214,21 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
             }
         }
         funcionario.setAdapter(new ArrayAdapter<String>(CadAgendaEmpActivity.this, android.R.layout.simple_spinner_dropdown_item, funcionarioa));
+        AdapterView.OnItemSelectedListener funcionarioad = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position > 0) {
+                    //tipof = ((TextView) view).getText().toString();
+                    tipof = getFuncionarioAdd(position);
+                    //Toast.makeText(getBaseContext(), tipof, Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        };
+        funcionario.setOnItemSelectedListener(funcionarioad);
     }
 
     private String getFuncionarioAdd(int position){
@@ -171,15 +245,10 @@ public class CadAgendaEmpActivity extends AppCompatActivity implements Spinner.O
         return funcionarioaux;
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String tipof = ((TextView) view).getText().toString();
-        Toast.makeText(getBaseContext(), tipof, Toast.LENGTH_LONG).show();
-    }
-
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
+    private void getValor(){
+        if(tipos != null){
+            String[] valorSepara = tipos.split(":| :");
+            tvValor.setText("R$:"+valorSepara[1]);
+        }
     }
 }
