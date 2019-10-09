@@ -20,6 +20,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Cadastros.CadPromocaoActivity"></activity>
         <activity android:name=".Cadastros.CadFuncActivity" />
         <activity android:name=".Cadastros.CadAgendaEmpActivity" />
         <!--

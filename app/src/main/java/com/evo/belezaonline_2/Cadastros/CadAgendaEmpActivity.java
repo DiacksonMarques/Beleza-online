@@ -6,13 +6,19 @@ import androidx.fragment.app.DialogFragment;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -23,7 +29,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.evo.belezaonline_2.Activis.MainActivityEmp;
+import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.Metodos.Config;
+import com.evo.belezaonline_2.Metodos.StringFormate;
 import com.evo.belezaonline_2.R;
 
 import org.json.JSONArray;
@@ -36,13 +45,16 @@ import java.util.Calendar;
 public class CadAgendaEmpActivity extends AppCompatActivity{
 
     String parametros = "";
+    String url;
     Spinner tiposervico, funcionario;
     TextView tvData, tvHora;
-    String id,tipof,tipos;
+    String id,nome,tipof,tipos,preco;
     Calendar calendar;
     DatePickerDialog data;
     TimePickerDialog horad;
+    EditText edCliente;
     TextView tvValor;
+    Button btCadAgend;
 
     private ArrayList<String> servico =  new ArrayList<String>();
     private JSONArray tipo_servico;
@@ -58,14 +70,15 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         id = bundle.getString("id");
-
-        parametros = "id_centros_de_beleza=" + id;
+        nome = bundle.getString("nome");
 
         tiposervico = findViewById(R.id.tiposervicoagend);
         funcionario = findViewById(R.id.funcionario);
         tvData = findViewById(R.id.tvData);
         tvHora = findViewById(R.id.tvHora);
         tvValor = findViewById(R.id.tvValor);
+        btCadAgend = findViewById(R.id.btCadAgend);
+        edCliente = findViewById(R.id.edCliente);
 
         tvData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +126,39 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
 
         getSepinnerFuncionario();
         getSepinnerServico();
+
+        btCadAgend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+
+                if(networkInfo !=null && networkInfo.isConnected()){
+                    String data = (String) tvData.getText();
+                    String hora = (String) tvHora.getText();
+                    String cliente = String.valueOf(edCliente.getText());
+                    String funcionario = tipof;
+                    String[] servicoSeparar = tipos.split(" R|  R|   R");
+                    String[] valorSeparan = preco.split(",| ,");
+                    double valor = Double.parseDouble(valorSeparan[0]);
+                    int id_cliente  = 0;
+                    int id_centro_de_beleza= Integer.parseInt(id);;
+                    data= StringFormate.convertStringUTF8(data);
+                    hora= StringFormate.convertStringUTF8(hora);
+                    funcionario= StringFormate.convertStringUTF8(funcionario);
+
+                    if (data.isEmpty()|| hora.isEmpty()|| funcionario.isEmpty() || edCliente.getText()==null){
+                        Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
+                    }else{
+                        url = "https://diackson.000webhostapp.com/cadastroagendamento.php";
+                        parametros ="data="+data+"&hora="+hora+"&cliente="+cliente+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servicoSeparar[0]+"&id_cliente="+id_cliente+"&id_centro_de_beleza="+id_centro_de_beleza;
+                        new SolicitaDados().execute(url);
+                    }
+                }else{
+                    Toast.makeText(getBaseContext(),"Não há conexão com a internet.",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     private void getSepinnerServico(){
@@ -248,7 +294,40 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
     private void getValor(){
         if(tipos != null){
             String[] valorSepara = tipos.split(":| :");
-            tvValor.setText("R$:"+valorSepara[1]);
+            preco =  valorSepara[1];
+            tvValor.setText("R$ "+valorSepara[1]);
         }
     }
+
+    private class SolicitaDados extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Conexao.postDados(urls[0], parametros);
+        }
+        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        @Override
+        protected void onPostExecute(String resultado) {
+            if(resultado != null && !resultado.isEmpty() && resultado.contains("Agenda_Erro")){
+                Toast.makeText(getBaseContext(),"Erro ao agendar",Toast.LENGTH_LONG).show();
+            }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
+                Toast.makeText(getBaseContext(),"Agendamento concluído com sucesso!",Toast.LENGTH_LONG).show();
+                Intent abreInicio = new Intent(getBaseContext(), MainActivityEmp.class);
+                abreInicio.putExtra("id",id);
+                abreInicio.putExtra("nome",nome);
+                startActivity(abreInicio);
+                // Fechar fragment getBaseContext().getFragmentManager().popBackStack();
+                finish();
+            }else{
+                Toast.makeText(getBaseContext(),"Ocorreu um erro: "+resultado,Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        finish();
+    }
+
 }

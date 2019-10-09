@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fuund"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     tools:context=".Cadastros.CadAgendaEmpActivity">
 
@@ -37,9 +38,11 @@
                     android:id="@+id/textView"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textView2"
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="60dp"
+                    android:layout_marginBottom="90dp"
                     android:text="Esse horário está disponível:"
                     android:textColor="#FAFAFA" />
 
@@ -70,8 +73,28 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="100dp"
+                    android:text="Cliente:"
+                    android:textColor="#FAFAFA" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/textView2"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginBottom="-80dp"
                     android:text="Funcionário Para o Serviço"
                     android:textColor="#FAFAFA" />
+
+                <EditText
+                    android:id="@+id/edCliente"
+                    android:layout_width="286dp"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/textView3"
+                    android:layout_marginBottom="4dp"
+                    android:ems="10"
+                    android:gravity="center_horizontal"
+                    android:inputType="textPersonName" />
 
                 <Spinner
                     android:id="@+id/funcionario"
@@ -80,7 +103,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginStart="4dp"
                     android:layout_marginLeft="4dp"
-                    android:layout_marginTop="133dp"
+                    android:layout_marginTop="278dp"
                     android:layout_marginRight="60dp"
                     android:layout_marginBottom="28dp" />
 
@@ -90,49 +113,26 @@
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@+id/funcionario"
                     android:layout_marginLeft="2dp"
-                    android:layout_marginBottom="-31dp"
+                    android:layout_marginBottom="33dp"
                     android:text="Cadastrar Tipos de Serviço:"
                     android:textColor="#FAFAFA" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="200dp"
-                    android:orientation="vertical">
-
-                    <Spinner
-                        android:id="@+id/tiposervicoagend"
-                        android:layout_width="fill_parent"
-                        android:layout_height="fill_parent"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="60dp"
-                        android:layout_marginBottom="28dp" />
-                </LinearLayout>
-
+                <Spinner
+                    android:id="@+id/tiposervicoagend"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginTop="206dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginBottom="28dp" />
             </RelativeLayout>
 
         </ScrollView>
 
     </FrameLayout>
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center"
-        android:text="Valor do serviço em promoção:"
-        android:textColor="#FAFAFA" />
-
-
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView9"
@@ -147,11 +147,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="TextView"
+        android:text="Valor a ser pago"
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btCadAgend"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_gravity="center"

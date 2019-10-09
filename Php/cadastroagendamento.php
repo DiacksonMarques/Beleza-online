@@ -2,35 +2,30 @@
 include_once 'cone.php';
 
 //Setar os dados
-$data=$_POST['data'];
+$data= $_POST['data'];
 $hora=$_POST['hora'];
+$cliente=$_POST['cliente'];
 $funcionario= $_POST['funcionario'];
-$servico=$_POST['servico'];
 $valor=$_POST['valor'];
-$id_centro_de_beleza;
+$servico=$_POST['servico'];
+$id_cliente=$_POST['id_cliente'];
+$id_centro_de_beleza=$_POST['id_centro_de_beleza'];
 
-//Verificar Usuario
-$veri= $con->prepare("SELECT * FROM servico WHERE nome='$nome' AND id_centro_de_beleza='$id_centro_de_beleza'");
-$veri->execute();
-$numero_de_cadastro= $veri-> rowCount();
-
-if ($numero_de_cadastro>0){
-    echo "Servico_Erro";
-}else{
-    
-   //Inserindo dados 
-$add= $con->prepare("INSERT INTO servico SET nome=:nome, tipo_servico=:tipo_servico, valor=:valor, descricao=:descricao, id_centro_de_beleza=:id_centro_de_beleza");
-$add->bindParam(':nome',$nome);
-$add->bindParam(':tipo_servico',$tipo_servico);
+    //Inserindo dados 
+$add= $con->prepare("INSERT INTO agendar_servico SET data=:data, hora=:hora, cliente=:cliente, funcionario=:funcionario, valor=:valor, servico=:servico, id_cliente=:id_cliente, id_centro_de_beleza=:id_centro_de_beleza");
+$add->bindParam(':data',$data);
+$add->bindParam(':hora',$hora);
+$add->bindParam(':cliente',$cliente);
+$add->bindParam(':funcionario',$funcionario);
 $add->bindParam(':valor',$valor);
-$add->bindParam(':descricao',$descricao);
+$add->bindParam(':servico',$servico);
+$add->bindParam(':id_cliente',$id_cliente);
 $add->bindParam(':id_centro_de_beleza',$id_centro_de_beleza);
 $add->execute();
 
 if ($add) {
 	echo "Registro_Ok";
 }else{
-    echo "Servico_Erro";
-}
+    echo "Agenda_Erro";
 }
 ?>
