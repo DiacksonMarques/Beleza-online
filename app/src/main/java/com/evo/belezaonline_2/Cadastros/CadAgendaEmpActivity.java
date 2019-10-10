@@ -150,7 +150,7 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
                     if (data.isEmpty()|| hora.isEmpty()|| funcionario.isEmpty() || edCliente.getText()==null){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
-                        url = "https://diackson.000webhostapp.com/cadastroagendamento.php";
+                        url = "https://belezaonline2019.000webhostapp.com/cadastroagendamento.php";
                         parametros ="data="+data+"&hora="+hora+"&cliente="+cliente+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servicoSeparar[0]+"&id_cliente="+id_cliente+"&id_centro_de_beleza="+id_centro_de_beleza;
                         new SolicitaDados().execute(url);
                     }

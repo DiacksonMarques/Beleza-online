@@ -145,4 +145,10 @@
     <string name="menu_send">Send</string>
     <string name="selecionar_a_data">Selecionar a data</string>
     <string name="selecione_a_hora">Selecione a hora</string>
+    <string name="agendamento">Agendamento</string>
+    <string name="promo_es">Promoções</string>
+    <string name="cadastrar_localiza_o">Cadastrar Localização</string>
+    <string name="cadastrar_funcion_rio">Cadastrar Funcionário</string>
+    <string name="cadastrar_servi_o">Cadastrar Serviço</string>
+    <string name="cadastrar_agendamento">Cadastrar Agendamento</string>
 </resources>

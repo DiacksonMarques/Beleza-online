@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                     if(usuario.isEmpty() || senha.isEmpty()){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_SHORT).show();
                     }else{
-                        url = "https://diackson.000webhostapp.com/logar.php";
+                        url = "https://belezaonline2019.000webhostapp.com/logar.php";
                         paramentros = "usuario="+ usuario + "&senha=" + senha;
                         new SolicitaDados().execute(url);
                     }

@@ -58,7 +58,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static final String LAT = "lat";
     public static final String LNG = "longe";
 
-    private String url = "https://diackson.000webhostapp.com/getLatLon.php";
+    private String url = "https://belezaonline2019.000webhostapp.com/getLatLon.php";
 
     String tag_json_obj = "json_obj_req";
 

@@ -63,7 +63,7 @@ public class CadClienteActivity extends AppCompatActivity {
                         if (!senha.equals(repsenha)){
                             Toast.makeText(getBaseContext(),"As senha não coincidem",Toast.LENGTH_SHORT).show();
                         }else{
-                            url = "https://diackson.000webhostapp.com/cadastro.php";
+                            url = "https://belezaonline2019.000webhostapp.com/cadastro.php";
                             paramentros = "nome=" + nome +"&email="+email+ "&usuario=" + usuario + "&senha=" + senha+"&tipo_usuario="+tipo_usuario;
                             new SolicitaDados().execute(url);
                         }

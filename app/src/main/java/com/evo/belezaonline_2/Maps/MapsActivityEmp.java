@@ -245,7 +245,7 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
             if (nome.isEmpty()){
                 Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
             }else{
-                url = "https://diackson.000webhostapp.com/cadastrolocalizacao.php";
+                url = "https://belezaonline2019.000webhostapp.com/cadastrolocalizacao.php";
                 parametros = "lat=" + lat +"&longe="+longe+"&nome="+nome+ "&id_centro_de_beleza=" + id_centro_de_beleza;
                 new MapsActivityEmp.SolicitaDados().execute(url);
             }
