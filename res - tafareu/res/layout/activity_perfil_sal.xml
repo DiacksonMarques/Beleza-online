@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".perfilusu">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="332dp"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/button17"
+            android:layout_width="180dp"
+            android:layout_height="90dp"
+            android:text="Agendamento"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="224dp"
+            android:background="@drawable/custom_buttonhalfro"/>
+
+        <Button
+            android:id="@+id/button18"
+            android:layout_width="180dp"
+            android:layout_height="90dp"
+            android:text="Promoções"
+            android:layout_marginLeft="206dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="224dp"
+            android:background="@drawable/custom_buttonhalfro"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/custom_button" />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="4dp"
+                android:text="Salão Beleza"
+                android:textColor="#F3F3F3"
+                android:textSize="24sp" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/button24"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/ic_local"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="8dp"
+            android:gravity="left|center_horizontal"
+            android:text="Cadastrar Localização"
+            android:textAllCaps="false"
+
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button25"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/ic_addfunc"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="11dp"
+            android:gravity="left|center_horizontal"
+            android:text="Cadastrar Funcionário"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button26"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/ic_cad"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="8dp"
+            android:gravity="left|center_horizontal"
+            android:text="Cadastrar Serviço"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/button27"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="12dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:drawableLeft="@drawable/ic_cad"
+            android:drawableRight="@drawable/ic_arrow"
+            android:drawablePadding="8dp"
+            android:gravity="left|center_horizontal"
+            android:text="Cadastrar Agendamento"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</LinearLayout>

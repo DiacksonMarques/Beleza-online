@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF00BCD4"
+    android:orientation="horizontal"
+    tools:context=".menu">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="600dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="540dp"
+        android:background="@drawable/custom_buttonbox"
+        android:text="" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:layout_marginTop="500dp">>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+
+            <ImageButton
+                android:id="@+id/imgbutton1"
+                android:src="@mipmap/icbarba"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="2dp"
+                android:backgroundTint="@android:color/background_dark"
+                android:background="@drawable/custom_buttoncorners"/>
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="82dp"
+                android:text="Barbearia"
+                android:textColor="#FF0A0A0A" />
+
+            <ImageButton
+                android:id="@+id/button6"
+                android:src="@mipmap/icsalao"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="88dp"
+                android:backgroundTint="@android:color/background_dark"
+                android:background="@drawable/custom_buttoncorners"
+                android:text="Button" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="110dp"
+                android:layout_marginTop="82dp"
+                android:text="Salão"
+                android:textColor="#FF0A0A0A" />
+
+            <ImageButton
+                android:id="@+id/button7"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="174dp"
+                android:background="@drawable/custom_buttoncorners"
+                android:backgroundTint="@android:color/background_dark"
+                android:src="@mipmap/icestetica"
+                android:text="Button" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="190dp"
+                android:layout_marginTop="82dp"
+                android:text="Estética"
+                android:textColor="#FF0A0A0A" />
+
+            <ImageButton
+                android:id="@+id/button10"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="260dp"
+                android:background="@drawable/custom_buttoncorners"
+                android:backgroundTint="@android:color/background_dark"
+                android:src="@mipmap/icdepil"
+                android:text="Button" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="270dp"
+                android:layout_marginTop="82dp"
+                android:text="Depilação"
+                android:textColor="#FF0A0A0A" />
+
+            <ImageButton
+                android:id="@+id/button9"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="346dp"
+                android:background="@drawable/custom_buttoncorners"
+                android:backgroundTint="@android:color/background_dark"
+                android:src="@mipmap/icmakeup"
+                android:text="Button" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="350dp"
+                android:layout_marginTop="82dp"
+                android:text="Maquiagem"
+                android:textColor="#FF0A0A0A" />
+
+            <ImageButton
+                android:id="@+id/button8"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="432dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/custom_buttoncorners"
+                android:backgroundTint="@android:color/background_dark"
+                android:src="@mipmap/icmani" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="442dp"
+                android:layout_marginTop="82dp"
+                android:text="Manicure"
+                android:textColor="#FF0A0A0A" />
+
+            <ImageButton
+                android:id="@+id/button11"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="518dp"
+                android:layout_marginRight="2dp"
+                android:background="@drawable/custom_buttoncorners"
+                android:backgroundTint="@android:color/background_dark" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="522dp"
+                android:layout_marginTop="82dp"
+                android:text="Promoções"
+                android:textColor="#FF0A0A0A" />
+
+
+        </RelativeLayout>
+        </HorizontalScrollView>
+
+</RelativeLayout>
+
+
+
