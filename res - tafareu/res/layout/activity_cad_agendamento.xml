@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".cad_agendamento"
+android:orientation="vertical"
+android:background="@drawable/fuund">
+
+<ImageView
+    android:id="@+id/imageView3"
+    android:layout_width="300dp"
+    android:layout_height="120dp"
+    android:layout_gravity="center"
+    app:srcCompat="@drawable/tit" />
+
+<TextView
+    android:id="@+id/tvfuncionario"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="60dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="60dp"
+    android:drawablePadding="4dp"
+    android:drawableLeft="@drawable/ic_clock"
+    android:text="Horário de funcionamento"
+    android:textColor="#FAFAFA" />
+
+<EditText
+    android:id="@+id/ctfuncionario"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="60dp"
+    android:layout_marginRight="60dp"
+    android:backgroundTint="#FAFAFA"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text=""
+    android:textColor="#FFFFFF" />
+
+<TextView
+    android:id="@+id/tvtelefone"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="60dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginRight="60dp"
+    android:drawablePadding="4dp"
+    android:drawableLeft="@drawable/ic_func_white"
+    android:text="Funcionário para o serviço"
+    android:textColor="#FAFAFA" />
+
+<EditText
+    android:id="@+id/cttelefone"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="60dp"
+    android:layout_marginRight="60dp"
+    android:backgroundTint="#FAFAFA"
+    android:ems="10"
+    android:inputType="textPersonName"
+    android:text=""
+    android:textColor="#FFFFFF" />
+<Button
+    android:id="@+id/button19"
+    android:layout_width="160dp"
+    android:layout_height="40dp"
+    android:layout_gravity="center"
+    android:layout_marginTop="15dp"
+    android:background="@drawable/custom_button"
+    android:text="Salvar"
+    android:textAllCaps="false" />
+
+</LinearLayout>
