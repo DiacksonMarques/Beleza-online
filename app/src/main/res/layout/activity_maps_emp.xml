@@ -23,6 +23,6 @@
         android:layout_marginRight="100dp"
         android:layout_marginBottom="28dp"
         android:shadowColor="#001F1D1D"
-        android:text="@string/cadastrar_localiza_o"
+        android:text="Cadastrar localização"
         android:textColorHint="@color/colorAccent" />
 </RelativeLayout>

@@ -1,10 +1,15 @@
 package com.evo.belezaonline_2.Maps;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
@@ -18,7 +23,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.evo.belezaonline_2.Controller.MakerApp;
 import com.evo.belezaonline_2.R;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResponse;
+import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -29,7 +41,10 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,17 +65,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     MarkerOptions markerOptions = new MarkerOptions();
     LatLng latLng;
     String title;
-    CameraPosition cameraPosition;
-    private String aux;
 
     public static final String ID = "id_centros_de_beleza";
     public static final String TITLE = "nome_emp";
     public static final String LAT = "lat";
     public static final String LNG = "longe";
 
-    private String url = "https://belezaonline2019.000webhostapp.com/getLatLon.php";
+    private String url = "https://belezaonline2019.000webhostapp.com/getLatLong.php";
 
     String tag_json_obj = "json_obj_req";
+
+    private static final int REQUEST_CHECK_STTINGS=613;
+    private LocationRequest mLocationRequest;
 
     @SuppressLint("ObsoleteSdkInt")
     @Override
@@ -68,9 +84,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
 
         if (savedInstanceState != null) {
             mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
@@ -80,6 +99,58 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Construct a FusedLocationProviderClient.
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
+    }
+
+    private void createLocationRequest(){
+
+    }
+
+    private  void  askForLocatonChange(){
+        mLocationRequest = new LocationRequest();
+        mLocationRequest.setInterval(10000);
+        mLocationRequest.setFastestInterval(5000);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+
+        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
+
+        SettingsClient client = LocationServices.getSettingsClient(this);
+        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+
+        task.addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
+            @Override
+            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
+                Toast.makeText(getBaseContext(),"A localização já está ativa;",Toast.LENGTH_LONG).show();
+            }
+        });
+
+        task.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                if(e instanceof ResolvableApiException){
+                    try{
+                        ResolvableApiException resolvable = (ResolvableApiException) e;
+                        resolvable.startResolutionForResult(MapsActivity.this,REQUEST_CHECK_STTINGS);
+                        Toast.makeText(getBaseContext(),"Erro",Toast.LENGTH_LONG).show();
+                    } catch (IntentSender.SendIntentException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == REQUEST_CHECK_STTINGS){
+            switch (requestCode){
+                case Activity.RESULT_OK:
+                    Toast.makeText(getBaseContext(),"A localização está ativa agora.", Toast.LENGTH_LONG).show();
+                    break;
+                case Activity.RESULT_CANCELED:
+                    Toast.makeText(getBaseContext(),"O usuário não tem permição para alterar a localizção", Toast.LENGTH_LONG).show();
+                    break;
+            }
+        }
     }
 
     @Override
@@ -97,6 +168,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Set a preference for minimum and maximum zoom.
         //mMap.setMinZoomPreference(1.0f);
         //mMap.setMaxZoomPreference(10.0f);
+
         getLocationPermission();
         updateLocationUI();
         getDeviceLocation();
@@ -112,6 +184,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
             if (mLocationPermissionGranted) {
                 Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
+                String lat = String.valueOf(mLastKnownLocation.getLatitude());
+                String longe = String.valueOf(mLastKnownLocation.getLongitude());
+                if (lat == null || longe == null){
+                    askForLocatonChange();
+                }
                 locationResult.addOnCompleteListener(this, new OnCompleteListener() {
                     @Override
                     public void onComplete(@NonNull Task task) {

@@ -2,6 +2,7 @@ package com.evo.belezaonline_2.Activis;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -11,17 +12,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.R;
 
 public class LoginActivity extends AppCompatActivity {
-    Button btIrCad,btLogin;
+    Button btLogin;
     EditText ctUsuario,ctSenha;
+    TextView btIrCad;
 
     String url="";
     String paramentros="";
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
