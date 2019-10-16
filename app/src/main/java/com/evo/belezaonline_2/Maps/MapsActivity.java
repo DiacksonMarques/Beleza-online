@@ -57,7 +57,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private Location mLastKnownLocation;
     private boolean mLocationPermissionGranted;
-    private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
+    private final LatLng mDefaultLocation = new LatLng(-7.2346938, -39.3234788);
     private static final String TAG = MapsActivity.class.getSimpleName();
     private CameraPosition mCameraPosition;
     private static final String KEY_CAMERA_POSITION = "camera_position";
@@ -74,10 +74,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String url = "https://belezaonline2019.000webhostapp.com/getLatLong.php";
 
     String tag_json_obj = "json_obj_req";
-
-    private static final int REQUEST_CHECK_STTINGS=613;
-    private LocationRequest mLocationRequest;
-
     @SuppressLint("ObsoleteSdkInt")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,58 +95,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Construct a FusedLocationProviderClient.
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-    }
-
-    private void createLocationRequest(){
-
-    }
-
-    private  void  askForLocatonChange(){
-        mLocationRequest = new LocationRequest();
-        mLocationRequest.setInterval(10000);
-        mLocationRequest.setFastestInterval(5000);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-
-        LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder().addLocationRequest(mLocationRequest);
-
-        SettingsClient client = LocationServices.getSettingsClient(this);
-        Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-
-        task.addOnSuccessListener(new OnSuccessListener<LocationSettingsResponse>() {
-            @Override
-            public void onSuccess(LocationSettingsResponse locationSettingsResponse) {
-                Toast.makeText(getBaseContext(),"A localização já está ativa;",Toast.LENGTH_LONG).show();
-            }
-        });
-
-        task.addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                if(e instanceof ResolvableApiException){
-                    try{
-                        ResolvableApiException resolvable = (ResolvableApiException) e;
-                        resolvable.startResolutionForResult(MapsActivity.this,REQUEST_CHECK_STTINGS);
-                        Toast.makeText(getBaseContext(),"Erro",Toast.LENGTH_LONG).show();
-                    } catch (IntentSender.SendIntentException e1) {
-                        e1.printStackTrace();
-                    }
-                }
-            }
-        });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(requestCode == REQUEST_CHECK_STTINGS){
-            switch (requestCode){
-                case Activity.RESULT_OK:
-                    Toast.makeText(getBaseContext(),"A localização está ativa agora.", Toast.LENGTH_LONG).show();
-                    break;
-                case Activity.RESULT_CANCELED:
-                    Toast.makeText(getBaseContext(),"O usuário não tem permição para alterar a localizção", Toast.LENGTH_LONG).show();
-                    break;
-            }
-        }
     }
 
     @Override
@@ -184,21 +128,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         try {
             if (mLocationPermissionGranted) {
                 Task<Location> locationResult = mFusedLocationProviderClient.getLastLocation();
-                String lat = String.valueOf(mLastKnownLocation.getLatitude());
-                String longe = String.valueOf(mLastKnownLocation.getLongitude());
-                if (lat == null || longe == null){
-                    askForLocatonChange();
-                }
-                locationResult.addOnCompleteListener(this, new OnCompleteListener() {
+                locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
                     @Override
-                    public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful()) {
-                            // Set the map's camera position to the current location of the device.
+                    public void onComplete(@NonNull Task<Location> task) {
+                        boolean successful = task.isSuccessful();
+                        if (successful){
                             mLastKnownLocation = (Location) task.getResult();
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(mLastKnownLocation.getLatitude(),
-                                            mLastKnownLocation.getLongitude()), 20.0f));
-                        } else {
+                            if (mLastKnownLocation == null) {
+                                getLocationPermission();
+                                updateLocationUI();
+                                getDeviceLocation();
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 20.0f));
+                            }else{
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                        new LatLng(mLastKnownLocation.getLatitude(),mLastKnownLocation.getLongitude()), 20.0f));
+                            }
+                        }else{
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 20.0f));

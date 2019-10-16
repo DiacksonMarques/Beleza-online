@@ -1,11 +1,8 @@
 package com.evo.belezaonline_2.Activis;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,12 +11,32 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.evo.belezaonline_2.Fragemnts.AreaUsuFragment;
 import com.evo.belezaonline_2.Fragemnts.HomeFragment;
-import com.evo.belezaonline_2.Maps.MapsActivity;
 import com.evo.belezaonline_2.R;
+import com.evo.belezaonline_2.Controller.VeriCriMapsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
 
 public class MainActivity extends AppCompatActivity {
+
+    String id;
+    String nome;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        BottomNavigationView navView = findViewById(R.id.nav_view);
+        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        id = bundle.getString("id");
+        nome = bundle.getString("nome");
+        //String tipo_usuario = bundle.getString("tipo_usuario");
+
+        Fragment homeFragment = HomeFragment.newInstance();
+        openFragment(homeFragment);
+    }
+
     private OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
 
     {
@@ -38,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
                         Intent reinica = getIntent();
                         startActivity(reinica);
                         finish();
-                        Intent intent = new Intent(getBaseContext(), MapsActivity.class);
+                        Intent intent = new Intent(getBaseContext(), VeriCriMapsActivity.class);
+                        intent.putExtra("id",id);
+                        intent.putExtra("nome",nome);
                         startActivity(intent);
                         break;
                     case R.id.navigation_areausu:
@@ -57,22 +76,4 @@ public class MainActivity extends AppCompatActivity {
         transaction.addToBackStack(null);
         transaction.commit();
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        BottomNavigationView navView = findViewById(R.id.nav_view);
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        String id = bundle.getString("id");
-        String nome = bundle.getString("nome");
-        String tipo_usuario = bundle.getString("tipo_usuario");
-
-        Fragment homeFragment = HomeFragment.newInstance();
-        openFragment(homeFragment);
-    }
-
 }
