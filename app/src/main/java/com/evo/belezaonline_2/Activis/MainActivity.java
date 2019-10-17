@@ -72,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void openFragment(Fragment fragment){
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Bundle bundle = new Bundle();
+        bundle.putString("id",id);
+        bundle.putString("nome",nome);
+        fragment.setArguments(bundle);
         transaction.replace(R.id.fgContainer, fragment);
         transaction.addToBackStack(null);
         transaction.commit();

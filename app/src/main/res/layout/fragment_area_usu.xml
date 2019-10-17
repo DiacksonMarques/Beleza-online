@@ -93,7 +93,7 @@
                 android:background="@drawable/custom_button" />
 
             <TextView
-                android:id="@+id/textView22"
+                android:id="@+id/tvNomeCB"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
                 android:layout_gravity="center_horizontal"

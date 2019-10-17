@@ -1,50 +1,37 @@
 package com.evo.belezaonline_2.Maps;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
-import androidx.annotation.*;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.evo.belezaonline_2.Activis.CTInfoActivity;
 import com.evo.belezaonline_2.Controller.MakerApp;
 import com.evo.belezaonline_2.R;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.ResolvableApiException;
-import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResponse;
-import com.google.android.gms.location.SettingsClient;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,7 +51,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private static final String KEY_LOCATION = "location";
     MarkerOptions markerOptions = new MarkerOptions();
     LatLng latLng;
-    String title;
+    String title, snippet, id, nome;
 
     public static final String ID = "id_centros_de_beleza";
     public static final String TITLE = "nome_emp";
@@ -74,13 +61,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private String url = "https://belezaonline2019.000webhostapp.com/getLatLong.php";
 
     String tag_json_obj = "json_obj_req";
+
+    String nomeemp,idemp;
     @SuppressLint("ObsoleteSdkInt")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        id = bundle.getString("id");
+        nome = bundle.getString("nome");
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -204,15 +196,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
-    private void addMarker(LatLng latlng, final String title) {
+    private void addMarker(LatLng latlng, final String title, final String snippet) {
         markerOptions.position(latlng);
         markerOptions.title(title);
+        markerOptions.snippet(snippet);
         mMap.addMarker(markerOptions);
 
-        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
-            public void onInfoWindowClick(Marker marker) {
-                Toast.makeText(getApplicationContext(), marker.getTitle(), Toast.LENGTH_SHORT).show();
+            public boolean onMarkerClick(Marker marker) {
+                //Toast.makeText(getApplicationContext(), marker.getTitle(), Toast.LENGTH_SHORT).show();
+                nomeemp = marker.getTitle();
+                idemp =  marker.getSnippet();
+                Intent abreperf = new Intent(getBaseContext(), CTInfoActivity.class);
+                abreperf.putExtra("nome",nome);
+                abreperf.putExtra("id",id);
+                abreperf.putExtra("nomeemp",nomeemp);
+                abreperf.putExtra("idemp",idemp);
+                startActivity(abreperf);
+                return false;
             }
         });
     }
@@ -232,10 +234,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         title = jsonObject.getString(TITLE);
+                        snippet = jsonObject.getString(ID);
                         latLng = new LatLng(Double.parseDouble(jsonObject.getString(LAT)), Double.parseDouble(jsonObject.getString(LNG)));
 
                         // Menambah data marker untuk di tampilkan ke google map
-                        addMarker(latLng, title);
+                        addMarker(latLng, title, snippet);
                     }
 
                 } catch (JSONException e) {
@@ -255,4 +258,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         MakerApp.getInstance().addToRequestQueue(strReq, tag_json_obj);
     }
+
 }

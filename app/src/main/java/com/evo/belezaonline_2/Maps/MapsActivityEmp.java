@@ -150,24 +150,22 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
                 Bundle bundle = intent.getExtras();
                 final String id = bundle.getString("id");
                 final String nome = bundle.getString("nome");
-                locationResult.addOnCompleteListener(this, new OnCompleteListener() {
+                locationResult.addOnCompleteListener(this, new OnCompleteListener<Location>() {
                     @Override
-                    public void onComplete(@NonNull Task task) {
-                        if (task.isSuccessful()) {
-                            // Set the map's camera position to the current location of the device.
+                    public void onComplete(@NonNull Task<Location> task) {
+                        boolean successful = task.isSuccessful();
+                        if (successful){
                             mLastKnownLocation = (Location) task.getResult();
-                            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                                    new LatLng(mLastKnownLocation.getLatitude(),
-                                            mLastKnownLocation.getLongitude()), 20.0f));
-
-                            LatLng locacli = new LatLng(mLastKnownLocation.getLatitude(),
-                                    mLastKnownLocation.getLongitude());
-                            mMap.addMarker(new MarkerOptions().position(locacli)
-                                    .title(nome)
-                                    .draggable(true));
-                            mMap.moveCamera(CameraUpdateFactory.newLatLng(locacli));
-
-                        } else {
+                            if (mLastKnownLocation == null) {
+                                getLocationPermission();
+                                updateLocationUI();
+                                getDeviceLocation();
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 20.0f));
+                            }else{
+                                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                                        new LatLng(mLastKnownLocation.getLatitude(),mLastKnownLocation.getLongitude()), 20.0f));
+                            }
+                        }else{
                             Log.d(TAG, "Current location is null. Using defaults.");
                             Log.e(TAG, "Exception: %s", task.getException());
                             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, 20.0f));
