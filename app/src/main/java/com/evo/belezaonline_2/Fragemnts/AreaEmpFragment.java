@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -13,11 +14,13 @@ import androidx.fragment.app.Fragment;
 import com.evo.belezaonline_2.Cadastros.CadAgendaEmpActivity;
 import com.evo.belezaonline_2.Cadastros.CadEmpresaServicoActivity;
 import com.evo.belezaonline_2.Cadastros.CadFuncActivity;
+import com.evo.belezaonline_2.ListAgendaActivity;
 import com.evo.belezaonline_2.Maps.MapsActivityEmp;
 import com.evo.belezaonline_2.R;
 
 public class AreaEmpFragment extends Fragment {
-    Button btCadloca,btCadserv,btCadFunc,btCadAgend;
+    Button btCadloca,btCadserv,btCadFunc,btCadAgend,btListAgd;
+    TextView tvNomeCB;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup fgContainer, Bundle savedInstanceState){
@@ -26,11 +29,15 @@ public class AreaEmpFragment extends Fragment {
         btCadserv = v.findViewById(R.id.btCadserv);
         btCadFunc= v.findViewById(R.id.btCadFunc);
         btCadAgend= v.findViewById(R.id.btCadAgend);
+        btListAgd = v.findViewById(R.id.btListAgd);
+        tvNomeCB = v.findViewById(R.id.tvNomeCB);
 
         Intent intent = getActivity().getIntent();
         Bundle bundle = intent.getExtras();
         final String id = bundle.getString("id");
         final String nome = bundle.getString("nome");
+
+        tvNomeCB.setText(nome);
 
         btCadloca.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,9 +76,17 @@ public class AreaEmpFragment extends Fragment {
             }
         });
 
+        btListAgd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent abrelist = new Intent(getContext(), ListAgendaActivity.class);
+                abrelist.putExtra("id",id);
+                abrelist.putExtra("nome",nome);
+                startActivity(abrelist);
+            }
+        });
+
         return v;
-
-
     }
 
     public static AreaEmpFragment newInstance(){

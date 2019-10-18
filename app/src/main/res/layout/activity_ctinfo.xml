@@ -30,8 +30,7 @@
             android:layout_height="30dp"
             android:layout_marginLeft="240dp"
             android:layout_marginTop="100dp"
-            android:background="@drawable/custom_buttony"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:background="@drawable/custom_buttonp"
             android:drawableRight="@drawable/ic_star" />
 
         <TextView
@@ -54,7 +53,7 @@
             android:layout_marginTop="65dp">
 
             <ImageButton
-                android:id="@+id/button14"
+                android:id="@+id/fd"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginRight="20dp"
@@ -72,7 +71,7 @@
                 android:src="@mipmap/telic" />
 
             <ImageButton
-                android:id="@+id/button16"
+                android:id="@+id/btiAgend"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:background="@drawable/custom_button"
