@@ -221,7 +221,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void getMarkers() {
         StringRequest strReq = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-
             @Override
             public void onResponse(String response) {
                 Log.e("Response: ", response.toString());
@@ -245,7 +244,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     // JSON error
                     e.printStackTrace();
                 }
-
             }
         }, new Response.ErrorListener() {
 

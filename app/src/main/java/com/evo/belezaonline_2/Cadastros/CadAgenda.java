@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.evo.belezaonline_2.Activis.MainActivity;
 import com.evo.belezaonline_2.Activis.MainActivityEmp;
 import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.Metodos.Config;
@@ -308,7 +309,7 @@ public class CadAgenda extends AppCompatActivity {
                 Toast.makeText(getBaseContext(),"Erro ao agendar",Toast.LENGTH_LONG).show();
             }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
                 Toast.makeText(getBaseContext(),"Agendamento concluído com sucesso!",Toast.LENGTH_LONG).show();
-                Intent abreInicio = new Intent(getBaseContext(), MainActivityEmp.class);
+                Intent abreInicio = new Intent(getBaseContext(), MainActivity.class);
                 abreInicio.putExtra("id",id);
                 abreInicio.putExtra("nome",nome);
                 startActivity(abreInicio);
