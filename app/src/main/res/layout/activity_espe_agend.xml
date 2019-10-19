@@ -90,13 +90,13 @@
         android:textSize="20sp" />
 
     <TextView
-        android:id="@+id/tvServAL"
+        android:id="@+id/tvServLA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/Valor a ser pago"
+        android:id="@+id/tv8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -105,9 +105,10 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView15"
+        android:id="@+id/tvValorLA"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:gravity="center_horizontal"
+        android:textSize="24sp" />
 
 </LinearLayout>

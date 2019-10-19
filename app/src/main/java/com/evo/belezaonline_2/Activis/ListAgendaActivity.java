@@ -8,10 +8,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.evo.belezaonline_2.Cadastros.CadAgendaEmpActivity;
+import com.evo.belezaonline_2.EspeAgendActivity;
 import com.evo.belezaonline_2.R;
 
 import org.json.JSONArray;
@@ -29,6 +32,7 @@ public class ListAgendaActivity extends AppCompatActivity {
     String url, id, nome;
 
     ListView lvAgenda;
+    Button btCadAgdList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,16 @@ public class ListAgendaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_agenda);
 
         lvAgenda = findViewById(R.id.lvAgenda);
+        btCadAgdList = findViewById(R.id.btCadAgdList);
+
+        btCadAgdList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent abrecadagend = new Intent(getBaseContext(), CadAgendaEmpActivity.class);
+                abrecadagend.putExtra("id",id);
+                startActivity(abrecadagend);
+            }
+        });
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -117,7 +131,12 @@ public class ListAgendaActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String Sele = ((TextView) view).getText().toString();
-                Toast.makeText(getBaseContext(), Sele, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), Sele, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getBaseContext(), EspeAgendActivity.class);
+                intent.putExtra("id",id);
+                intent.putExtra("nome",nome);
+                intent.putExtra("coda",Sele);
+                startActivity(intent);
             }
         });
     }

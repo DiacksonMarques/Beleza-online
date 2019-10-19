@@ -7,16 +7,28 @@
     android:orientation="vertical"
     tools:context=".Activis.ListAgendaActivity">
 
-    <Button
-        android:id="@+id/button"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btCadAgdList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cadastrar_agendamento" />
+
+        <Button
+            android:id="@+id/btAgdListFet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/agendamentos_feitos" />
+    </LinearLayout>
 
     <ListView
         android:id="@+id/lvAgenda"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

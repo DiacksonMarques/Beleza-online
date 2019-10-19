@@ -149,4 +149,5 @@
     <string name="cadastrar_funcion_rio">Cadastrar Funcionário</string>
     <string name="cadastrar_servi_o">Cadastrar Serviço</string>
     <string name="cadastrar_agendamento">Cadastrar Agendamento</string>
+    <string name="agendamentos_feitos">Agendamentos Feitos</string>
 </resources>
