@@ -1,22 +1,22 @@
-package com.evo.belezaonline_2.Activis;
+package com.evo.belezaonline_2;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.evo.belezaonline_2.Activis.MainActivityEmp;
+import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.Cadastros.CadAgendaEmpActivity;
-import com.evo.belezaonline_2.EspeAgendActivity;
-import com.evo.belezaonline_2.ListFeitAgdActivity;
-import com.evo.belezaonline_2.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,53 +28,32 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ListAgendaActivity extends AppCompatActivity {
+public class ListFeitAgdActivity extends AppCompatActivity {
 
-    String url, id, nome;
+    String url, id, nome, parametros;
 
-    ListView lvAgenda;
-    Button btCadAgdList, btAgdListFet;
+    ListView lvAgendaFei;
+    AlertDialog alerta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_agenda);
+        setContentView(R.layout.activity_list_feit_agd);
 
-        lvAgenda = findViewById(R.id.lvAgenda);
-        btCadAgdList = findViewById(R.id.btCadAgdList);
-        btAgdListFet = findViewById(R.id.btAgdListFet);
+        lvAgendaFei = findViewById(R.id.lvAgendaFei);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         id = bundle.getString("id");
         nome = bundle.getString("nome");
 
-        btCadAgdList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent abrecadagend = new Intent(getBaseContext(), CadAgendaEmpActivity.class);
-                abrecadagend.putExtra("id",id);
-                startActivity(abrecadagend);
-            }
-        });
-
-        btAgdListFet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent abrecadagend = new Intent(getBaseContext(), ListFeitAgdActivity.class);
-                abrecadagend.putExtra("id",id);
-                abrecadagend.putExtra("nome",nome);
-                startActivity(abrecadagend);
-            }
-        });
-
-        url = "https://belezaonline2019.000webhostapp.com/getAgendamentoEmp.php?id_centro_de_beleza="+id;
+        url = "https://belezaonline2019.000webhostapp.com/getAgendamentoFei.php?id_centro_de_beleza="+id;
 
         getJSON(url);
     }
 
     private void getJSON(final String urlAPI){
-        class GetJSON extends AsyncTask<Void, Void, String>{
+        class GetJSON extends AsyncTask<Void, Void, String> {
 
             @Override
             protected void onPreExecute() {
@@ -137,19 +116,67 @@ public class ListAgendaActivity extends AppCompatActivity {
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,dados);
 
-        lvAgenda.setAdapter(arrayAdapter);
+        lvAgendaFei.setAdapter(arrayAdapter);
 
-        lvAgenda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        lvAgendaFei.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String Sele = ((TextView) view).getText().toString();
+                final String Sele = ((TextView) view).getText().toString();
                 Toast.makeText(getBaseContext(), Sele, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getBaseContext(), EspeAgendActivity.class);
-                intent.putExtra("id",id);
-                intent.putExtra("nome",nome);
-                intent.putExtra("coda",Sele);
-                startActivity(intent);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListFeitAgdActivity.this);
+                builder.setTitle("Oque deseja fazer com o agendamento?");
+                builder.setMessage("Nesse agendamento é possivel fazer alteração e exclusão do mesmo.");
+                builder.setPositiveButton("Alterar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Intent intent =  new Intent(getBaseContext(), )
+                    }
+                });
+                builder.setNegativeButton("Excluir", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String[] ida = Sele.split("\n| \n ");
+                        String auxid =  ida[0];
+
+                        String[] idag = auxid.split(":|: ");
+                        String idaf =  idag[1];
+
+                        url = "https://belezaonline2019.000webhostapp.com/deleteAgend.php";
+                        parametros ="id="+idaf;
+                        new SolicitaDados().execute(url);
+                    }
+                });
+                alerta = builder.create();
+                alerta.show();
             }
         });
+    }
+
+    private class SolicitaDados extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Conexao.postDados(urls[0], parametros);
+        }
+        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        @Override
+        protected void onPostExecute(String resultado) {
+            if(resultado != null && !resultado.isEmpty() && resultado.contains("Deletado_Ok")){
+                Toast.makeText(getBaseContext(),"Agendamento excluido com sucesso!",Toast.LENGTH_LONG).show();
+                finish();
+                Intent abreInicio = new Intent(getBaseContext(), ListFeitAgdActivity.class);
+                abreInicio.putExtra("id",id);
+                abreInicio.putExtra("nome",nome);
+                startActivity(abreInicio);
+            }else{
+                Toast.makeText(getBaseContext(),"Ocorreu um erro: "+resultado,Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        finish();
     }
 }

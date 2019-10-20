@@ -21,7 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".EspeAgendActivity"></activity>
+        <activity android:name=".UpdateAgendActivity"></activity>
+        <activity android:name=".ListFeitAgdActivity" />
+        <activity android:name=".EspeAgendActivity" />
         <activity android:name=".Activis.ListAgendaActivity" />
         <activity android:name=".Cadastros.CadAgenda" />
         <activity android:name=".Activis.CTInfoActivity" />
