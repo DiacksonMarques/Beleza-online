@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class ListFeitAgdActivity extends AppCompatActivity {
 
-    String url, id, nome, parametros;
+    String url, idg, nome, parametros;
 
     ListView lvAgendaFei;
     AlertDialog alerta;
@@ -44,10 +44,10 @@ public class ListFeitAgdActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        id = bundle.getString("id");
+        idg = bundle.getString("id");
         nome = bundle.getString("nome");
 
-        url = "https://belezaonline2019.000webhostapp.com/getAgendamentoFei.php?id_centro_de_beleza="+id;
+        url = "https://belezaonline2019.000webhostapp.com/getAgendamentoFei.php?id_centro_de_beleza="+idg;
 
         getJSON(url);
     }
@@ -129,7 +129,11 @@ public class ListFeitAgdActivity extends AppCompatActivity {
                 builder.setPositiveButton("Alterar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //Intent intent =  new Intent(getBaseContext(), )
+                        Intent abrecadagend = new Intent(getBaseContext(), UpdateAgendActivity.class);
+                        abrecadagend.putExtra("id",idg);
+                        abrecadagend.putExtra("nome",nome);
+                        abrecadagend.putExtra("coda",Sele);
+                        startActivity(abrecadagend);
                     }
                 });
                 builder.setNegativeButton("Excluir", new DialogInterface.OnClickListener() {
@@ -164,7 +168,7 @@ public class ListFeitAgdActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(),"Agendamento excluido com sucesso!",Toast.LENGTH_LONG).show();
                 finish();
                 Intent abreInicio = new Intent(getBaseContext(), ListFeitAgdActivity.class);
-                abreInicio.putExtra("id",id);
+                abreInicio.putExtra("id",idg);
                 abreInicio.putExtra("nome",nome);
                 startActivity(abreInicio);
             }else{

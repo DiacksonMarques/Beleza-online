@@ -83,7 +83,7 @@
                     android:layout_alignBottom="@+id/textView2"
                     android:layout_marginLeft="2dp"
                     android:layout_marginBottom="-80dp"
-                    android:text="Funcionário Para o Serviço"
+                    android:text="Cadastrar Tipos de Serviço:"
                     android:textColor="#FAFAFA" />
 
                 <EditText
@@ -114,8 +114,8 @@
                     android:layout_alignBottom="@+id/funcionario"
                     android:layout_marginLeft="2dp"
                     android:layout_marginBottom="33dp"
-                    android:text="Cadastrar Tipos de Serviço:"
-                    android:textColor="#FAFAFA" />
+                    android:textColor="#FAFAFA"
+                    tools:text="Funcionário Para o Serviço:" />
 
                 <Spinner
                     android:id="@+id/tiposervicoagend"

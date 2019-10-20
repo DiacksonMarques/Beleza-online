@@ -105,7 +105,7 @@ public class EspeAgendActivity extends AppCompatActivity {
         JSONArray jsonArray = new JSONArray(json);
 
         //String[] dados = new String[jsonArray.length()];
-        ArrayList<String> dados = new ArrayList<>();
+        //ArrayList<String> dados = new ArrayList<>();
         String id="", cliente="", data="", hora="", funcioanrio="", valor="", servico="";
 
         for(int i=0; i< jsonArray.length(); i++){
@@ -121,7 +121,6 @@ public class EspeAgendActivity extends AppCompatActivity {
             servico= jsonObject.getString("servico");
         }
 
-        Toast.makeText(getBaseContext(), valor, Toast.LENGTH_LONG).show();
         tvCodLA.setText(id);
         tvCliLA.setText(cliente);
         tvDataLA.setText(data);

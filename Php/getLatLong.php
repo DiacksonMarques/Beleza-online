@@ -13,8 +13,8 @@ while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
 	'{
 		"lat":"'.str_replace($char,'`',strip_tags($org['lat'])).'", 
 		"longe":"'.str_replace($char,'`',strip_tags($org['longe'])).'",
-		"nome":"'.str_replace($char,'`',strip_tags($org['nome'])).'",
-		"id_centro_de_beleza":"'.str_replace($char,'`',strip_tags($org['id_centro_de_beleza'])).'"
+		"nome_emp":"'.str_replace($char,'`',strip_tags($org['nome'])).'",
+		"id_centros_de_beleza":"'.str_replace($char,'`',strip_tags($org['id_centro_de_beleza'])).'"
 	},';
 }
 
