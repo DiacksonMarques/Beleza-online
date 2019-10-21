@@ -14,13 +14,15 @@ import com.evo.belezaonline_2.Cadastros.CadAgendaEmpActivity;
 import com.evo.belezaonline_2.Cadastros.CadEmpresaServicoActivity;
 import com.evo.belezaonline_2.Cadastros.CadFuncActivity;
 import com.evo.belezaonline_2.Activis.ListAgendaActivity;
+import com.evo.belezaonline_2.Cadastros.CadPromocaoActivity;
 import com.evo.belezaonline_2.ListFunActivity;
+import com.evo.belezaonline_2.ListPromoActivity;
 import com.evo.belezaonline_2.ListServicoActivity;
 import com.evo.belezaonline_2.Maps.MapsActivityEmp;
 import com.evo.belezaonline_2.R;
 
 public class AreaEmpFragment extends Fragment {
-    Button btCadloca,btCadserv,btCadFunc,btCadAgend,btListAgd;
+    Button btCadloca,btCadserv,btCadFunc,btCadAgend,btListAgd, btCadPromo;
     TextView tvNomeCB;
 
     @Override
@@ -32,6 +34,7 @@ public class AreaEmpFragment extends Fragment {
         btCadAgend= v.findViewById(R.id.btCadAgend);
         btListAgd = v.findViewById(R.id.btListAgd);
         tvNomeCB = v.findViewById(R.id.tvNomeCB);
+        btCadPromo = v.findViewById(R.id.btCadPromo);
 
         Intent intent = getActivity().getIntent();
         Bundle bundle = intent.getExtras();
@@ -83,6 +86,16 @@ public class AreaEmpFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent abrelist = new Intent(getContext(), ListAgendaActivity.class);
+                abrelist.putExtra("id",id);
+                abrelist.putExtra("nome",nome);
+                startActivity(abrelist);
+            }
+        });
+
+        btCadPromo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent abrelist = new Intent(getContext(), ListPromoActivity.class);
                 abrelist.putExtra("id",id);
                 abrelist.putExtra("nome",nome);
                 startActivity(abrelist);

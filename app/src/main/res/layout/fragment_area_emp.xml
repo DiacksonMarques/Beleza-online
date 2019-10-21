@@ -24,7 +24,7 @@
             android:textColor="@color/colorPrimaryDark" />
 
         <Button
-            android:id="@+id/button18"
+            android:id="@+id/btCadPromo"
             android:layout_width="180dp"
             android:layout_height="90dp"
             android:layout_marginLeft="206dp"
