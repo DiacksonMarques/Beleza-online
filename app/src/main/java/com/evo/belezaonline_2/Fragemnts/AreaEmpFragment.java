@@ -14,6 +14,8 @@ import com.evo.belezaonline_2.Cadastros.CadAgendaEmpActivity;
 import com.evo.belezaonline_2.Cadastros.CadEmpresaServicoActivity;
 import com.evo.belezaonline_2.Cadastros.CadFuncActivity;
 import com.evo.belezaonline_2.Activis.ListAgendaActivity;
+import com.evo.belezaonline_2.ListFunActivity;
+import com.evo.belezaonline_2.ListServicoActivity;
 import com.evo.belezaonline_2.Maps.MapsActivityEmp;
 import com.evo.belezaonline_2.R;
 
@@ -51,8 +53,9 @@ public class AreaEmpFragment extends Fragment {
         btCadserv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent abrecadserv = new Intent(getContext(), CadEmpresaServicoActivity.class);
+                Intent abrecadserv = new Intent(getContext(), ListServicoActivity.class);
                 abrecadserv.putExtra("id",id);
+                abrecadserv.putExtra("nome",nome);
                 startActivity(abrecadserv);
             }
         });
@@ -60,8 +63,9 @@ public class AreaEmpFragment extends Fragment {
         btCadFunc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent abrecadfunc = new Intent(getContext(), CadFuncActivity.class);
+                Intent abrecadfunc = new Intent(getContext(), ListFunActivity.class);
                 abrecadfunc.putExtra("id",id);
+                abrecadfunc.putExtra("nome",nome);
                 startActivity(abrecadfunc);
             }
         });

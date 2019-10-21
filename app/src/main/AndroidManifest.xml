@@ -21,7 +21,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UpdateAgendActivity"></activity>
+        <activity android:name=".UpdateAgendamentoCActivity"></activity>
+        <activity android:name=".UpdateServicoActivity" />
+        <activity android:name=".ListServicoActivity" />
+        <activity android:name=".UpdateFucnActivity" />
+        <activity android:name=".ListFunActivity" />
+        <activity android:name=".UpdateAgendActivity" />
         <activity android:name=".ListFeitAgdActivity" />
         <activity android:name=".EspeAgendActivity" />
         <activity android:name=".Activis.ListAgendaActivity" />

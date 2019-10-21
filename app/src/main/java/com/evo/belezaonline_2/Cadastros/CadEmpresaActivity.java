@@ -63,7 +63,7 @@ public class CadEmpresaActivity extends AppCompatActivity {
                     if (nome.isEmpty()|| cnpj.isEmpty()|| descricao.isEmpty()|| usuario.isEmpty()|| senha.isEmpty()|| repsenha.isEmpty()){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
-                        if (!senha.equals(repsenha)){
+                        if (senha != repsenha){
                             Toast.makeText(getBaseContext(),"As senha não coincidem",Toast.LENGTH_SHORT).show();
                         }else{
                             url = "https://belezaonline2019.000webhostapp.com/cadastroemp.php";

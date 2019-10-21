@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fuund"
+    android:background="@color/cardview_light_background"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
@@ -40,10 +40,10 @@
 
 
                     <TextView
+                        android:id="@+id/tvFavQt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="10"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -60,15 +60,15 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
-                        android:text="Favoritos"
+                        android:text="Agendamentos"
                         android:textSize="16dp" />
 
 
                     <TextView
+                        android:id="@+id/tvAgdQt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:text="10"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -106,5 +106,12 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lvAgendaCli"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cardview_dark_background"
+        android:cacheColorHint="@color/cardview_dark_background" />
 
 </LinearLayout>

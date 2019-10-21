@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UpdateAgendamentoCActivity">
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Alterar Agendamento"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/tv7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Código"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvCodAgdUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cliente"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/edClienteUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Data"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvDataList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hora"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tvHoraUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Funcionário"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Atual:" />
+
+    <TextView
+        android:id="@+id/tvFuncUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/funcionarioup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp" />
+
+    <TextView
+        android:id="@+id/tv13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Serviço"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Atual:" />
+
+    <TextView
+        android:id="@+id/tvServUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/tiposervicoagendup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="false"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"/>
+
+    <TextView
+        android:id="@+id/tv14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Valor a ser pago"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvValorUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/btUpAgend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alterar" />
+
+</LinearLayout>

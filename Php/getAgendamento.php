@@ -15,6 +15,7 @@ while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
 	     $char ='"';
      	 $json .= 
 	       '{
+	        "id":"'.str_replace($char,'`',strip_tags($org['id'])).'",
 	     	"nome":"'.str_replace($char,'`',strip_tags($orgct['nome'])).'",
 	     	"data":"'.str_replace($char,'`',strip_tags($org['data'])).'",
 	     	"hora":"'.str_replace($char,'`',strip_tags($org['hora'])).'"
@@ -22,10 +23,9 @@ while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
          }
 
         }
-        $json = substr($json,0,strlen($json)-1);
-
-        $json .= ']';
     }
+$json = substr($json,0,strlen($json)-1);
+$json .= ']';
 echo $json;
 //"id_centro_de_beleza":"'.str_replace($char,'`',strip_tags($org['id_centro_de_beleza'])).'", 
 ?>
