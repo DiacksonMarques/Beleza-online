@@ -9,221 +9,258 @@
     android:background="@drawable/fuund">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="320dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/adm" />
-
-    <ScrollView
+    <TextView
+        android:id="@+id/textView12"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="Administrador"
+        android:textAllCaps="true"
+        android:textColor="#FAFAFA"
+        android:textSize="26sp" />
 
-        <RelativeLayout
-            android:layout_width="350dp"
-            android:layout_height="360dp"
-            android:layout_gravity="center">
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Selecione os tipos de serviços do estabelecimento"
+        android:textColor="#FAFAFA"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="360dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="60dp"
+            android:drawableLeft="@drawable/ic_data"
+            android:drawablePadding="4dp"
+            android:text="Escolha uma data disponível"
+            android:textColor="#FAFAFA"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="10dp"
+            android:text="Sáb, 17 de ago, 2019"
+            android:textColor="#FAFAFA" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="60dp"
+            android:drawableLeft="@drawable/ic_clock"
+            android:drawablePadding="4dp"
+            android:text="Selecione a hora de ínicio e termino"
+            android:textColor="#FAFAFA"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView32"
+                android:layout_width="44dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="60dp"
-                android:drawableLeft="@drawable/ic_clock"
-                android:drawablePadding="4dp"
-                android:text="Esse horário está disponível:"
-                android:textColor="#FAFAFA" />
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="50dp"
-                android:text="Sáb, 17 de ago, 2019"
-                android:textColor="#FAFAFA" />
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:text="Início:"
+                android:textColor="#FAFAFA"
+                android:textStyle="italic" />
 
             <TextView
                 android:layout_width="44dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="310dp"
-                android:layout_marginTop="50dp"
-                android:text="18:00"
-                android:textColor="#FAFAFA" />
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="00:00"
+                android:textColor="#FAFAFA"
+                android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/textView33"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="100dp"
-                android:drawableLeft="@drawable/ic_addfunc_white"
-                android:drawablePadding="4dp"
-                android:text="Funcionário Para o Serviço"
-                android:textColor="#FAFAFA" />
-
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textView2"
-                android:layout_marginTop="-10dp"
-                android:backgroundTint="#FAFAFA"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textColor="#FFFFFF" />
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:text="Término:"
+                android:textColor="#FAFAFA"
+                android:textStyle="italic" />
 
             <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
+                android:id="@+id/textView34"
+                android:layout_width="44dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="21dp"
-                android:drawableLeft="@drawable/ic_salao"
-                android:drawablePadding="4dp"
-                android:text="Cadastrar Tipos de Serviço:"
-                android:textColor="#FAFAFA" />
-
-            <CheckBox
-                android:id="@+id/checkBox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="200dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
                 android:layout_weight="1"
-                android:buttonTint="#FAFAFA"
-                android:text="CheckBox"
-                android:textColor="#FAFAFA" />
+                android:text="00:00"
+                android:textColor="#FAFAFA"
+                android:textStyle="bold" />
 
-            <CheckBox
-                android:id="@+id/checkBox8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="234dp"
-                android:layout_weight="1"
-                android:buttonTint="#FAFAFA"
-                android:text="CheckBox"
-                android:textColor="#FAFAFA" />
+        </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/checkBox9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="268dp"
-                android:layout_weight="1"
-                android:buttonTint="#FAFAFA"
-                android:text="CheckBox"
-                android:textColor="#FAFAFA" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_addfunc_white"
+            android:drawablePadding="4dp"
+            android:text="Funcionário Para o Serviço"
+            android:textColor="#FAFAFA"
+            android:textStyle="italic" />
 
-            <CheckBox
-                android:id="@+id/checkBox10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_marginTop="302dp"
-                android:layout_weight="1"
-                android:buttonTint="#FAFAFA"
-                android:text="CheckBox"
-                android:textColor="#FAFAFA" />
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="-10dp"
+            android:backgroundTint="#FAFAFA"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="#FFFFFF" />
 
-            <CheckBox
-                android:id="@+id/checkBox12"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="252dp"
-                android:layout_marginTop="200dp"
-                android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:buttonTint="#FAFAFA"
-                android:text="CheckBox"
-                android:textColor="#FAFAFA" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="21dp"
+            android:drawableLeft="@drawable/ic_salao"
+            android:drawablePadding="4dp"
+            android:text="Cadastrar serviços disponíveis"
+            android:textColor="#FAFAFA"
+            android:textStyle="italic" />
 
-            <CheckBox
-                android:id="@+id/checkBox13"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="252dp"
-                android:layout_marginTop="234dp"
-                android:layout_weight="1"
-                android:buttonTint="#FAFAFA"
-                android:text="CheckBox"
-                android:textColor="#FAFAFA" />
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView2"
+            android:layout_marginTop="-10dp"
+            android:backgroundTint="#FAFAFA"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="#FFFFFF" />
 
-            <CheckBox
-                android:id="@+id/checkBox14"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="252dp"
-                android:layout_marginTop="268dp"
-                android:layout_marginRight="2dp"
-                android:layout_weight="1"
-                android:buttonTint="#FAFAFA"
-                android:text="CheckBox"
-                android:textColor="#FAFAFA" />
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="200dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
 
-            <CheckBox
-                android:id="@+id/checkBox15"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="252dp"
-                android:layout_marginTop="302dp"
-                android:layout_weight="1"
-                android:buttonTint="#FAFAFA"
-                android:text="CheckBox"
-                android:textColor="#FAFAFA" />
+        <CheckBox
+            android:id="@+id/checkBox8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="234dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
 
-        </RelativeLayout>
-    </ScrollView>
+        <CheckBox
+            android:id="@+id/checkBox9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="268dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
 
-    <Switch
-        android:id="@+id/switch3"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="2dp"
-        android:layout_marginBottom="10dp"
-        android:text="Serviços em promoção?"
-        android:drawablePadding="4dp"
-        android:drawableLeft="@drawable/ic_pagamento"
-        android:textColor="#FAFAFA" />
+        <CheckBox
+            android:id="@+id/checkBox10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="302dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
 
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#FAFAFA"
-        android:layout_gravity="center"
-        android:layout_marginTop="2dp"/>
+        <CheckBox
+            android:id="@+id/checkBox12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="252dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Valor a ser pago pelo serviço:"
-        android:textColor="#FAFAFA" />
+        <CheckBox
+            android:id="@+id/checkBox13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="252dp"
+            android:layout_marginTop="234dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
 
-    <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text=""
-        android:textColor="#FFFFFF"
-        android:backgroundTint="#FAFAFA"
-        android:layout_gravity="center"/>
+        <CheckBox
+            android:id="@+id/checkBox14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="252dp"
+            android:layout_marginTop="268dp"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
+
+        <CheckBox
+            android:id="@+id/checkBox15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="252dp"
+            android:layout_marginTop="302dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button2"

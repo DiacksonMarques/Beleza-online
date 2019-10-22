@@ -112,6 +112,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="vertical">
 
         <Button
@@ -179,21 +180,6 @@
             android:textAllCaps="false"
             android:textSize="16sp" />
 
-        <Button
-            android:id="@+id/button28"
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="16dp"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:drawableLeft="@drawable/ic_relatorios"
-            android:drawableRight="@drawable/ic_arrow"
-            android:drawablePadding="8dp"
-            android:gravity="left|center_horizontal"
-            android:text="Gerar Relatórios"
-            android:textAllCaps="false"
-            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

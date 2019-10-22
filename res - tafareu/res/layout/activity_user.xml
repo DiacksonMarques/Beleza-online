@@ -8,19 +8,23 @@
 
     android:background="@drawable/fuund">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        app:srcCompat="@drawable/tit" />
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:text="Preencher Campos"
+        android:textAllCaps="true"
+        android:textColor="#FAFAFA"
+        android:textSize="26sp" />
 
     <TextView
         android:id="@+id/tvhora"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="60dp"
         android:drawableLeft="@drawable/ic_clock"
         android:drawablePadding="4dp"
@@ -44,18 +48,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="60dp"
         android:drawableLeft="@drawable/ic_func_white"
         android:drawablePadding="4dp"
         android:text="Funcionários Disponíveis:"
-        android:textColor="#FAFAFA"/>
+        android:textColor="#FAFAFA" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="60dp"
+        android:layout_marginTop="15dp"
         android:textColor="#FAFAFA" />
 
     <TextView
@@ -75,7 +80,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:drawableLeft="@drawable/ic_dinheiro"
         android:text="Valor a ser pago:"
         android:textColor="#FAFAfA" />
