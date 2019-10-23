@@ -51,7 +51,7 @@ public class ListPromoActivity extends AppCompatActivity {
 
         url = "https://belezaonline2019.000webhostapp.com/getPromocao.php?id_centro_de_beleza="+idg;
 
-        //getJSON(url);
+        getJSON(url);
 
         btCadPromL.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,17 +113,17 @@ public class ListPromoActivity extends AppCompatActivity {
 
         //String[] dados = new String[jsonArray.length()];
         ArrayList<String> dados = new ArrayList<>();
-        String id="", nome="", valor="";
+        String id="", titulo="", descricao="";
 
         for(int i=0; i< jsonArray.length(); i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             //dados[i]= jsonObject.getString("cliente");
             id = jsonObject.getString("id");
-            nome= jsonObject.getString("nome");
-            valor = jsonObject.getString("valor");
+            titulo= jsonObject.getString("titulo");
+            descricao = jsonObject.getString("descricao");
 
-            dados.add("Código:"+id+"\nNome:"+nome+"\nValor:"+valor);
+            dados.add("Código:"+id+"\n"+titulo+"\n"+descricao);
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,dados);
@@ -157,7 +157,7 @@ public class ListPromoActivity extends AppCompatActivity {
                         String[] idag = auxid.split(":|: ");
                         String idaf =  idag[1];
 
-                        url = "https://belezaonline2019.000webhostapp.com/deletePromocao.php";
+                        url = "https://belezaonline2019.000webhostapp.com/deletePromo.php";
                         parametros ="id="+idaf;
                         new SolicitaDados().execute(url);
                     }

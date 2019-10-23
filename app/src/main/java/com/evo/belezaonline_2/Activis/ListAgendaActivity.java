@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.evo.belezaonline_2.Cadastros.CadAgendaEmpActivity;
 import com.evo.belezaonline_2.EspeAgendActivity;
-import com.evo.belezaonline_2.ListFeitAgdActivity;
 import com.evo.belezaonline_2.R;
 
 import org.json.JSONArray;
@@ -42,7 +41,6 @@ public class ListAgendaActivity extends AppCompatActivity {
 
         lvAgenda = findViewById(R.id.lvAgenda);
         btCadAgdList = findViewById(R.id.btCadAgdList);
-        btAgdListFet = findViewById(R.id.btAgdListFet);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -54,16 +52,6 @@ public class ListAgendaActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent abrecadagend = new Intent(getBaseContext(), CadAgendaEmpActivity.class);
                 abrecadagend.putExtra("id",id);
-                startActivity(abrecadagend);
-            }
-        });
-
-        btAgdListFet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent abrecadagend = new Intent(getBaseContext(), ListFeitAgdActivity.class);
-                abrecadagend.putExtra("id",id);
-                abrecadagend.putExtra("nome",nome);
                 startActivity(abrecadagend);
             }
         });

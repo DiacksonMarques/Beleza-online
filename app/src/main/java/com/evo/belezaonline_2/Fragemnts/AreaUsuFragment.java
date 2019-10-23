@@ -18,14 +18,8 @@ import androidx.fragment.app.Fragment;
 
 import com.evo.belezaonline_2.Activis.MainActivity;
 import com.evo.belezaonline_2.Banco.Conexao;
-import com.evo.belezaonline_2.ListFeitAgdActivity;
-import com.evo.belezaonline_2.ListFunActivity;
-import com.evo.belezaonline_2.ListServicoActivity;
 import com.evo.belezaonline_2.R;
-import com.evo.belezaonline_2.UpdateAgendActivity;
 import com.evo.belezaonline_2.UpdateAgendamentoCActivity;
-import com.evo.belezaonline_2.UpdateFucnActivity;
-import com.evo.belezaonline_2.UpdateServicoActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +34,7 @@ import java.util.ArrayList;
 public class AreaUsuFragment extends Fragment {
 
     String url, idg, nome, url2, parametros;
-    TextView tvFavQt,tvAgdQt;
+    TextView tvFavQt,tvAgdQt,tvNomeCB;
     ListView lvAgendaCli;
     AlertDialog alerta;
 
@@ -51,11 +45,14 @@ public class AreaUsuFragment extends Fragment {
         tvFavQt= v.findViewById(R.id.tvFavQt);
         tvAgdQt= v.findViewById(R.id.tvAgdQt);
         lvAgendaCli = v.findViewById(R.id.lvAgendaCli);
+        tvNomeCB = v.findViewById(R.id.tvNomeCB);
 
         Intent intent = this.getActivity().getIntent();
         Bundle bundle = intent.getExtras();
         idg = bundle.getString("id");
         nome = bundle.getString("nome");
+
+        tvNomeCB.setText(nome);
 
         url="https://belezaonline2019.000webhostapp.com/getPerfC.php?id_cliente="+idg;
         getJSON(url);

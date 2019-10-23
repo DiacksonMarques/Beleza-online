@@ -29,7 +29,6 @@
         <activity android:name=".UpdateFucnActivity" />
         <activity android:name=".ListFunActivity" />
         <activity android:name=".UpdateAgendActivity" />
-        <activity android:name=".ListFeitAgdActivity" />
         <activity android:name=".EspeAgendActivity" />
         <activity android:name=".Activis.ListAgendaActivity" />
         <activity android:name=".Cadastros.CadAgenda" />

@@ -45,6 +45,8 @@ public class CTInfoActivity extends AppCompatActivity {
         id = bundle.getString("id");
         nome = bundle.getString("nome");
 
+        Toast.makeText(getBaseContext(),id,Toast.LENGTH_LONG).show();
+
         nomeemp.setText(nome_emp);
 
         int id_cliente= Integer.parseInt(id);

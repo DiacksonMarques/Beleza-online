@@ -27,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.evo.belezaonline_2.Activis.ListAgendaActivity;
 import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.Metodos.Config;
 import com.evo.belezaonline_2.Metodos.StringFormate;
@@ -406,7 +407,7 @@ public class UpdateAgendActivity extends AppCompatActivity {
         protected void onPostExecute(String resultado) {
             if (resultado != null && !resultado.isEmpty() && resultado.contains("Update_Ok")) {
                 Toast.makeText(getBaseContext(), "Agendamento alterado com sucesso!", Toast.LENGTH_LONG).show();
-                Intent abreInicio = new Intent(getBaseContext(), ListFeitAgdActivity.class);
+                Intent abreInicio = new Intent(getBaseContext(), ListAgendaActivity.class);
                 abreInicio.putExtra("id", id);
                 abreInicio.putExtra("nome", nome);
                 startActivity(abreInicio);

@@ -254,9 +254,9 @@ public class CadEmpresaServicoActivity extends AppCompatActivity {
                     if (nome.isEmpty()|| tipo_servico.isEmpty()|| descricao.isEmpty() || ctValor.getText()==null){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
-                            url = "https://belezaonline2019.000webhostapp.com/cadastroservico.php";
-                                parametros = "nome=" + nome +"&tipo_servico="+tipo_servico+"&valor=" + valor + "&descricao="+descricao+"&id_centro_de_beleza="+id_centro_de_beleza;
-                            new SolicitaDados().execute(url);
+                        url = "https://belezaonline2019.000webhostapp.com/cadastroservico.php";
+                        parametros = "nome=" + nome +"&tipo_servico="+tipo_servico+"&valor=" + valor + "&descricao="+descricao+"&id_centro_de_beleza="+id_centro_de_beleza;
+                        new SolicitaDados().execute(url);
                     }
                 }else{
                     Toast.makeText(getBaseContext(),"Não há conexão com a internet.",Toast.LENGTH_LONG).show();

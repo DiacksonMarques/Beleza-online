@@ -28,6 +28,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -36,7 +37,9 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
                         android:text="Favoritos"
-                        android:textSize="16dp" />
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
 
                     <TextView
@@ -44,6 +47,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -53,6 +57,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -61,7 +66,9 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
                         android:text="Agendamentos"
-                        android:textSize="16dp" />
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
 
 
                     <TextView
@@ -69,6 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
+                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 

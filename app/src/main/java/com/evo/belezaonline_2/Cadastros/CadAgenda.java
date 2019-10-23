@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -30,6 +31,7 @@ import com.android.volley.toolbox.Volley;
 import com.evo.belezaonline_2.Activis.MainActivity;
 import com.evo.belezaonline_2.Activis.MainActivityEmp;
 import com.evo.belezaonline_2.Banco.Conexao;
+import com.evo.belezaonline_2.EspeAgendActivity;
 import com.evo.belezaonline_2.Metodos.Config;
 import com.evo.belezaonline_2.Metodos.StringFormate;
 import com.evo.belezaonline_2.R;
@@ -38,32 +40,35 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class CadAgenda extends AppCompatActivity {
 
-    String parametros = "";
-    String url;
-    Spinner tiposervico, funcionario;
-    TextView tvData, tvHora;
-    String id, nome, tipof, tipos, preco, idemp, nomeemp;
+    Spinner tiposervico;
+    TextView tvData;
+    String id, nome, tipos, idemp, nomeemp, url;
     Calendar calendar;
     DatePickerDialog data;
-    TimePickerDialog horad;
-    TextView tvValor;
     Button btCadAgend;
+    ListView lvAgenda;
 
     private ArrayList<String> servico =  new ArrayList<String>();
     private JSONArray tipo_servico;
-
-    private ArrayList<String> funcionarioa =  new ArrayList<String>();
-    private JSONArray Jfuncionario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cad_agenda);
+
+        lvAgenda= findViewById(R.id.lvAgenda);
+        btCadAgend = findViewById(R.id.btCadAgend);
+        tvData = findViewById(R.id.tvData);
+        tiposervico = findViewById(R.id.tiposervicoagend);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -72,12 +77,6 @@ public class CadAgenda extends AppCompatActivity {
         idemp = bundle.getString("idemp");
         nomeemp = bundle.getString("nomeemp");
 
-        tiposervico = findViewById(R.id.tiposervicoagend);
-        funcionario = findViewById(R.id.funcionario);
-        tvData = findViewById(R.id.tvData);
-        tvHora = findViewById(R.id.tvHora);
-        tvValor = findViewById(R.id.tvValor);
-        btCadAgend = findViewById(R.id.btCadAgend);
 
         tvData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,66 +100,21 @@ public class CadAgenda extends AppCompatActivity {
             }
         });
 
-        tvHora.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int hora = calendar.get(Calendar.HOUR_OF_DAY);
-                int minuto = calendar.get(Calendar.MINUTE);
-                boolean is24Hours = DateFormat.is24HourFormat(CadAgenda.this);
-
-                horad = new TimePickerDialog(CadAgenda.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if(minute>=10){
-                            tvHora.setText(hourOfDay+":"+minute);
-                        }else {
-                            tvHora.setText(hourOfDay+":0"+minute);
-                        }
-                    }
-                }, hora, minuto, is24Hours);
-                horad.show();
-            }
-        });
-
-        getSepinnerFuncionario();
         getSepinnerServico();
 
         btCadAgend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ConnectivityManager connMgr = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
-
-                if(networkInfo !=null && networkInfo.isConnected()){
-                    String data = (String) tvData.getText();
-                    String hora = (String) tvHora.getText();
-                    String funcionario = tipof;
-                    String[] servicoSeparar = tipos.split(" R|  R|   R");
-                    String[] valorSeparan = preco.split(",| ,");
-                    double valor = Double.parseDouble(valorSeparan[0]);
-                    int id_cliente  = 0;
-                    int id_centro_de_beleza= Integer.parseInt(id);;
-                    data= StringFormate.convertStringUTF8(data);
-                    hora= StringFormate.convertStringUTF8(hora);
-                    funcionario= StringFormate.convertStringUTF8(funcionario);
-
-                    if (data.isEmpty()|| hora.isEmpty()|| funcionario.isEmpty()){
-                        Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
-                    }else{
-                        url = "https://belezaonline2019.000webhostapp.com/cadastroagendamento.php";
-                        parametros ="data="+data+"&hora="+hora+"&cliente="+nome+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servicoSeparar[0]+"&id_cliente="+id+"&id_centro_de_beleza="+idemp;
-                        new SolicitaDados().execute(url);
-                    }
-                }else{
-                    Toast.makeText(getBaseContext(),"Não há conexão com a internet.",Toast.LENGTH_LONG).show();
-                }
+                String[] aux = tipos.split(" R|  R|R");
+                tipos= aux[0];
+                url="https://belezaonline2019.000webhostapp.com/getAgendamento.php?vari="+tipos+","+tvData.getText()+","+idemp;
+                getJSON(url);
             }
         });
     }
 
     private void getSepinnerServico(){
-        StringRequest stringRequest = new StringRequest(Config.DATA_URL+id,
+        StringRequest stringRequest = new StringRequest(Config.DATA_URL+idemp,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -198,7 +152,6 @@ public class CadAgenda extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position > 0) {
                     tipos = getTipoServico(position);
-                    getValor();
                     //Toast.makeText(getBaseContext(), tipos, Toast.LENGTH_LONG).show();
                 }
             }
@@ -224,108 +177,91 @@ public class CadAgenda extends AppCompatActivity {
         return tipo_servicoa;
     }
 
-    private void getSepinnerFuncionario(){
-        StringRequest stringRequest = new StringRequest(Config.DATA_URLF+id,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject = new JSONObject(response);
-                            Jfuncionario = jsonObject.getJSONArray(Config.JSON_ARRAYF);
-                            getFuncionario(Jfuncionario);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
+    private void getJSON(final String urlAPI){
+        class GetJSON extends AsyncTask<Void, Void, String>{
 
-    private void getFuncionario(JSONArray jsonArray){
-        for (int i=0; i<jsonArray.length();i++){
-            try{
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                funcionarioa.add(jsonObject.getString(Config.TAG_FUNCIONARIO1));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        funcionario.setAdapter(new ArrayAdapter<String>(CadAgenda.this, android.R.layout.simple_spinner_dropdown_item, funcionarioa));
-        AdapterView.OnItemSelectedListener funcionarioad = new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-                    //tipof = ((TextView) view).getText().toString();
-                    tipof = getFuncionarioAdd(position);
-                    //Toast.makeText(getBaseContext(), tipof, Toast.LENGTH_LONG).show();
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+                //Toast.makeText(getBaseContext(), s, Toast.LENGTH_LONG).show();
+                try{
+                    carregaListView(s);
+                }catch(JSONException e){
+                    e.printStackTrace();
                 }
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            protected String doInBackground(Void... voids) {
+                try{
+                    URL url = new URL(urlAPI);
+                    HttpURLConnection con = (HttpURLConnection) url.openConnection();
+                    StringBuilder sb = new StringBuilder();
+                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    String json;
 
+                    while ((json=bufferedReader.readLine())!=null){
+                        sb.append(json+"\n");
+                    }
+
+                    return sb.toString().trim();
+                }catch (Exception e){
+                    return null;
+                }
             }
-        };
-        funcionario.setOnItemSelectedListener(funcionarioad);
+        }
+
+        GetJSON getJSON = new GetJSON();
+        getJSON.execute();
     }
 
-    private String getFuncionarioAdd(int position){
-        String funcionarioaux="";
-        try {
-            //Getting object of given index
-            JSONObject json = Jfuncionario.getJSONObject(position);
-            //Fetching name from that object
-            funcionarioaux = json.getString(Config.TAG_FUNCIONARIO1);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        //Returning the name
-        return funcionarioaux;
-    }
+    private void carregaListView(String json) throws JSONException{
+        JSONArray jsonArray = new JSONArray(json);
 
-    private void getValor(){
-        if(tipos != null){
-            String[] valorSepara = tipos.split(":| :");
-            preco =  valorSepara[1];
-            tvValor.setText("R$ "+valorSepara[1]);
-        }
-    }
+        //String[] dados = new String[jsonArray.length()];
+        ArrayList<String> dados = new ArrayList<>();
+        String id="", servico="", hora_i="", hora_f="", id_centro_de_beleza="";
 
-    private class SolicitaDados extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-            return Conexao.postDados(urls[0], parametros);
-        }
-        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
-        @Override
-        protected void onPostExecute(String resultado) {
-            if(resultado != null && !resultado.isEmpty() && resultado.contains("Agenda_Erro")){
-                Toast.makeText(getBaseContext(),"Erro ao agendar",Toast.LENGTH_LONG).show();
-            }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
-                Toast.makeText(getBaseContext(),"Agendamento concluído com sucesso!",Toast.LENGTH_LONG).show();
-                Intent abreInicio = new Intent(getBaseContext(), MainActivity.class);
-                abreInicio.putExtra("id",id);
-                abreInicio.putExtra("nome",nome);
-                startActivity(abreInicio);
-                // Fechar fragment getBaseContext().getFragmentManager().popBackStack();
-                finish();
+        for(int i=0; i< jsonArray.length(); i++){
+            JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+            //dados[i]= jsonObject.getString("cliente");
+            id = jsonObject.getString("id");
+            servico= jsonObject.getString("servico");
+            hora_i = jsonObject.getString("hora_i");
+            hora_f = jsonObject.getString("hora_f");
+            id_centro_de_beleza = jsonObject.getString("id_centro_de_beleza");
+            if (id.equals("Não")){
+                dados.add(id+" "+servico+" "+hora_i+" "+hora_f+" "+id_centro_de_beleza);
             }else{
-                Toast.makeText(getBaseContext(),"Ocorreu um erro: "+resultado,Toast.LENGTH_LONG).show();
+                dados.add("Código: "+id+"\nServico:"+servico+"\nHora:"+hora_i+"ás"+hora_f);
             }
         }
 
-    }
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,dados);
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        finish();
-    }
+        lvAgenda.setAdapter(arrayAdapter);
 
+        lvAgenda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String Sele = ((TextView) view).getText().toString();
+                if (Sele.equals("Não Tem nenhum serviço cadastrado")){
+                    Toast.makeText(getBaseContext(), "Não função", Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getBaseContext(), Sele, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getBaseContext(), EspeAgendActivity.class);
+                    intent.putExtra("id",id);
+                    intent.putExtra("nome",nome);
+                    intent.putExtra("coda",Sele);
+                    startActivity(intent);
+                }
+            }
+        });
+    }
 }

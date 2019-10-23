@@ -1,9 +1,7 @@
 package com.evo.belezaonline_2.Cadastros;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.DialogFragment;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
@@ -18,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -47,13 +44,11 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
     String parametros = "";
     String url;
     Spinner tiposervico, funcionario;
-    TextView tvData, tvHora;
+    TextView tvData, tvHora,tvHora2;
     String id,nome,tipof,tipos,preco;
     Calendar calendar;
     DatePickerDialog data;
     TimePickerDialog horad;
-    EditText edCliente;
-    TextView tvValor;
     Button btCadAgend;
 
     private ArrayList<String> servico =  new ArrayList<String>();
@@ -75,10 +70,9 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
         tiposervico = findViewById(R.id.tiposervicoagend);
         funcionario = findViewById(R.id.funcionario);
         tvData = findViewById(R.id.tvData);
-        tvHora = findViewById(R.id.tvHora);
-        tvValor = findViewById(R.id.tvValor);
+        tvHora = findViewById(R.id.tvHoraIn);
+        tvHora2 = findViewById(R.id.tvHoraTe);
         btCadAgend = findViewById(R.id.btCadAgend);
-        edCliente = findViewById(R.id.edCliente);
 
         tvData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,6 +118,28 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
             }
         });
 
+        tvHora2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int hora = calendar.get(Calendar.HOUR_OF_DAY);
+                int minuto = calendar.get(Calendar.MINUTE);
+                boolean is24Hours = DateFormat.is24HourFormat(CadAgendaEmpActivity.this);
+
+                horad = new TimePickerDialog(CadAgendaEmpActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        if(minute>=10){
+                            tvHora2.setText(hourOfDay+":"+minute);
+                        }else {
+                            tvHora2.setText(hourOfDay+":0"+minute);
+                        }
+                    }
+                }, hora, minuto, is24Hours);
+                horad.show();
+            }
+        });
+
         getSepinnerFuncionario();
         getSepinnerServico();
 
@@ -136,7 +152,7 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
                 if(networkInfo !=null && networkInfo.isConnected()){
                     String data = (String) tvData.getText();
                     String hora = (String) tvHora.getText();
-                    String cliente = String.valueOf(edCliente.getText());
+                    String hora2 = (String) tvHora2.getText();
                     String funcionario = tipof;
                     String[] servicoSeparar = tipos.split(" R|  R|   R");
                     String[] valorSeparan = preco.split(",| ,");
@@ -147,11 +163,11 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
                     hora= StringFormate.convertStringUTF8(hora);
                     funcionario= StringFormate.convertStringUTF8(funcionario);
 
-                    if (data.isEmpty()|| hora.isEmpty()|| funcionario.isEmpty() || edCliente.getText()==null){
+                    if (data.isEmpty()|| hora.isEmpty()|| funcionario.isEmpty() ){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
                         url = "https://belezaonline2019.000webhostapp.com/cadastroagendamento.php";
-                        parametros ="data="+data+"&hora="+hora+"&cliente="+cliente+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servicoSeparar[0]+"&id_cliente="+id_cliente+"&id_centro_de_beleza="+id_centro_de_beleza;
+                        parametros ="data="+data+"&hora_i="+hora+"&hora_f="+hora2+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servicoSeparar[0]+"&id_cliente="+id_cliente+"&id_centro_de_beleza="+id_centro_de_beleza;
                         new SolicitaDados().execute(url);
                     }
                 }else{
@@ -295,7 +311,6 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
         if(tipos != null){
             String[] valorSepara = tipos.split(":| :");
             preco =  valorSepara[1];
-            tvValor.setText("R$ "+valorSepara[1]);
         }
     }
 

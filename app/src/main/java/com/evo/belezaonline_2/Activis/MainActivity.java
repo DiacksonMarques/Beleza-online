@@ -3,6 +3,7 @@ package com.evo.belezaonline_2.Activis;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         id = bundle.getString("id");
         nome = bundle.getString("nome");
         //String tipo_usuario = bundle.getString("tipo_usuario");
-
+        Toast.makeText(getBaseContext(), id, Toast.LENGTH_LONG).show();
         Fragment homeFragment = HomeFragment.newInstance();
         openFragment(homeFragment);
     }

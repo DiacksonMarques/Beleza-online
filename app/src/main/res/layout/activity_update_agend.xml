@@ -39,7 +39,7 @@
         android:id="@+id/edClienteUp"
         android:layout_width="286dp"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView3"
+        android:layout_above="@+id/tvData"
         android:layout_marginBottom="4dp"
         android:ems="10"
         android:gravity="center_horizontal"
