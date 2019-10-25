@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
     android:background="@drawable/fuund"
     android:orientation="vertical"
     tools:context=".UpdateServicoActivity">
@@ -12,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="119dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/tela"
         android:orientation="vertical">
 
         <ImageView
@@ -21,19 +21,20 @@
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:contentDescription="TODO"
             app:srcCompat="@drawable/icone" />
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="177dp"
-        android:layout_height="42dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="0dp"
-        android:contentDescription="TODO"
-        app:srcCompat="@drawable/texto" />
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="Alterar servico"
+        android:textAllCaps="true"
+        android:textColor="#FAFAFA"
+        android:textSize="26sp" />
 
     <TextView
         android:id="@+id/textView"
@@ -42,7 +43,9 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="0dp"
         android:layout_marginRight="60dp"
-        android:text="@string/servico" />
+        android:text="@string/servico"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/tiposervico"
@@ -56,12 +59,23 @@
         android:id="@+id/textView16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Atual" />
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="60dp"
+        android:text="Atual"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvTipoSer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="60dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Spinner
         android:id="@+id/definicaoservico"
@@ -75,51 +89,71 @@
         android:id="@+id/textView17"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Atual" />
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="60dp"
+        android:text="Atual"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvDefinServi"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginRight="60dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/ctValorL"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:drawableStart="@drawable/ic_person_black_24dp"
-        android:drawableLeft="@drawable/ic_person_black_24dp"
-        android:hint="@string/valor"
-        android:importantForAutofill="no"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_monetization_on_black_24dp"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="Valor"
         android:inputType="textPersonName"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14dp" />
+        android:padding="4dp"
+        android:textColorHint="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/ctDescricaoServicoL"
-        android:layout_width="match_parent"
-        android:layout_height="46dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginRight="60dp"
-        android:drawableStart="@drawable/ic_person_black_24dp"
-        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_menu_send"
+        android:drawablePadding="4dp"
+        android:ems="10"
         android:hint="@string/desc"
-        android:importantForAutofill="no"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14dp" />
+        android:inputType="textPersonName"
+        android:padding="4dp"
+        android:textColorHint="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/btAultempserrv"
         android:layout_width="151dp"
         android:layout_height="29dp"
+        android:layout_gravity="center"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="100dp"
         android:background="@drawable/custom_bt"
+        android:gravity="center"
         android:text="Alterar"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
 

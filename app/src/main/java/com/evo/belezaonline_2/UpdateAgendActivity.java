@@ -45,8 +45,7 @@ import java.util.Calendar;
 
 public class UpdateAgendActivity extends AppCompatActivity {
 
-    TextView tvCodAgdUp, tvDataList, tvHoraUp, tvFuncUp, tvServUp, tvValorUp;
-    EditText edClienteUp;
+    TextView tvCodAgdUp, tvDataList, tvHoraUpIn, tvHoraUpTe, tvFuncUp, tvServUp;
     Calendar calendar;
     DatePickerDialog data;
     TimePickerDialog horad;
@@ -69,11 +68,10 @@ public class UpdateAgendActivity extends AppCompatActivity {
 
         tvCodAgdUp = findViewById(R.id.tvCodAgdUp);
         tvDataList = findViewById(R.id.tvDataList);
-        tvHoraUp = findViewById(R.id.tvHoraUp);
+        tvHoraUpIn = findViewById(R.id.tvHoraUpIn);
+        tvHoraUpTe = findViewById(R.id.tvHoraUpTe);
         tvFuncUp = findViewById(R.id.tvFuncUp);
         tvServUp = findViewById(R.id.tvServUp);
-        tvValorUp = findViewById(R.id.tvValorUp);
-        edClienteUp = findViewById(R.id.edClienteUp);
         tiposervico = findViewById(R.id.tiposervicoagendup);
         funcionarioup = findViewById(R.id.funcionarioup);
         btUpAgend = findViewById(R.id.btUpAgend);
@@ -100,7 +98,7 @@ public class UpdateAgendActivity extends AppCompatActivity {
             }
         });
 
-        tvHoraUp.setOnClickListener(new View.OnClickListener() {
+        tvHoraUpIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
@@ -112,9 +110,31 @@ public class UpdateAgendActivity extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         if(minute>=10){
-                            tvHoraUp.setText(hourOfDay+":"+minute);
+                            tvHoraUpIn.setText(hourOfDay+":"+minute);
                         }else {
-                            tvHoraUp.setText(hourOfDay+":0"+minute);
+                            tvHoraUpIn.setText(hourOfDay+":0"+minute);
+                        }
+                    }
+                }, hora, minuto, is24Hours);
+                horad.show();
+            }
+        });
+
+        tvHoraUpTe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int hora = calendar.get(Calendar.HOUR_OF_DAY);
+                int minuto = calendar.get(Calendar.MINUTE);
+                boolean is24Hours = DateFormat.is24HourFormat(UpdateAgendActivity.this);
+
+                horad = new TimePickerDialog(UpdateAgendActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        if(minute>=10){
+                            tvHoraUpTe.setText(hourOfDay+":"+minute);
+                        }else {
+                            tvHoraUpTe.setText(hourOfDay+":0"+minute);
                         }
                     }
                 }, hora, minuto, is24Hours);
@@ -149,11 +169,11 @@ public class UpdateAgendActivity extends AppCompatActivity {
 
                 if(networkInfo !=null && networkInfo.isConnected()){
                     String data = (String) tvDataList.getText();
-                    String hora = (String) tvHoraUp.getText();
-                    String cliente = String.valueOf(edClienteUp.getText());
+                    String hora_i = (String) tvHoraUpIn.getText();
+                    String hora_t = (String) tvHoraUpTe.getText();
                     String funcionario = (String) tvFuncUp.getText();
                     String servicoSeparar = (String) tvServUp.getText();
-                    String valorSeparan = (String) tvValorUp.getText();
+                    String valorSeparan = preco;
                     String[] valorSepara = valorSeparan.split("  | ");
                     String aux = valorSepara[1];
                     String[] valorsepara2= aux.split(",");
@@ -165,14 +185,15 @@ public class UpdateAgendActivity extends AppCompatActivity {
                     //Toast.makeText(getBaseContext(),idSepara[1],Toast.LENGTH_LONG).show();
                     int id = Integer.parseInt(idSepara[1]);
                     data= StringFormate.convertStringUTF8(data);
-                    hora= StringFormate.convertStringUTF8(hora);
+                    hora_i= StringFormate.convertStringUTF8(hora_i);
+                    hora_t= StringFormate.convertStringUTF8(hora_t);
                     funcionario= StringFormate.convertStringUTF8(funcionario);
 
-                    if (data.isEmpty()|| hora.isEmpty()|| funcionario.isEmpty() || cliente.isEmpty()|| tvValorUp == null|| tvServUp==null){
+                    if (data.isEmpty()|| hora_i.isEmpty()|| funcionario.isEmpty() || hora_t.isEmpty()|| preco.isEmpty()|| tvServUp==null){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
                         url = "https://belezaonline2019.000webhostapp.com/updateAgendamento.php";
-                        parametros ="id="+id+"&data="+data+"&hora="+hora+"&cliente="+cliente+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servicoSeparar+"&id_cliente="+id_cliente+"&id_centro_de_beleza="+id_centro_de_beleza;
+                        parametros ="id="+id+"&data="+data+"&hora_i="+hora_i+"&hora_t="+hora_t+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servicoSeparar+"&id_cliente="+id_cliente+"&id_centro_de_beleza="+id_centro_de_beleza;
                         new SolicitaDados().execute(url);
                     }
                 }else{
@@ -227,15 +248,15 @@ public class UpdateAgendActivity extends AppCompatActivity {
     private void carregaListView(String json) throws JSONException{
         JSONArray jsonArray = new JSONArray(json);
 
-        String id="", cliente="", data="", hora="", funcioanrio="", valor="", servico="", id_cliente="", id_centro_de_beleza="";
+        String id="", hora_t="", data="", hora_i="", funcioanrio="", valor="", servico="", id_cliente="", id_centro_de_beleza="";
 
         for(int i=0; i< jsonArray.length(); i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             id = jsonObject.getString("id");
             data = jsonObject.getString("data");
-            hora = jsonObject.getString("hora");
-            cliente= jsonObject.getString("cliente");
+            hora_i = jsonObject.getString("hora");
+            hora_t= jsonObject.getString("cliente");
             funcioanrio= jsonObject.getString("funcionario");
             valor= jsonObject.getString("valor");
             servico= jsonObject.getString("servico");
@@ -243,13 +264,13 @@ public class UpdateAgendActivity extends AppCompatActivity {
             id_centro_de_beleza= jsonObject.getString("id_centro_de_beleza");
         }
 
-        edClienteUp.setText(cliente);
         tvCodAgdUp.setText(id);
         tvDataList.setText(data);
-        tvHoraUp.setText(hora);
+        tvHoraUpIn.setText(hora_i);
+        tvHoraUpTe.setText(hora_t);
         tvFuncUp.setText(funcioanrio);
         tvServUp.setText(servico);
-        tvValorUp.setText("R$ "+valor+",00");
+        preco= valor;
         id_clienteg = Integer.parseInt(id_cliente);
         id_centro_de_belezag = Integer.parseInt(id_centro_de_beleza);
 
@@ -392,7 +413,6 @@ public class UpdateAgendActivity extends AppCompatActivity {
         if(tipos != null){
             String[] valorSepara = tipos.split(":| :");
             preco =  valorSepara[1];
-            tvValorUp.setText("R$ "+valorSepara[1]);
         }
     }
 

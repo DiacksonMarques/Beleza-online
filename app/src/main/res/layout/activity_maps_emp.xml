@@ -6,23 +6,27 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Maps.MapsActivityEmp">
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/btCadLocaEmp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="100dp"
-        android:layout_marginRight="100dp"
-        android:layout_marginBottom="28dp"
-        android:shadowColor="#001F1D1D"
+        android:layout_height="29dp"
+        android:layout_alignEnd="@+id/map"
+        android:layout_alignRight="@+id/map"
+        android:layout_alignBottom="@+id/map"
+        android:layout_gravity="center"
+        android:layout_marginEnd="31dp"
+        android:layout_marginRight="31dp"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/custom_bt"
         android:text="Cadastrar localização"
-        android:textColorHint="@color/colorAccent" />
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
 </RelativeLayout>

@@ -5,35 +5,93 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".UpdateFucnActivity">
+    tools:context=".UpdateFucnActivity"
+    android:background="@drawable/fuund">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="119dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="118dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            app:srcCompat="@drawable/icone" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView12"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Codigó" />
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="Alterar funcionário"
+        android:textAllCaps="true"
+        android:textColor="#FAFAFA"
+        android:textSize="26sp" />
 
-    <TextView
-        android:id="@+id/tvIdFuc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/textView11"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Funcionário" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Código:"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/tvIdFuc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/edFuncUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_user_black"
+        android:drawablePadding="4dp"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:padding="4dp"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:hint="Nome funcioánrio" />
 
     <Button
         android:id="@+id/btFuncUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Alterar" />
+        android:layout_width="151dp"
+        android:layout_height="29dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="100dp"
+        android:background="@drawable/custom_bt"
+        android:text="Salvar"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="18sp" />
+
 </LinearLayout>

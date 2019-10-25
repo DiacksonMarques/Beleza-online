@@ -5,10 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fuund"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".Cadastros.CadAgenda"
-    >
+    tools:context=".AgendDesvActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,7 +57,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btCadAgdCli"
+        android:id="@+id/btBuscLiv"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_gravity="center"

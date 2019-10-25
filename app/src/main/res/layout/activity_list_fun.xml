@@ -5,22 +5,41 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ListFunActivity">
+    tools:context=".ListFunActivity"
+    android:background="@drawable/fuund">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btCadFunL"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/cadastrar_funcion_rio" />
+            android:layout_height="29dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/custom_bt"
+            android:text="@string/cadastrar_funcion_rio"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="Lista de funcionário"
+        android:textAllCaps="true"
+        android:textColor="#FAFAFA"
+        android:textSize="26sp" />
 
     <ListView
         android:id="@+id/lvFunc"

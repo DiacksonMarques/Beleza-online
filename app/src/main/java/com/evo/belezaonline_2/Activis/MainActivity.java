@@ -51,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
                         openFragment(homeFragment);
                         break;
                     case R.id.navigation_maps:
-                        //Fragment mapsFragment = MapsFragment.newInstance();
-                        //openFragment(mapsFragment);
                         Intent reinica = getIntent();
                         startActivity(reinica);
                         finish();

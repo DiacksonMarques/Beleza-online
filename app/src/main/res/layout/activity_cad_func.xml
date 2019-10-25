@@ -34,34 +34,33 @@
 
     <EditText
         android:id="@+id/ctNomefunc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="60dp"
-        android:autoText="false"
-        android:autofillHints=""
-        android:drawableStart="@drawable/ic_person_black_24dp"
-        android:drawableLeft="@drawable/ic_person_black_24dp"
-        android:hint="@string/nomeemp"
+        android:layout_width="250dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_user_black"
+        android:drawablePadding="4dp"
+        android:ems="10"
         android:inputType="textPersonName"
-        android:lineSpacingExtra="18sp"
-        android:textAppearance="@style/Base.AlertDialog.AppCompat"
-        android:textColor="@android:color/darker_gray"
-        android:textIsSelectable="false"
-        android:textSize="14dp" />
+        android:padding="4dp"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:hint="Nome funcioánrio" />
 
     <Button
         android:id="@+id/btCadfunc"
         android:layout_width="151dp"
         android:layout_height="29dp"
+        android:layout_gravity="center"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="100dp"
         android:background="@drawable/custom_bt"
         android:text="@string/cad"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
 </LinearLayout>

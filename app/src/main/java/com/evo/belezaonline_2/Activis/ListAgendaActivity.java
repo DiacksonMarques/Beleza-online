@@ -32,7 +32,7 @@ public class ListAgendaActivity extends AppCompatActivity {
     String url, id, nome;
 
     ListView lvAgenda;
-    Button btCadAgdList, btAgdListFet;
+    Button btBuscarAnd,btCadAgdList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class ListAgendaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_agenda);
 
         lvAgenda = findViewById(R.id.lvAgenda);
+        btBuscarAnd = findViewById(R.id.btBuscarAnd);
         btCadAgdList = findViewById(R.id.btCadAgdList);
 
         Intent intent = this.getIntent();
@@ -56,9 +57,14 @@ public class ListAgendaActivity extends AppCompatActivity {
             }
         });
 
-        url = "https://belezaonline2019.000webhostapp.com/getAgendamentoEmp.php?id_centro_de_beleza="+id;
+        btBuscarAnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                url = "https://belezaonline2019.000webhostapp.com/getAgendamentoEmp.php?id_centro_de_beleza="+id;
 
-        getJSON(url);
+                getJSON(url);
+            }
+        });
     }
 
     private void getJSON(final String urlAPI){
@@ -109,18 +115,17 @@ public class ListAgendaActivity extends AppCompatActivity {
 
         //String[] dados = new String[jsonArray.length()];
         ArrayList<String> dados = new ArrayList<>();
-        String id="", cliente="", data="", hora="";
+        String id="", hora_i="", data="", hora_f="";
 
         for(int i=0; i< jsonArray.length(); i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-            //dados[i]= jsonObject.getString("cliente");
             id = jsonObject.getString("id");
-            cliente= jsonObject.getString("cliente");
+            hora_i= jsonObject.getString("hora_i");
+            hora_f = jsonObject.getString("hora_f");
             data = jsonObject.getString("data");
-            hora = jsonObject.getString("hora");
 
-            dados.add("Código: "+id+"\nCliente:"+cliente+"\nData:"+data+"\nHora:"+hora);
+            dados.add("Código: "+id+"\nData:"+data+"\nHora:"+hora_i+" ás "+hora_f);
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,dados);

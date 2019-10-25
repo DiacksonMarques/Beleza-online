@@ -124,6 +124,7 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
         updateLocationUI();
         getDeviceLocation();
 
+
         try {
             // Customise the styling of the base map using a JSON object defined
             // in a raw resource file.
@@ -164,6 +165,11 @@ public class MapsActivityEmp extends FragmentActivity implements OnMapReadyCallb
                             }else{
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
                                         new LatLng(mLastKnownLocation.getLatitude(),mLastKnownLocation.getLongitude()), 20.0f));
+                                LatLng centro = new LatLng(mLastKnownLocation.getLatitude(), mLastKnownLocation.getLongitude());
+                                mMap.addMarker(new MarkerOptions()
+                                        .position(centro)
+                                        .title(nomea)
+                                        .draggable(true));
                             }
                         }else{
                             Log.d(TAG, "Current location is null. Using defaults.");

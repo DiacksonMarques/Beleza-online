@@ -18,8 +18,8 @@ import androidx.fragment.app.Fragment;
 
 import com.evo.belezaonline_2.Activis.MainActivity;
 import com.evo.belezaonline_2.Banco.Conexao;
+import com.evo.belezaonline_2.EspeAgendActivity;
 import com.evo.belezaonline_2.R;
-import com.evo.belezaonline_2.UpdateAgendamentoCActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -205,7 +205,7 @@ public class AreaUsuFragment extends Fragment {
                 builder.setPositiveButton("Alterar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent abrecadagend = new Intent(getContext(), UpdateAgendamentoCActivity.class);
+                        Intent abrecadagend = new Intent(getContext(), EspeAgendActivity.class);
                         abrecadagend.putExtra("id",idg);
                         abrecadagend.putExtra("nome",nome);
                         abrecadagend.putExtra("coda",Sele);

@@ -36,7 +36,9 @@
         android:drawablePadding="4dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:padding="4dp" />
+        android:padding="4dp"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:hint="@string/nome"/>
 
     <EditText
         android:id="@+id/ctEmailc"
@@ -50,7 +52,9 @@
         android:drawablePadding="4dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:padding="4dp" />
+        android:padding="4dp"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:hint="@string/email"/>
 
     <EditText
         android:id="@+id/ctUsuario"
@@ -64,7 +68,9 @@
         android:drawablePadding="4dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:padding="4dp" />
+        android:padding="4dp"
+        android:hint="@string/usu"
+        android:textColorHint="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/ctSenhal"
@@ -77,22 +83,26 @@
         android:drawableLeft="@drawable/ic_pass_black"
         android:drawablePadding="4dp"
         android:ems="10"
+        android:hint="@string/senha"
         android:inputType="textPassword"
-        android:padding="4dp" />
+        android:padding="4dp"
+        android:textColorHint="@color/colorPrimaryDark" />
 
     <EditText
         android:id="@+id/ctRepSenha"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="6dp"
         android:background="@drawable/custom_button"
         android:backgroundTint="@color/grey"
         android:drawableLeft="@drawable/ic_pass_black"
+        android:hint="@string/comfsenha"
         android:drawablePadding="4dp"
-        android:layout_marginBottom="6dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:padding="4dp" />
+        android:padding="4dp"
+        android:textColorHint="@color/colorPrimaryDark" />
 
     <Button
         android:id="@+id/btCadCli"
