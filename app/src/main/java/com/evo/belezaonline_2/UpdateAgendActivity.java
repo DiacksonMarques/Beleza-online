@@ -76,6 +76,12 @@ public class UpdateAgendActivity extends AppCompatActivity {
         funcionarioup = findViewById(R.id.funcionarioup);
         btUpAgend = findViewById(R.id.btUpAgend);
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        id = bundle.getString("id");
+        nome = bundle.getString("nome");
+        id_agd = bundle.getString("coda");
+
         tvDataList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,17 +148,14 @@ public class UpdateAgendActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent = this.getIntent();
-        Bundle bundle = intent.getExtras();
-        id = bundle.getString("id");
-        nome = bundle.getString("nome");
-        id_agd = bundle.getString("coda");
 
         String[] ida = id_agd.split("\n| \n ");
         String auxid =  ida[0];
 
         String[] idag = auxid.split(":|: ");
         final String idaf =  idag[1];
+
+        Toast.makeText(getBaseContext(), id,Toast.LENGTH_LONG).show();
 
         url = "https://belezaonline2019.000webhostapp.com/getUpdateAgendam.php?id=" + idaf;
 
@@ -170,12 +173,12 @@ public class UpdateAgendActivity extends AppCompatActivity {
                 if(networkInfo !=null && networkInfo.isConnected()){
                     String data = (String) tvDataList.getText();
                     String hora_i = (String) tvHoraUpIn.getText();
-                    String hora_t = (String) tvHoraUpTe.getText();
+                    String hora_f = (String) tvHoraUpTe.getText();
                     String funcionario = (String) tvFuncUp.getText();
                     String servicoSeparar = (String) tvServUp.getText();
                     String valorSeparan = preco;
                     String[] valorSepara = valorSeparan.split("  | ");
-                    String aux = valorSepara[1];
+                    String aux = valorSepara[0];
                     String[] valorsepara2= aux.split(",");
                     valorSeparan = valorsepara2[0];
                     double valor = Double.parseDouble(valorSeparan);
@@ -183,17 +186,17 @@ public class UpdateAgendActivity extends AppCompatActivity {
                     int id_centro_de_beleza= Integer.parseInt(id);
                     String[] idSepara = idaf.split("  | ");
                     //Toast.makeText(getBaseContext(),idSepara[1],Toast.LENGTH_LONG).show();
-                    int id = Integer.parseInt(idSepara[1]);
+                    int id = Integer.parseInt(idSepara[0]);
                     data= StringFormate.convertStringUTF8(data);
                     hora_i= StringFormate.convertStringUTF8(hora_i);
-                    hora_t= StringFormate.convertStringUTF8(hora_t);
+                    hora_f= StringFormate.convertStringUTF8(hora_f);
                     funcionario= StringFormate.convertStringUTF8(funcionario);
 
-                    if (data.isEmpty()|| hora_i.isEmpty()|| funcionario.isEmpty() || hora_t.isEmpty()|| preco.isEmpty()|| tvServUp==null){
+                    if (data.isEmpty()|| hora_i.isEmpty()|| funcionario.isEmpty() || hora_f.isEmpty()|| preco.isEmpty()|| tvServUp==null){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
                         url = "https://belezaonline2019.000webhostapp.com/updateAgendamento.php";
-                        parametros ="id="+id+"&data="+data+"&hora_i="+hora_i+"&hora_t="+hora_t+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servicoSeparar+"&id_cliente="+id_cliente+"&id_centro_de_beleza="+id_centro_de_beleza;
+                        parametros ="id="+id+"&data="+data+"&hora_i="+hora_i+"&hora_f="+hora_f+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servicoSeparar+"&id_cliente="+id_cliente+"&id_centro_de_beleza="+id_centro_de_beleza;
                         new SolicitaDados().execute(url);
                     }
                 }else{
@@ -248,15 +251,15 @@ public class UpdateAgendActivity extends AppCompatActivity {
     private void carregaListView(String json) throws JSONException{
         JSONArray jsonArray = new JSONArray(json);
 
-        String id="", hora_t="", data="", hora_i="", funcioanrio="", valor="", servico="", id_cliente="", id_centro_de_beleza="";
+        String id="", data="", hora_i="",hora_f="", funcioanrio="", valor="", servico="", id_cliente="", id_centro_de_beleza="";
 
         for(int i=0; i< jsonArray.length(); i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             id = jsonObject.getString("id");
             data = jsonObject.getString("data");
-            hora_i = jsonObject.getString("hora");
-            hora_t= jsonObject.getString("cliente");
+            hora_i = jsonObject.getString("hora_i");
+            hora_f= jsonObject.getString("hora_f");
             funcioanrio= jsonObject.getString("funcionario");
             valor= jsonObject.getString("valor");
             servico= jsonObject.getString("servico");
@@ -267,7 +270,7 @@ public class UpdateAgendActivity extends AppCompatActivity {
         tvCodAgdUp.setText(id);
         tvDataList.setText(data);
         tvHoraUpIn.setText(hora_i);
-        tvHoraUpTe.setText(hora_t);
+        tvHoraUpTe.setText(hora_f);
         tvFuncUp.setText(funcioanrio);
         tvServUp.setText(servico);
         preco= valor;

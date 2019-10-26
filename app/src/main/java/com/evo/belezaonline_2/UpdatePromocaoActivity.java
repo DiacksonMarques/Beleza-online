@@ -66,7 +66,9 @@ public class UpdatePromocaoActivity extends AppCompatActivity {
         String[] idag = auxid.split(":|: ");
         final String idaf =  idag[1];
 
-        url = "https://belezaonline2019.000webhostapp.com/getUpdateFuncionario.php?id="+idaf;
+        Toast.makeText(getBaseContext(),idaf,Toast.LENGTH_LONG).show();
+
+        url = "https://belezaonline2019.000webhostapp.com/getUpdatePromo.php?id="+idaf;
 
         getJSON(url);
 
@@ -110,8 +112,8 @@ public class UpdatePromocaoActivity extends AppCompatActivity {
                     if (titulo.isEmpty()|| descricao.isEmpty()|| data.isEmpty()){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
-                        url = "https://belezaonline2019.000webhostapp.com/updatePromocao.php";
-                        parametros ="id="+id+"&titulo="+titulo+"&descricao="+descricao+"&data="+data+"&id_centro_de_beleza="+id_centro_de_beleza;
+                        url = "https://belezaonline2019.000webhostapp.com/updatePromo.php";
+                        parametros ="id="+id+"&titulo="+titulo+"&descricao="+descricao+"&data="+data+"&id_centro_de_beleza="+id_centro_de_beleza+"&img="+0;
                         new SolicitaDados().execute(url);
                     }
                 }else{

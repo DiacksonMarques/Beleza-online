@@ -70,13 +70,13 @@
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:src="@mipmap/telic" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/btiAgend"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:background="@drawable/custom_button"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:src="@mipmap/calendic" />
+                android:layout_weight="1"
+                android:background="@drawable/ic_date" />
+
         </LinearLayout>
 
     </RelativeLayout>

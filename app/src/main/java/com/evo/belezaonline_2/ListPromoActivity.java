@@ -49,6 +49,8 @@ public class ListPromoActivity extends AppCompatActivity {
         idg = bundle.getString("id");
         nomeg = bundle.getString("nome");
 
+        Toast.makeText(getBaseContext(), idg, Toast.LENGTH_LONG).show();
+
         url = "https://belezaonline2019.000webhostapp.com/getPromocao.php?id_centro_de_beleza="+idg;
 
         getJSON(url);
@@ -141,7 +143,7 @@ public class ListPromoActivity extends AppCompatActivity {
                 builder.setPositiveButton("Alterar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent abrecadagend = new Intent(getBaseContext(), UpdateServicoActivity.class);
+                        Intent abrecadagend = new Intent(getBaseContext(), UpdatePromocaoActivity.class);
                         abrecadagend.putExtra("id",idg);
                         abrecadagend.putExtra("nome",nomeg);
                         abrecadagend.putExtra("coda",Sele);

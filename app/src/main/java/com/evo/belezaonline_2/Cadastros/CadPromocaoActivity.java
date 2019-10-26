@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.evo.belezaonline_2.Activis.LoginActivity;
 import com.evo.belezaonline_2.Activis.MainActivityEmp;
 import com.evo.belezaonline_2.Banco.Conexao;
+import com.evo.belezaonline_2.ListPromoActivity;
 import com.evo.belezaonline_2.Metodos.StringFormate;
 import com.evo.belezaonline_2.R;
 
@@ -92,7 +93,7 @@ public class CadPromocaoActivity extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), "Há Campo(s) vazio(s)", Toast.LENGTH_LONG).show();
                     } else {
                         url = "https://belezaonline2019.000webhostapp.com/cadastropromocao.php";
-                        parametros = "titulo=" + titulo + "&data=" + descricao + "&descricao=" + dataa + "&id_centro_de_beleza=" + id_centro_de_beleza;
+                        parametros = "titulo=" + titulo + "&data="+dataa + "&descricao=" + descricao + "&id_centro_de_beleza=" + id_centro_de_beleza;
                         new SolicitaDados().execute(url);
                     }
                 }else{
@@ -113,7 +114,9 @@ public class CadPromocaoActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "Esta promoção já está cadastrado", Toast.LENGTH_LONG).show();
             } else if (resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")) {
                 Toast.makeText(getBaseContext(), "Registro concluído com sucesso!", Toast.LENGTH_LONG).show();
-                Intent abreInicio = new Intent(getBaseContext(), MainActivityEmp.class);
+                Intent abreInicio = new Intent(getBaseContext(), ListPromoActivity.class);
+                abreInicio.putExtra("id",id);
+                abreInicio.putExtra("nome",nome);
                 startActivity(abreInicio);
                 // Fechar fragment getBaseContext().getFragmentManager().popBackStack();
                 finish();

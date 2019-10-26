@@ -54,7 +54,7 @@ public class CadAgenda extends AppCompatActivity {
     String id, nome, tipos, idemp, nomeemp, url;
     Calendar calendar;
     DatePickerDialog data;
-    Button btCadAgend;
+    Button btCadAgd;
     ListView lvAgenda;
 
     private ArrayList<String> servico =  new ArrayList<String>();
@@ -66,7 +66,7 @@ public class CadAgenda extends AppCompatActivity {
         setContentView(R.layout.activity_cad_agenda);
 
         lvAgenda= findViewById(R.id.lvAgenda);
-        btCadAgend = findViewById(R.id.btCadAgend);
+        btCadAgd = findViewById(R.id.btCadAgd);
         tvData = findViewById(R.id.tvData);
         tiposervico = findViewById(R.id.tiposervicoagend);
 
@@ -102,13 +102,17 @@ public class CadAgenda extends AppCompatActivity {
 
         getSepinnerServico();
 
-        btCadAgend.setOnClickListener(new View.OnClickListener() {
+        btCadAgd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String[] aux = tipos.split(" R|  R|R");
-                tipos= aux[0];
-                url="https://belezaonline2019.000webhostapp.com/getAgendamento.php?vari="+tipos+","+tvData.getText()+","+idemp;
-                getJSON(url);
+                if(tvData.getText()==null|| tipos.isEmpty()){
+                    Toast.makeText(getBaseContext(),"A campos vazios.",Toast.LENGTH_LONG).show();
+                }else {
+                    String[] aux = tipos.split(" R|  R|R");
+                    tipos = aux[0];
+                    url = "https://belezaonline2019.000webhostapp.com/getAgendamento.php?vari=" + tipos + "," + tvData.getText() + "," + idemp;
+                    getJSON(url);
+                }
             }
         });
     }

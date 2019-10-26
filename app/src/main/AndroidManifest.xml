@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AgendDesvActivity"></activity>
+        <activity android:name=".InfoAgdEmpActivity"></activity>
+        <activity android:name=".AgendDesvActivity" />
         <activity android:name=".UpdatePromocaoActivity" />
         <activity android:name=".ListPromoActivity" />
         <activity android:name=".UpdateServicoActivity" />

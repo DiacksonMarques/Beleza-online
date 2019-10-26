@@ -19,8 +19,7 @@ public class CTInfoActivity extends AppCompatActivity {
 
     TextView nomeemp;
     String nome_emp,idemp,nome,id;
-    Button btFav;
-    ImageButton btiAgend;
+    Button btFav,btiAgend;
 
     int Confe;
 
@@ -79,6 +78,7 @@ public class CTInfoActivity extends AppCompatActivity {
                 intent1.putExtra("nomeemp",nome_emp);
                 intent1.putExtra("idemp",idemp);
                 startActivity(intent1);
+
             }
         });
 

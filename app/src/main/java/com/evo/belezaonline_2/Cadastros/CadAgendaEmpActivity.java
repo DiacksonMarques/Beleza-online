@@ -163,7 +163,7 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
                     hora= StringFormate.convertStringUTF8(hora);
                     funcionario= StringFormate.convertStringUTF8(funcionario);
 
-                    if (data.isEmpty()|| hora.isEmpty()|| funcionario.isEmpty() ){
+                    if (tvData==null||tvHora==null||tvHora2==null||tipof.isEmpty()||tipos.isEmpty()){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_LONG).show();
                     }else{
                         url = "https://belezaonline2019.000webhostapp.com/cadastroagendamento.php";
