@@ -5,11 +5,10 @@ $vari = $_GET['vari'];
 
 $vari= explode(",",$vari);
 
-$servico= $vari[0];
-$data =  $vari[1];
-$id_centro_de_beleza=$vari[2];
+$data =  $vari[0];
+$id_centro_de_beleza=$vari[1];
 
-$veri= $con->prepare("SELECT * FROM agendar_servico WHERE id_centro_de_beleza = '$id_centro_de_beleza' AND id_cliente>0 AND data='$data'AND servico='$servico' ORDER BY data ASC");
+$veri= $con->prepare("SELECT * FROM agendar_servico WHERE id_centro_de_beleza = '$id_centro_de_beleza' AND id_cliente>0 AND data='$data' ORDER BY data ASC");
 $veri->execute();
 $numero_de_cadastro= $veri-> rowCount();
 $json = '[';

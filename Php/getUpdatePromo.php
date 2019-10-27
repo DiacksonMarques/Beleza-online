@@ -4,7 +4,7 @@ include_once 'cone.php';
 
 $id = $_GET['id'];
 
-$veri= $con->prepare("SELECT * FROM agendar_servico WHERE id = '$id'ORDER BY id ASC");
+$veri= $con->prepare("SELECT * FROM promocao WHERE id = '$id'");
 $veri->execute();
 
 while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
@@ -14,13 +14,9 @@ while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
      	 $json .= 
 	       '{
 	     	"id":"'.str_replace($char,'`',strip_tags($org['id'])).'",
+	     	"titulo":"'.str_replace($char,'`',strip_tags($org['titulo'])).'",
+	     	"descricao":"'.str_replace($char,'`',strip_tags($org['descricao'])).'",
 	     	"data":"'.str_replace($char,'`',strip_tags($org['data'])).'",
-	     	"hora_i":"'.str_replace($char,'`',strip_tags($org['hora_i'])).'",
-	     	"hora_f":"'.str_replace($char,'`',strip_tags($org['hora_f'])).'",
-	     	"funcionario":"'.str_replace($char,'`',strip_tags($org['funcionario'])).'",
-	     	"valor":"'.str_replace($char,'`',strip_tags($org['valor'])).'",
-	     	"servico":"'.str_replace($char,'`',strip_tags($org['servico'])).'",
-	     	"id_cliente":"'.str_replace($char,'`',strip_tags($org['id_cliente'])).'",
 	     	"id_centro_de_beleza":"'.str_replace($char,'`',strip_tags($org['id_centro_de_beleza'])).'"
         	},';
          }

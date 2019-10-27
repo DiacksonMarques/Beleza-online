@@ -2,28 +2,34 @@
 
 include_once 'cone.php';
 
-$id_cliente = $_GET['id_cliente'];
+$vari = $_GET['vari'];
 
-$veri= $con->prepare("SELECT * FROM agendar_servico WHERE id_cliente = '$id_cliente'ORDER BY id ASC");
+$vari= explode(",",$vari);
+
+$servico= $vari[0];
+$data =  $vari[1];
+$id_centro_de_beleza=$vari[2];
+
+$veri= $con->prepare("SELECT * FROM agendar_servico WHERE id_centro_de_beleza = '$id_centro_de_beleza' AND servico = '$servico' AND data='$data' AND id_cliente = 0 ORDER BY id ASC");
 $veri->execute();
+$numero_de_cadastro= $veri-> rowCount();
 $json = '[';
-while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
-    if($org['id_cliente']==$id_cliente){
-         $verict= $con->prepare("SELECT * FROM centrosdebeleza WHERE id =".$org['id_centro_de_beleza']);
-         $verict->execute();
-         while ($orgct = $verict->fetch(PDO::FETCH_ASSOC)){
+if($numero_de_cadastro>0){
+    while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
 	     $char ='"';
      	 $json .= 
 	       '{
 	        "id":"'.str_replace($char,'`',strip_tags($org['id'])).'",
-	     	"nome":"'.str_replace($char,'`',strip_tags($orgct['nome'])).'",
-	     	"data":"'.str_replace($char,'`',strip_tags($org['data'])).'",
-	     	"hora":"'.str_replace($char,'`',strip_tags($org['hora'])).'"
+	     	"servico":"'.str_replace($char,'`',strip_tags($org['servico'])).'",
+	     	"hora_i":"'.str_replace($char,'`',strip_tags($org['hora_i'])).'",
+	     	"hora_f":"'.str_replace($char,'`',strip_tags($org['hora_f'])).'",
+	     	"id_centro_de_beleza":"'.str_replace($char,'`',strip_tags($org['id_centro_de_beleza'])).'"
         	},';
-         }
-
-        }
-    }
+}
+    
+}else{
+    echo '[{ "id":"Não", "servico":"Tem", "hora_i":"nenhum", "hora_f":"serviço", "id_centro_de_beleza":"cadastrado" }';
+}
 $json = substr($json,0,strlen($json)-1);
 $json .= ']';
 echo $json;

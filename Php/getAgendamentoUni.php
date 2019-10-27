@@ -15,11 +15,12 @@ while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
 	       '{
 	     	"id":"'.str_replace($char,'`',strip_tags($org['id'])).'",
 	     	"data":"'.str_replace($char,'`',strip_tags($org['data'])).'",
-	     	"hora":"'.str_replace($char,'`',strip_tags($org['hora'])).'",
-	     	"cliente":"'.str_replace($char,'`',strip_tags($org['cliente'])).'",
+	     	"hora_i":"'.str_replace($char,'`',strip_tags($org['hora_i'])).'",
+	     	"hora_f":"'.str_replace($char,'`',strip_tags($org['hora_f'])).'",
 	     	"funcionario":"'.str_replace($char,'`',strip_tags($org['funcionario'])).'",
 	     	"valor":"'.str_replace($char,'`',strip_tags($org['valor'])).'",
-	     	"servico":"'.str_replace($char,'`',strip_tags($org['servico'])).'"
+	     	"servico":"'.str_replace($char,'`',strip_tags($org['servico'])).'",
+	     	"id_centro_de_beleza":"'.str_replace($char,'`',strip_tags($org['id_centro_de_beleza'])).'"
         	},';
          }
 

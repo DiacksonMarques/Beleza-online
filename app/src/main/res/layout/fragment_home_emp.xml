@@ -3,4 +3,42 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fuund"/>
+    android:background="@drawable/fuund">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Promoções ativas"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="24sp"
+        android:textStyle="normal" />
+
+    <ListView
+        android:id="@+id/lvPromoHome"
+        android:layout_width="match_parent"
+        android:layout_height="257dp"
+        android:layout_margin="10dp"></ListView>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="Agendamentos do "
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="24sp"
+        android:textStyle="normal" />
+
+    <ListView
+        android:id="@+id/lvAgendaDia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"></ListView>
+
+</LinearLayout>

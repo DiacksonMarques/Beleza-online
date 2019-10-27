@@ -39,6 +39,7 @@
         android:drawableLeft="@drawable/ic_barba"
         android:text="B a r b e a r i a"
         android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
     <Button
@@ -51,6 +52,7 @@
         android:drawableLeft="@drawable/ic_manicure"
         android:text="M a n i c u r e"
         android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
     <Button
@@ -63,6 +65,7 @@
         android:drawableLeft="@drawable/ic_sallao"
         android:text="S a l ã o "
         android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
     <Button
@@ -75,6 +78,7 @@
         android:drawableLeft="@drawable/ic_estetica"
         android:text="E s t é t i c a"
         android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
     <Button
@@ -87,6 +91,7 @@
         android:drawableLeft="@drawable/ic_depilacao"
         android:text="D e p i l a ç ã o"
         android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
     <Button
@@ -98,6 +103,7 @@
         android:drawableLeft="@drawable/ic_maquiagem"
         android:text="M a q u i a g e m"
         android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
 
 </LinearLayout>

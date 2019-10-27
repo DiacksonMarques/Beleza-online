@@ -7,9 +7,12 @@ $id = $_GET['id'];
 $veri= $con->prepare("SELECT * FROM agendar_servico WHERE id = '$id'ORDER BY id ASC");
 $veri->execute();
 
+$json = '[';
 while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
-    if($org['id']=="$id"){
-        $json = '[';
+    $cli=$org['id_cliente'];
+    $clie = $con-> prepare("SELECT * FROM cliente WHERE id='$cli'");
+    $clie ->execute();
+    while($pc = $clie->fetch(PDO::FETCH_ASSOC)){
 	     $char ='"';
      	 $json .= 
 	       '{
@@ -20,12 +23,13 @@ while ($org = $veri->fetch(PDO::FETCH_ASSOC)){
 	     	"funcionario":"'.str_replace($char,'`',strip_tags($org['funcionario'])).'",
 	     	"valor":"'.str_replace($char,'`',strip_tags($org['valor'])).'",
 	     	"servico":"'.str_replace($char,'`',strip_tags($org['servico'])).'",
-	     	"id_cliente":"'.str_replace($char,'`',strip_tags($org['id_cliente'])).'",
+	     	"cliente":"'.str_replace($char,'`',strip_tags($pc['nome'])).'",
 	     	"id_centro_de_beleza":"'.str_replace($char,'`',strip_tags($org['id_centro_de_beleza'])).'"
         	},';
-         }
 
         }
+}
+
         $json = substr($json,0,strlen($json)-1);
 
         $json .= ']';
