@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#0F0F0F</color>
-    <color name="colorAccent">#B14623</color>
-    <color name="pink">#C5441F</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="branco">#ffff</color>
     <color name="grey"> #FFCFCECE </color>
-    <color name="white">#FAFAFA</color>
+    <color name="lilas"> #5474dd</color>
+    <color name="gelo"> #f0eeee</color>
+    <color name="roxo"> #691581 </color>
+
 </resources>

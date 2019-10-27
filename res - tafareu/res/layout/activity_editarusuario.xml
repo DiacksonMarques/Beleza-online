@@ -1,0 +1,195 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fundo"
+    android:orientation="vertical">
+    tools:context=".editarusuario"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@drawable/custom_gradientt"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_button" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:text="Maria"
+            android:textColor="#F3F3F3"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="Atualizar Informações"
+            android:textAllCaps="true"
+            android:textColor="#0E0D0D"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Nome"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="300dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/custom_buttonstroke"
+            android:drawableLeft="@drawable/ic_user"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingLeft="2dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Email"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editText4"
+            android:layout_width="300dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/custom_buttonstroke"
+            android:drawableLeft="@drawable/ic_email"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingLeft="2dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Data de Aniversário"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editText6"
+            android:layout_width="300dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/custom_buttonstroke"
+            android:drawableLeft="@drawable/ic_date"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingLeft="2dp"
+            android:text="DD/MM/AAAA"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView25"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Telefone"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editText5"
+            android:layout_width="300dp"
+            android:layout_height="26dp"
+            android:layout_marginLeft="13dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/custom_buttonstroke"
+            android:drawableLeft="@drawable/ic_tel"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:paddingLeft="2dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/textView27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:text="Sexo"
+            android:textStyle="italic" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/checkBox11"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_weight="1"
+                android:text="Feminino" />
+
+            <CheckBox
+                android:id="@+id/checkBox16"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:text="Masculino" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/roxo"
+            android:selectAllOnFocus="false"
+            android:text="Salvar"
+            android:textAllCaps="false"
+            android:textColor="#FAFAFA" />
+
+    </LinearLayout>
+
+</LinearLayout>
