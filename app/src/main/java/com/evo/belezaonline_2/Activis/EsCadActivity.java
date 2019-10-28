@@ -13,8 +13,9 @@ import com.evo.belezaonline_2.Cadastros.CadEmpresaActivity;
 import com.evo.belezaonline_2.R;
 
 public class EsCadActivity extends AppCompatActivity {
-    Button btCliente;
-    ImageButton btNegocio;
+
+    Button btCliente,btNegocio;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

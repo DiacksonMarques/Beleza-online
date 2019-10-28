@@ -4,37 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fuund"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@drawable/fundo"
     tools:context=".Cadastros.CadEmpresaServicoActivity">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView11"
         android:layout_width="match_parent"
-        android:layout_height="119dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/tela"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="118dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:contentDescription="TODO"
-            app:srcCompat="@drawable/icone" />
-
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="177dp"
-        android:layout_height="42dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="0dp"
-        android:contentDescription="TODO"
-        app:srcCompat="@drawable/texto" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="center"
+        android:text="Cadastrar Serviço"
+        android:textColor="@color/roxo"
+        android:textSize="30sp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/textView"
@@ -43,8 +27,9 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="0dp"
         android:layout_marginRight="60dp"
-        android:text="@string/servico"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:text="Escolha o serviço"
+        android:textColor="@color/roxo"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
     <Spinner
@@ -75,7 +60,6 @@
         android:drawableLeft="@drawable/ic_monetization_on_black_24dp"
         android:drawablePadding="4dp"
         android:ems="10"
-        android:hint="@string/valor"
         android:inputType="textPersonName"
         android:padding="4dp"
         android:textColorHint="@color/colorPrimaryDark" />
@@ -89,10 +73,9 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/custom_button"
         android:backgroundTint="@color/grey"
-        android:drawableLeft="@drawable/ic_menu_send"
+        android:drawableLeft="@drawable/ic_receipt_black_24dp"
         android:drawablePadding="4dp"
         android:ems="10"
-        android:hint="@string/desc"
         android:inputType="textPersonName"
         android:padding="4dp"
         android:textColorHint="@color/colorPrimaryDark" />
@@ -101,13 +84,12 @@
         android:id="@+id/btCadempserrv"
         android:layout_width="151dp"
         android:layout_height="29dp"
-        android:layout_marginLeft="100dp"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="100dp"
-        android:background="@drawable/custom_bt"
-        android:text="@string/cad"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/roxo"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp" />
+        android:textColor="#FAFAFA"
+        android:text="Cadastrar" />
 
 </LinearLayout>

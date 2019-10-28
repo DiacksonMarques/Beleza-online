@@ -5,25 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="@drawable/fuund"
+    android:background="@drawable/fundo"
     android:orientation="vertical"
     tools:context=".UpdateServicoActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="119dp"
-        android:layout_marginBottom="10dp"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="118dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/icone" />
-
-    </LinearLayout>
 
     <TextView
         android:id="@+id/textView12"
@@ -33,8 +17,9 @@
         android:gravity="center_horizontal"
         android:text="Alterar servico"
         android:textAllCaps="true"
-        android:textColor="#FAFAFA"
-        android:textSize="26sp" />
+        android:textColor="@color/roxo"
+        android:textSize="26sp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/textView"
@@ -43,8 +28,8 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="0dp"
         android:layout_marginRight="60dp"
-        android:text="@string/servico"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:text="Escolher Serviço"
+        android:textColor="@color/roxo"
         android:textStyle="bold" />
 
     <Spinner
@@ -63,7 +48,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginRight="60dp"
         android:text="Atual"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="@color/roxo"
         android:textStyle="bold" />
 
     <TextView
@@ -73,9 +58,9 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="0dp"
         android:layout_marginRight="60dp"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="@color/roxo"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold|italic" />
 
     <Spinner
         android:id="@+id/definicaoservico"
@@ -93,7 +78,7 @@
         android:layout_marginTop="0dp"
         android:layout_marginRight="60dp"
         android:text="Atual"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="@color/roxo"
         android:textStyle="bold" />
 
     <TextView
@@ -103,9 +88,9 @@
         android:layout_marginLeft="60dp"
         android:layout_marginTop="0dp"
         android:layout_marginRight="60dp"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="@color/roxo"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold|italic" />
 
     <EditText
         android:id="@+id/ctValorL"
@@ -119,10 +104,9 @@
         android:drawableLeft="@drawable/ic_monetization_on_black_24dp"
         android:drawablePadding="4dp"
         android:ems="10"
-        android:hint="Valor"
         android:inputType="textPersonName"
         android:padding="4dp"
-        android:textColorHint="@color/colorPrimaryDark" />
+        android:textColorHint="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/ctDescricaoServicoL"
@@ -133,28 +117,24 @@
         android:layout_marginBottom="10dp"
         android:background="@drawable/custom_button"
         android:backgroundTint="@color/grey"
-        android:drawableLeft="@drawable/ic_menu_send"
+        android:drawableLeft="@drawable/ic_receipt_black_24dp"
         android:drawablePadding="4dp"
         android:ems="10"
-        android:hint="@string/desc"
         android:inputType="textPersonName"
         android:padding="4dp"
-        android:textColorHint="@color/colorPrimaryDark" />
+        android:textColorHint="@color/colorPrimaryDark"/>
 
     <Button
         android:id="@+id/btAultempserrv"
         android:layout_width="151dp"
         android:layout_height="29dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="100dp"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="100dp"
-        android:background="@drawable/custom_bt"
-        android:gravity="center"
-        android:text="Alterar"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/roxo"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp" />
+        android:textColor="#FAFAFA"
+        android:text="Salvar"  />
 
 
 </LinearLayout>

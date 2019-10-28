@@ -89,7 +89,7 @@ public class CadPromocaoActivity extends AppCompatActivity {
                     titulo = StringFormate.convertStringUTF8(titulo);
                     descricao = StringFormate.convertStringUTF8(descricao);
 
-                    if (titulo.isEmpty() || descricao.isEmpty() || dataa.isEmpty()) {
+                    if (titulo.isEmpty() || descricao.isEmpty() || tvDataP.getText()==null) {
                         Toast.makeText(getBaseContext(), "Há Campo(s) vazio(s)", Toast.LENGTH_LONG).show();
                     } else {
                         url = "https://belezaonline2019.000webhostapp.com/cadastropromocao.php";

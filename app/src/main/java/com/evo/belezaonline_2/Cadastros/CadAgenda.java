@@ -51,7 +51,7 @@ public class CadAgenda extends AppCompatActivity {
 
     Spinner tiposervico;
     TextView tvData;
-    String id, nome, tipos, idemp, nomeemp, url;
+    String idg, nome, tipos, idemp, nomeemp, url;
     Calendar calendar;
     DatePickerDialog data;
     Button btCadAgd;
@@ -72,7 +72,7 @@ public class CadAgenda extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        id = bundle.getString("id");
+        idg = bundle.getString("id");
         nome = bundle.getString("nome");
         idemp = bundle.getString("idemp");
         nomeemp = bundle.getString("nomeemp");
@@ -260,7 +260,7 @@ public class CadAgenda extends AppCompatActivity {
                 }else{
                     Toast.makeText(getBaseContext(), Sele, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getBaseContext(), EspeAgendActivity.class);
-                    intent.putExtra("id",id);
+                    intent.putExtra("id",idg);
                     intent.putExtra("nome",nome);
                     intent.putExtra("coda",Sele);
                     startActivity(intent);

@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activis.ListAgendaActivity"
-    android:background="@drawable/fuund">
+    tools:context=".Activis.ListAgendaActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,24 +18,24 @@
             android:id="@+id/btCadAgdList"
             android:layout_width="161dp"
             android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/custom_button"
-            android:text="Cadastrar Agenda"
-            android:textColor="@color/colorPrimaryDark" />
+            android:backgroundTint="@color/roxo"
+            android:text="Cadastar Agenda"
+            android:textAllCaps="false"
+            android:textColor="#FAFAFA" />
 
         <Button
             android:id="@+id/btAgdDisp"
             android:layout_width="223dp"
             android:layout_height="30dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="5dp"
             android:background="@drawable/custom_button"
+            android:backgroundTint="@color/roxo"
             android:text=" Agendamentos disponiveis"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textAllCaps="false"
+            android:textColor="#FAFAFA" />
     </LinearLayout>
 
     <TextView
@@ -46,7 +45,7 @@
         android:layout_gravity="center"
         android:layout_margin="10dp"
         android:text="Serviço agendados por data"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textColor="@color/roxo"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -62,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Escolha o serviço"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@color/roxo"
             android:textSize="15sp"
             android:textStyle="bold|italic" />
 
@@ -72,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Escolha a data"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@color/roxo"
             android:textSize="15sp"
             android:textStyle="bold|italic" />
     </LinearLayout>
@@ -93,7 +92,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="DD/MM/AAAA"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@color/roxo"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -102,11 +101,13 @@
         android:id="@+id/btBuscarAnd"
         android:layout_width="120dp"
         android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:background="@drawable/custom_button"
+        android:backgroundTint="@color/roxo"
         android:text="Buscar"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textAllCaps="false"
+        android:textColor="#FAFAFA"/>
 
     <ListView
         android:id="@+id/lvAgenda"

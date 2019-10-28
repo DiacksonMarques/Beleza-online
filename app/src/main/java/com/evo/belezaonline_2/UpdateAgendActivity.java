@@ -428,15 +428,7 @@ public class UpdateAgendActivity extends AppCompatActivity {
         // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
         @Override
         protected void onPostExecute(String resultado) {
-            if (resultado != null && !resultado.isEmpty() && resultado.contains("Update_Ok")) {
-                Toast.makeText(getBaseContext(), "Agendamento alterado com sucesso!", Toast.LENGTH_LONG).show();
-                Intent abreInicio = new Intent(getBaseContext(), ListAgendaActivity.class);
-                abreInicio.putExtra("id", id);
-                abreInicio.putExtra("nome", nome);
-                startActivity(abreInicio);
-            } else {
-                Toast.makeText(getBaseContext(), "Ocorreu um erro: " + resultado, Toast.LENGTH_LONG).show();
-            }
+
         }
 
     }

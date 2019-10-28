@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fuund"
+    android:background="@drawable/fundo"
     tools:context=".EspeAgendActivity">
 
     <LinearLayout
@@ -22,14 +22,16 @@
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:text="Informação do Agendamento"
-            android:textColor="#FAFAFA"
+            android:textColor="@color/roxo"
+            android:textColorHighlight="#9C27B0"
             android:textSize="24sp" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="320dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="23dp">
+            android:layout_marginTop="30dp"
+            app:cardBackgroundColor="@color/gelo">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -41,7 +43,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -69,7 +70,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -102,7 +102,8 @@
             android:layout_width="320dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            app:cardBackgroundColor="#f0eeee">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -114,7 +115,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -122,7 +122,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
-                        android:text="Hora de início"
+                        android:text="Hora início"
                         android:textColor="#070707"
                         android:textSize="14sp" />
 
@@ -142,7 +142,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -150,7 +149,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
-                        android:text="Hora de termino"
+                        android:text="Hora final"
                         android:textColor="#070707"
                         android:textSize="14sp" />
 
@@ -175,7 +174,8 @@
             android:layout_width="320dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            app:cardBackgroundColor="#f0eeee">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -187,7 +187,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -215,7 +214,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -248,7 +246,8 @@
             android:layout_width="320dp"
             android:layout_height="100dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="4dp">
+            android:layout_marginTop="4dp"
+            app:cardBackgroundColor="#f0eeee">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -260,7 +259,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -320,12 +318,14 @@
 
     <Button
         android:id="@+id/btCadAgdCli"
-        android:layout_width="130dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/custom_button"
+        android:backgroundTint="@color/roxo"
         android:text="Salvar"
-        android:textColor="@color/colorPrimaryDark" />
+        android:textAllCaps="false"
+        android:textColor="#FAFAFA" />
 
 </LinearLayout>

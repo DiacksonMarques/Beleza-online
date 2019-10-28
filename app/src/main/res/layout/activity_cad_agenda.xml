@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fuund"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".Cadastros.CadAgenda"
-    >
+    android:background="@drawable/fundo"
+    tools:context=".Cadastros.CadAgenda">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Escolha o serviço"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@color/roxo"
             android:textSize="15sp"
             android:textStyle="bold|italic" />
 
@@ -32,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Escolha a data"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@color/roxo"
             android:textSize="15sp"
             android:textStyle="bold|italic" />
     </LinearLayout>
@@ -45,7 +44,9 @@
         <Spinner
             android:id="@+id/tiposervicoagend"
             android:layout_width="203dp"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_height="wrap_content"
+            android:scrollbarThumbHorizontal="@drawable/custom_gradientrounded"
+            android:scrollbarThumbVertical="@drawable/custom_gradientt"></Spinner>
 
         <TextView
             android:id="@+id/tvData"
@@ -53,7 +54,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="DD/MM/AAAA"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@color/roxo"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -64,9 +65,10 @@
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:textColor="#FAFAFA"
+        android:backgroundTint="@color/roxo"
         android:background="@drawable/custom_button"
-        android:text="Salvar"
-        android:textColor="@color/colorPrimaryDark" />
+        android:text="Salvar" />
 
     <ListView
         android:id="@+id/lvAgenda"

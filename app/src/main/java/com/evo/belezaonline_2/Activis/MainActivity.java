@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         id = bundle.getString("id");
         nome = bundle.getString("nome");
         //String tipo_usuario = bundle.getString("tipo_usuario");
-        Toast.makeText(getBaseContext(), id, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(), id, Toast.LENGTH_LONG).show();
         Fragment homeFragment = HomeFragment.newInstance();
         openFragment(homeFragment);
     }

@@ -6,19 +6,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ListPromoActivity"
-    android:background="@drawable/fuund">
+    android:background="@drawable/fundo">
 
     <Button
         android:id="@+id/btCadPromL"
-        android:layout_width="wrap_content"
+        android:layout_width="139dp"
         android:layout_height="29dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:background="@drawable/custom_bt"
-        android:text="Cadastrar promoção"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/roxo"
+        android:text="Cadastar Promoção"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp"/>
+        android:textColor="#FAFAFA" />
 
     <TextView
         android:id="@+id/textView3"
@@ -28,8 +27,9 @@
         android:gravity="center_horizontal"
         android:text="Lista de promoção"
         android:textAllCaps="true"
-        android:textColor="#FAFAFA"
-        android:textSize="26sp" />
+        android:textColor="@color/roxo"
+        android:textSize="26sp"
+        android:textStyle="bold|italic" />
 
     <ListView
     android:id="@+id/lvPromocao"

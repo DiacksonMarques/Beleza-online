@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activis.MainActivityEmp"
-    android:background="@drawable/fuund">
+    android:background="@drawable/fundo">
 
     <FrameLayout
         android:id="@+id/fgContaineremp"

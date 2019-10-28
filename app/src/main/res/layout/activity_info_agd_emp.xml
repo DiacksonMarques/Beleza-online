@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/fuund"
+    android:background="@drawable/fundo"
     tools:context=".InfoAgdEmpActivity">
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:layout_marginTop="20dp"
             android:gravity="center_horizontal"
             android:text="Informação do Agendamento"
-            android:textColor="#FAFAFA"
+            android:textColor="@color/roxo"
             android:textSize="24sp" />
 
         <androidx.cardview.widget.CardView

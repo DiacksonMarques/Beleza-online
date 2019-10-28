@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fuund"
     android:orientation="vertical"
+    android:background="@drawable/fundo"
     tools:context=".AgendDesvActivity">
 
     <LinearLayout
@@ -18,9 +18,10 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="Escolha a data"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@color/roxo"
             android:textSize="15sp"
             android:textStyle="bold|italic" />
     </LinearLayout>
@@ -34,9 +35,10 @@
             android:id="@+id/tvData"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:text="DD/MM/AAAA"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@color/roxo"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -47,9 +49,10 @@
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:textColor="#FAFAFA"
+        android:backgroundTint="@color/roxo"
         android:background="@drawable/custom_button"
-        android:text="Buscar"
-        android:textColor="@color/colorPrimaryDark" />
+        android:text="Buscar" />
 
     <ListView
         android:id="@+id/lvAgenda"

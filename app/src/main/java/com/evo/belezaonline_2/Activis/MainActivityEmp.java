@@ -53,6 +53,8 @@ public class MainActivityEmp extends AppCompatActivity {
         id = bundle.getString("id");
         nome = bundle.getString("nome");
         //String tipo_usuario = bundle.getString("tipo_usuario");
+        Fragment homeFragmentemp = HomeFragmentEmp.newInstance();
+        openFragment(homeFragmentemp);
     }
 
     private void openFragment(Fragment fragment){

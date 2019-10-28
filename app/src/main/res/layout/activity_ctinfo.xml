@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fuund"
     android:orientation="vertical"
+    android:background="@drawable/fundo"
     tools:context=".Activis.CTInfoActivity">
 
     <RelativeLayout
@@ -52,28 +52,11 @@
             android:layout_marginLeft="90dp"
             android:layout_marginTop="65dp">
 
-            <ImageButton
-                android:id="@+id/fd"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/custom_button"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:src="@mipmap/gpsic" />
-
-            <ImageButton
-                android:id="@+id/button15"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/custom_button"
-                android:backgroundTint="@color/colorPrimaryDark"
-                android:src="@mipmap/telic" />
-
             <Button
                 android:id="@+id/btiAgend"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:layout_alignTop="@+id/null"
                 android:layout_weight="1"
                 android:background="@drawable/ic_date" />
 

@@ -17,9 +17,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.evo.belezaonline_2.Activis.MainActivity;
+import com.evo.belezaonline_2.Activis.MainActivityEmp;
 import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.EspeAgendActivity;
 import com.evo.belezaonline_2.R;
+import com.evo.belezaonline_2.UpdateAgendActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,7 +35,9 @@ import java.util.ArrayList;
 
 public class AreaUsuFragment extends Fragment {
 
-    String url, idg, nome, url2, parametros;
+    String url, idg, nome, url2, parametros,idct;
+    String idp="", servico="", data="", hora_i="", hora_f="", centro_de_beleza="", id_centro_de_beleza="",funcionario="",valor="";
+
     TextView tvFavQt,tvAgdQt,tvNomeCB;
     ListView lvAgendaCli;
     AlertDialog alerta;
@@ -57,7 +61,7 @@ public class AreaUsuFragment extends Fragment {
         url="https://belezaonline2019.000webhostapp.com/getPerfC.php?id_cliente="+idg;
         getJSON(url);
 
-        url2 = "https://belezaonline2019.000webhostapp.com/getAgendamento.php?id_cliente="+idg;
+        url2 = "https://belezaonline2019.000webhostapp.com/getAgendCli.php?id="+idg;
         getJSON2(url2);
 
         return v;
@@ -177,18 +181,23 @@ public class AreaUsuFragment extends Fragment {
 
         //String[] dados = new String[jsonArray.length()];
         ArrayList<String> dados = new ArrayList<>();
-        String idp="", nomel="", data="", hora="";
 
         for(int i=0; i< jsonArray.length(); i++){
             JSONObject jsonObject = jsonArray.getJSONObject(i);
 
             //dados[i]= jsonObject.getString("cliente");
             idp = jsonObject.getString("id");
-            nomel= jsonObject.getString("nome");
+            centro_de_beleza= jsonObject.getString("centro_de_beleza");
+            servico= jsonObject.getString("servico");
             data = jsonObject.getString("data");
-            hora = jsonObject.getString("hora");
+            hora_i = jsonObject.getString("hora_i");
+            hora_f = jsonObject.getString("hora_f");
+            valor = jsonObject.getString("valor");
+            funcionario = jsonObject.getString("funcionario");
+            id_centro_de_beleza = jsonObject.getString("id_centro_de_beleza");
 
-            dados.add("Código: "+idp+"\nNome:"+nomel+"\nData:"+data+"\nHora:"+hora);
+            dados.add("Código: "+idp+"\nSalão:"+centro_de_beleza+"\nServiço:"+servico+"\nData:"+data+"\nHora:"+hora_i+"ás"+hora_f);
+            idct = id_centro_de_beleza;
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dados);
@@ -202,27 +211,11 @@ public class AreaUsuFragment extends Fragment {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
                 builder.setTitle("Oque deseja fazer com o funcionário?");
                 builder.setMessage("Aperte o botão para excução");
-                builder.setPositiveButton("Alterar", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("Excluir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent abrecadagend = new Intent(getContext(), EspeAgendActivity.class);
-                        abrecadagend.putExtra("id",idg);
-                        abrecadagend.putExtra("nome",nome);
-                        abrecadagend.putExtra("coda",Sele);
-                        startActivity(abrecadagend);
-                    }
-                });
-                builder.setNegativeButton("Excluir", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String[] ida = Sele.split("\n| \n ");
-                        String auxid =  ida[0];
-
-                        String[] idag = auxid.split(":|: ");
-                        String idaf =  idag[1];
-
-                        url = "https://belezaonline2019.000webhostapp.com/deleteAgend.php";
-                        parametros ="id="+idaf;
+                        url = "https://belezaonline2019.000webhostapp.com/updateAgendamento.php";
+                        parametros ="id="+idp+"&data="+data+"&hora_i="+hora_i+"&hora_f="+hora_f+"&funcionario="+funcionario+"&valor="+valor+"&servico="+servico+"&id_cliente="+0+"&id_centro_de_beleza="+id_centro_de_beleza;
                         new SolicitaDados().execute(url);
                     }
                 });
@@ -237,18 +230,19 @@ public class AreaUsuFragment extends Fragment {
         protected String doInBackground(String... urls) {
             return Conexao.postDados(urls[0], parametros);
         }
-        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        //onPostExecute mostra os resultados obtidos com a classe AsyncTask.
         @Override
         protected void onPostExecute(String resultado) {
-            if(resultado != null && !resultado.isEmpty() && resultado.contains("Deletado_Ok")){
-                Toast.makeText(getContext(),"Agendamento excluido com sucesso!",Toast.LENGTH_LONG).show();
-                Intent abreInicio = new Intent(getContext(), MainActivity.class);
-                abreInicio.putExtra("id",idg);
-                abreInicio.putExtra("nome",nome);
-                startActivity(abreInicio);
-            }else{
-                Toast.makeText(getContext(),"Ocorreu um erro: "+resultado,Toast.LENGTH_LONG).show();
-            }
+            if(resultado != null && !resultado.isEmpty() && resultado.contains("Update_Ok")){
+
+                    Toast.makeText(getContext(), "Agendamento excluido com sucesso!", Toast.LENGTH_LONG).show();
+                    Intent abreInicio = new Intent(getContext(), MainActivity.class);
+                    abreInicio.putExtra("id", idg);
+                    abreInicio.putExtra("nome", nome);
+                    startActivity(abreInicio);
+                } else {
+                    Toast.makeText(getContext(), "Ocorreu um erro: " + resultado, Toast.LENGTH_LONG).show();
+                }
         }
 
     }

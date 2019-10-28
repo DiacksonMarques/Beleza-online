@@ -16,7 +16,8 @@
             android:layout_width="320dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="224dp">
+            android:layout_marginTop="224dp"
+            app:cardBackgroundColor="@color/gelo">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -28,7 +29,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -37,9 +37,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
                         android:text="Favoritos"
-                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="16dp" />
 
 
                     <TextView
@@ -47,7 +45,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:text="10"
+                        android:textColor="@color/roxo"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -57,7 +56,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@color/common_google_signin_btn_text_dark_default"
                     android:orientation="vertical">
 
                     <TextView
@@ -66,9 +64,7 @@
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="30dp"
                         android:text="Agendamentos"
-                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                        android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textSize="16dp" />
 
 
                     <TextView
@@ -76,7 +72,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                        android:text="10"
+                        android:textColor="@color/roxo"
                         android:textSize="16dp"
                         android:textStyle="bold" />
 
@@ -89,7 +86,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/custom_gradientt"
             android:orientation="vertical">
 
             <TextView
@@ -118,8 +115,6 @@
     <ListView
         android:id="@+id/lvAgendaCli"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/cardview_dark_background"
-        android:cacheColorHint="@color/cardview_dark_background" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

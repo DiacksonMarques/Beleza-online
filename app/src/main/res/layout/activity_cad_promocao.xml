@@ -5,53 +5,51 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Cadastros.CadPromocaoActivity"
-    android:background="@drawable/fuund">
+    android:background="@drawable/fundo"
+    tools:context=".Cadastros.CadPromocaoActivity">
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="25dp"
         android:gravity="center_horizontal"
-        android:text="Promoção"
+        android:text="Cadastrar Promoção"
         android:textAllCaps="true"
-        android:textColor="#FAFAFA"
-        android:textSize="26sp" />
+        android:textColor="@color/roxo"
+        android:textSize="26sp"
+        android:textStyle="bold|italic" />
 
     <EditText
         android:id="@+id/edTitulo"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/custom_button"
         android:backgroundTint="@color/grey"
-        android:drawableLeft="@drawable/ic_menu_send"
+        android:drawableLeft="@drawable/ic_view_headline_black_24dp"
         android:drawablePadding="4dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:padding="4dp"
-        android:textColorHint="@color/colorPrimaryDark"
-        android:hint="Título" />
+        android:padding="4dp" />
 
     <EditText
         android:id="@+id/edDescrP"
         android:layout_width="250dp"
         android:layout_height="35dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/custom_button"
         android:backgroundTint="@color/grey"
-        android:drawableLeft="@drawable/ic_menu_send"
+        android:drawableLeft="@drawable/ic_receipt_black_24dp"
         android:drawablePadding="4dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:padding="4dp"
-        android:textColorHint="@color/colorPrimaryDark"
-        android:hint="Descrição"/>
+        android:textColorHint="@color/colorPrimaryDark"/>
 
     <TextView
         android:id="@+id/textView21"
@@ -62,10 +60,10 @@
         android:layout_marginRight="60dp"
         android:drawableLeft="@drawable/ic_data"
         android:drawablePadding="4dp"
-        android:text="Data de espiração"
-        android:textColor="#FAFAFA"
+        android:text="Data de expiração"
+        android:textColor="@color/roxo"
         android:textSize="18sp"
-        android:textStyle="italic" />
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/tvDataP"
@@ -74,8 +72,9 @@
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
         android:text="DD/MM/AAAA"
-        android:textColor="#FAFAFA"
-        android:textSize="14sp" />
+        android:textColor="@color/roxo"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btCadPromo"
@@ -84,6 +83,8 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:background="@drawable/custom_button"
-        android:text="Salvar"
-        android:textColor="@color/colorPrimaryDark" />
+        android:backgroundTint="@color/roxo"
+        android:textAllCaps="false"
+        android:textColor="#FAFAFA"
+        android:text="Cadastrar"/>
 </LinearLayout>

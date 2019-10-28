@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fuund"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@drawable/fundo"
     tools:context=".Cadastros.CadAgendaEmpActivity">
 
     <TextView
@@ -17,7 +17,7 @@
         android:gravity="center_horizontal"
         android:text="Administrador"
         android:textAllCaps="true"
-        android:textColor="#FAFAFA"
+        android:textColor="@color/roxo"
         android:textSize="26sp" />
 
     <TextView
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:text="Selecione os tipos de serviços do estabelecimento"
-        android:textColor="#FAFAFA"
+        android:textColor="@color/roxo"
         android:textSize="14sp"
         android:textStyle="italic" />
 
@@ -47,7 +47,7 @@
             android:drawableLeft="@drawable/ic_data"
             android:drawablePadding="4dp"
             android:text="Escolha uma data disponível"
-            android:textColor="#FAFAFA"
+            android:textColor="@color/roxo"
             android:textStyle="italic" />
 
         <TextView
@@ -57,7 +57,7 @@
             android:layout_marginLeft="2dp"
             android:layout_marginTop="10dp"
             android:text="DD/MM/AAAA"
-            android:textColor="#FAFAFA" />
+            android:textColor="@color/roxo" />
 
         <TextView
             android:id="@+id/textView31"
@@ -69,7 +69,7 @@
             android:drawableLeft="@drawable/ic_clock"
             android:drawablePadding="4dp"
             android:text="Selecione a hora de ínicio e termino"
-            android:textColor="#FAFAFA"
+            android:textColor="@color/roxo"
             android:textStyle="italic" />
 
         <LinearLayout
@@ -85,7 +85,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_weight="1"
                 android:text="Início:"
-                android:textColor="#FAFAFA"
+                android:textColor="@color/roxo"
                 android:textStyle="italic" />
 
             <TextView
@@ -95,7 +95,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="6dp"
                 android:text="00:00"
-                android:textColor="#FAFAFA"
+                android:textColor="@color/roxo"
                 android:textStyle="bold" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_weight="1"
                 android:text="Término:"
-                android:textColor="#FAFAFA"
+                android:textColor="@color/roxo"
                 android:textStyle="italic" />
 
             <TextView
@@ -117,7 +117,7 @@
                 android:layout_marginTop="6dp"
                 android:layout_weight="1"
                 android:text="00:00"
-                android:textColor="#FAFAFA"
+                android:textColor="@color/roxo"
                 android:textStyle="bold" />
 
         </LinearLayout>
@@ -128,10 +128,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="2dp"
             android:layout_marginTop="20dp"
-            android:drawableLeft="@drawable/ic_addfunc_white"
+            android:drawableLeft="@drawable/ic_user"
             android:drawablePadding="4dp"
             android:text="Funcionário Para o Serviço"
-            android:textColor="#FAFAFA"
+            android:textColor="@color/roxo"
             android:textStyle="italic" />
 
         <Spinner
@@ -149,7 +149,7 @@
             android:drawableLeft="@drawable/ic_salao"
             android:drawablePadding="4dp"
             android:text="Cadastrar serviços disponíveis"
-            android:textColor="#FAFAFA"
+            android:textColor="@color/roxo"
             android:textStyle="italic" />
 
         <Spinner
@@ -255,7 +255,8 @@
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:textColor="#FAFAFA"
+        android:backgroundTint="@color/roxo"
         android:background="@drawable/custom_button"
-        android:text="Salvar"
-        android:textColor="@color/colorPrimaryDark" />
+        android:text="Salvar" />
 </LinearLayout>

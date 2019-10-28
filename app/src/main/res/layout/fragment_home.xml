@@ -3,15 +3,15 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fuund">
+    android:background="@drawable/fundo">
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="120dp"
+        android:layout_width="132dp"
         android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:src="@drawable/icone" />
+        android:src="@drawable/logo" />
 
     <EditText
         android:id="@+id/editText11"
@@ -21,7 +21,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/custom_button"
-        android:drawableRight="@drawable/ic_lupa"
+        android:drawableRight="@drawable/ic_zoom_in_black_24dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:paddingRight="20dp"
@@ -39,7 +39,7 @@
         android:drawableLeft="@drawable/ic_barba"
         android:text="B a r b e a r i a"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/roxo"
         android:textSize="18sp" />
 
     <Button
@@ -52,7 +52,7 @@
         android:drawableLeft="@drawable/ic_manicure"
         android:text="M a n i c u r e"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/roxo"
         android:textSize="18sp" />
 
     <Button
@@ -65,7 +65,7 @@
         android:drawableLeft="@drawable/ic_sallao"
         android:text="S a l ã o "
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/roxo"
         android:textSize="18sp" />
 
     <Button
@@ -78,7 +78,7 @@
         android:drawableLeft="@drawable/ic_estetica"
         android:text="E s t é t i c a"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/roxo"
         android:textSize="18sp" />
 
     <Button
@@ -91,7 +91,7 @@
         android:drawableLeft="@drawable/ic_depilacao"
         android:text="D e p i l a ç ã o"
         android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/roxo"
         android:textSize="18sp" />
 
     <Button
