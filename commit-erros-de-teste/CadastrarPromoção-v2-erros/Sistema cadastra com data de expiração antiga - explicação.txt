@@ -1,0 +1,3 @@
+Ao tentar realizar o teste de Cadastrar promoção - negativo, o usuário insere uma data de expiração antiga
+e clica em "SALVAR". O sistema registra a promoção com data de expiração antiga e emite mensagem de sucesso.
+Ou seja, sistema com erro.
