@@ -1,0 +1,2 @@
+Usuário ao tentar fazer uma alteração de promoção e colocar uma data de expiração antiga e clicar em "SALVAR",
+o sistema registra e mostra mensagem de sucesso mesmo colocando data de expiração antiga.
