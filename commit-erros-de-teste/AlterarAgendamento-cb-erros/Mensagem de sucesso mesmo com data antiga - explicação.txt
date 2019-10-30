@@ -1,0 +1,2 @@
+Usuário ao tentar alterar o agendamento informando uma data antiga e fazer a alteração, o sistema valida
+e emite mensagem de sucesso. Ou seja, sistema com falha.
