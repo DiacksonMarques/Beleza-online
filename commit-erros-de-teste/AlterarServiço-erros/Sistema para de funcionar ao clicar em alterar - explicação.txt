@@ -1,0 +1,2 @@
+Ao tentar fazer o teste de alterar serviço - negativo, quando o usuário não insere nenhum dado(campos em branco)
+e clica em "ALTERAR", o sistema trava e para de funcionar.
