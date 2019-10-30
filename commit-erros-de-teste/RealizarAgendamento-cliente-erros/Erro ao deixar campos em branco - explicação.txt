@@ -1,0 +1,2 @@
+Ao fazer o teste de realizar agendamento - negativo, o usuário não informa nenhum dado(deixa campos em branco)
+e clica em "BUSCAR". O sistema trava e para de funcionar, não emitindo uma mensagem de erro ao usuário.

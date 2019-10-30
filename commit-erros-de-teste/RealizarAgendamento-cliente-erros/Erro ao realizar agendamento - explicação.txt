@@ -1,0 +1,2 @@
+Quando o usuário vai fazer o agendamento do serviço do centro de beleza e clica em "SALVAR", o aplicativo
+trava e para de funcionar.
