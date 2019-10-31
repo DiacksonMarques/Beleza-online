@@ -36,8 +36,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CadAgendaEmpActivity extends AppCompatActivity{
 
@@ -73,6 +75,11 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
         tvHora = findViewById(R.id.tvHoraIn);
         tvHora2 = findViewById(R.id.tvHoraTe);
         btCadAgend = findViewById(R.id.btCadAgend);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String dataFormada = dateFormat.format(date);
+        tvData.setText(dataFormada);
 
         tvData.setOnClickListener(new View.OnClickListener() {
             @Override

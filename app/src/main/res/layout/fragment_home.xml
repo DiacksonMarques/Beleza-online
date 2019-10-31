@@ -1,109 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fundo">
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="132dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:src="@drawable/logo" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/editText11"
-        android:layout_width="340dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="40dp"
-        android:background="@drawable/custom_button"
-        android:drawableRight="@drawable/ic_zoom_in_black_24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:paddingRight="20dp"
-        android:text="Pesquise por nome"
-        android:textAlignment="center"
-        android:textColor="#747070" />
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            app:srcCompat="@drawable/logo" />
 
-    <Button
-        android:id="@+id/button17"
-        android:layout_width="340dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_button"
-        android:drawableLeft="@drawable/ic_barba"
-        android:text="B a r b e a r i a"
-        android:textAllCaps="false"
-        android:textColor="@color/roxo"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/gelo"
+            android:drawableLeft="@drawable/ic_promocoes"
+            android:padding="5dp"
+            android:text="Promoções"
+            android:textAllCaps="false"
+            android:textColor="@color/roxo" />
 
-    <Button
-        android:id="@+id/button18"
-        android:layout_width="340dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_button"
-        android:drawableLeft="@drawable/ic_manicure"
-        android:text="M a n i c u r e"
-        android:textAllCaps="false"
-        android:textColor="@color/roxo"
-        android:textSize="18sp" />
+        <Button
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/gelo"
+            android:drawableLeft="@drawable/ic_barba"
+            android:padding="5dp"
+            android:text="Barbearia"
+            android:textAllCaps="false"
+            android:textColor="@color/roxo" />
 
-    <Button
-        android:id="@+id/button19"
-        android:layout_width="340dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_button"
-        android:drawableLeft="@drawable/ic_sallao"
-        android:text="S a l ã o "
-        android:textAllCaps="false"
-        android:textColor="@color/roxo"
-        android:textSize="18sp" />
+        <Button
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/gelo"
+            android:drawableLeft="@drawable/ic_manicure"
+            android:padding="5dp"
+            android:text="Manicure"
+            android:textAllCaps="false"
+            android:textColor="@color/roxo" />
 
-    <Button
-        android:id="@+id/button20"
-        android:layout_width="340dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_button"
-        android:drawableLeft="@drawable/ic_estetica"
-        android:text="E s t é t i c a"
-        android:textAllCaps="false"
-        android:textColor="@color/roxo"
-        android:textSize="18sp" />
+        <Button
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/gelo"
+            android:drawableLeft="@drawable/ic_centro"
+            android:padding="5dp"
+            android:text="Salão"
+            android:textAllCaps="false"
+            android:textColor="@color/roxo" />
 
-    <Button
-        android:id="@+id/button22"
-        android:layout_width="340dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/custom_button"
-        android:drawableLeft="@drawable/ic_depilacao"
-        android:text="D e p i l a ç ã o"
-        android:textAllCaps="false"
-        android:textColor="@color/roxo"
-        android:textSize="18sp" />
+        <Button
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/gelo"
+            android:drawableLeft="@drawable/ic_estetica"
+            android:padding="5dp"
+            android:text="Estética"
+            android:textAllCaps="false"
+            android:textColor="@color/roxo" />
 
-    <Button
-        android:id="@+id/button23"
-        android:layout_width="340dp"
-        android:layout_height="40dp"
-        android:layout_marginLeft="100dp"
-        android:background="@drawable/custom_button"
-        android:drawableLeft="@drawable/ic_maquiagem"
-        android:text="M a q u i a g e m"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp" />
+        <Button
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/gelo"
+            android:drawableLeft="@drawable/ic_depilacao"
+            android:padding="5dp"
+            android:text="Depilação"
+            android:textAllCaps="false"
+            android:textColor="@color/roxo" />
+
+        <Button
+            android:layout_width="240dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/gelo"
+            android:drawableLeft="@drawable/ic_maquiagem"
+            android:padding="5dp"
+            android:text="Manicure"
+            android:textAllCaps="false"
+            android:textColor="@color/roxo" />
+
+    </LinearLayout>
 
 </LinearLayout>

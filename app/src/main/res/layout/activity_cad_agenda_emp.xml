@@ -18,7 +18,8 @@
         android:text="Administrador"
         android:textAllCaps="true"
         android:textColor="@color/roxo"
-        android:textSize="26sp" />
+        android:textSize="26sp"
+        android:textStyle="bold|italic" />
 
     <TextView
         android:id="@+id/textView29"
@@ -46,9 +47,9 @@
             android:layout_marginRight="60dp"
             android:drawableLeft="@drawable/ic_data"
             android:drawablePadding="4dp"
-            android:text="Escolha uma data disponível"
             android:textColor="@color/roxo"
-            android:textStyle="italic" />
+            android:textStyle="bold|italic"
+            android:text="Escolha uma data"/>
 
         <TextView
             android:id="@+id/tvData"
@@ -70,7 +71,7 @@
             android:drawablePadding="4dp"
             android:text="Selecione a hora de ínicio e termino"
             android:textColor="@color/roxo"
-            android:textStyle="italic" />
+            android:textStyle="bold|italic" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -132,7 +133,7 @@
             android:drawablePadding="4dp"
             android:text="Funcionário Para o Serviço"
             android:textColor="@color/roxo"
-            android:textStyle="italic" />
+            android:textStyle="bold|italic" />
 
         <Spinner
             android:id="@+id/funcionario"
@@ -150,7 +151,7 @@
             android:drawablePadding="4dp"
             android:text="Cadastrar serviços disponíveis"
             android:textColor="@color/roxo"
-            android:textStyle="italic" />
+            android:textStyle="bold|italic" />
 
         <Spinner
             android:id="@+id/tiposervicoagend"

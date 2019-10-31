@@ -8,112 +8,121 @@
     android:background="@drawable/fundocadastro"
     tools:context=".Cadastros.CadClienteActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="320dp"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/ctNome"
-            android:layout_width="260dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/grey"
-            android:drawableLeft="@drawable/ic_user"
-            android:drawablePadding="4dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:padding="10dp" />
-
-        <EditText
-            android:id="@+id/ctEmailc"
-            android:layout_width="260dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/grey"
-            android:drawableLeft="@drawable/ic_mail"
-            android:drawablePadding="4dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:padding="10dp" />
-
-        <EditText
-            android:id="@+id/ctUsuario"
-            android:layout_width="260dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/grey"
-            android:drawableLeft="@drawable/ic_user"
-            android:drawablePadding="4dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:padding="10dp" />
-
-        <EditText
-            android:id="@+id/ctSenhal"
-            android:layout_width="260dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/grey"
-            android:drawableLeft="@drawable/ic_password"
-            android:drawablePadding="4dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:padding="10dp" />
-
-        <EditText
-            android:id="@+id/ctRepSenha"
-            android:layout_width="260dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/grey"
-            android:drawableLeft="@drawable/ic_password"
-            android:drawablePadding="4dp"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:padding="10dp" />
-
-        <Button
-            android:id="@+id/btCadCli"
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/roxo"
-            android:text="Cadastrar"
-            android:textAllCaps="false"
-            android:textColor="#FAFAFA" />
+        android:layout_height="wrap_content">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="320dp"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
+            <EditText
+                android:id="@+id/ctNome"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/grey"
+                android:drawableLeft="@drawable/ic_user"
+                android:drawablePadding="4dp"
+                android:ems="10"
+                android:hint="@string/usu"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHighlight="@color/roxo"
+                android:textColorHint="@color/roxo" />
+
+            <EditText
+                android:id="@+id/ctEmailc"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/grey"
+                android:drawableLeft="@drawable/ic_mail"
+                android:drawablePadding="4dp"
+                android:ems="10"
+                android:hint="@string/email"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHighlight="@color/roxo"
+                android:textColorHint="@color/roxo" />
+
+            <EditText
+                android:id="@+id/ctUsuario"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/grey"
+                android:drawableLeft="@drawable/ic_user"
+                android:drawablePadding="4dp"
+                android:ems="10"
+                android:hint="@string/usu"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHighlight="@color/roxo"
+                android:textColorHint="@color/roxo" />
+
+            <EditText
+                android:id="@+id/ctSenhal"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/grey"
+                android:drawableLeft="@drawable/ic_password"
+                android:drawablePadding="4dp"
+                android:ems="10"
+                android:hint="@string/senha"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textColorHighlight="@color/roxo"
+                android:textColorHint="@color/roxo" />
+
+            <EditText
+                android:id="@+id/ctRepSenha"
+                android:layout_width="260dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/grey"
+                android:drawableLeft="@drawable/ic_password"
+                android:drawablePadding="4dp"
+                android:ems="10"
+                android:hint="@string/comfsenha"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textColorHighlight="@color/roxo"
+                android:textColorHint="@color/roxo" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Esqueceu a sua senha? "
-                android:textColor="#3D0D4E" />
-        </LinearLayout>
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal" />
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btCadCli"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/roxo"
+        android:text="Cadastrar"
+        android:textAllCaps="false"
+        android:textColor="#FAFAFA" />
+
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.evo.belezaonline_2.Maps;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
-import com.evo.belezaonline_2.Activis.CTInfoActivity;
+import com.evo.belezaonline_2.Cadastros.CadAgenda;
 import com.evo.belezaonline_2.Controller.MakerApp;
 import com.evo.belezaonline_2.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -28,6 +29,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -111,6 +113,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         getDeviceLocation();
 
         getMarkers();
+
+        try {
+            // Customise the styling of the base map using a JSON object defined
+            // in a raw resource file.
+            boolean success = googleMap.setMapStyle(
+                    MapStyleOptions.loadRawResourceStyle((this), R.raw.style_json));
+
+            if (!success) {
+                Log.e(TAG, "Style parsing failed.");
+            }
+        } catch (Resources.NotFoundException e) {
+            Log.e(TAG, "Can't find style. Error: ", e);
+        }
     }
 
     private void getDeviceLocation() {
@@ -209,7 +224,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 //Toast.makeText(getApplicationContext(), marker.getTitle(), Toast.LENGTH_SHORT).show();
                 nomeemp = marker.getTitle();
                 idemp =  marker.getSnippet();
-                Intent abreperf = new Intent(getBaseContext(), CTInfoActivity.class);
+                Intent abreperf = new Intent(getBaseContext(), CadAgenda.class);
                 abreperf.putExtra("nome",nome);
                 abreperf.putExtra("id",id);
                 abreperf.putExtra("nomeemp",nomeemp);

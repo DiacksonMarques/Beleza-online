@@ -56,7 +56,10 @@ public class AreaUsuFragment extends Fragment {
         idg = bundle.getString("id");
         nome = bundle.getString("nome");
 
-        tvNomeCB.setText(nome);
+        String[] ida = nome.split("L| L ");
+        String auxid =  ida[0];
+
+        tvNomeCB.setText(auxid);
 
         url="https://belezaonline2019.000webhostapp.com/getPerfC.php?id_cliente="+idg;
         getJSON(url);

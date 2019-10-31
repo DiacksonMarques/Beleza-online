@@ -12,4 +12,7 @@ public class Constants {
 
     public static final String API_PLACES_KEY = "AIzaSyAfpBsSIzb2sjQ6BGaMcSRzMa4KaFsqeKU";
 
+
+    public static final String UPLOAD_URL = "https://belezaonline2019.000webhostapp.com/uploadimg.php";
+
 }

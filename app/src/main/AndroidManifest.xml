@@ -21,7 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".InfoAgdEmpActivity"></activity>
+        <activity android:name=".Activis.LoginActivity"></activity>
+        <activity android:name=".InfoAgdEmpActivity" />
         <activity android:name=".AgendDesvActivity" />
         <activity android:name=".UpdatePromocaoActivity" />
         <activity android:name=".ListPromoActivity" />
@@ -33,7 +34,6 @@
         <activity android:name=".EspeAgendActivity" />
         <activity android:name=".Activis.ListAgendaActivity" />
         <activity android:name=".Cadastros.CadAgenda" />
-        <activity android:name=".Activis.CTInfoActivity" />
         <activity android:name=".Controller.VeriCriMapsEmpActivity" />
         <activity android:name=".Controller.VeriCriMapsActivity" />
         <activity android:name=".Cadastros.CadPromocaoActivity" />
@@ -67,7 +67,7 @@
         <activity android:name=".Activis.MainActivity" />
         <activity android:name=".Activis.MainActivityEmp" />
         <activity
-            android:name=".Activis.LoginActivity"
+            android:name=".InicialActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,5 +76,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

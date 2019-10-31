@@ -110,6 +110,7 @@
             android:gravity="left|center_horizontal"
             android:text="Cadastrar Localização"
             android:textAllCaps="false"
+            android:textColor="@color/roxo"
             android:textSize="16sp" />
 
         <Button
@@ -124,8 +125,9 @@
             android:drawableRight="@drawable/ic_arrow"
             android:drawablePadding="11dp"
             android:gravity="left|center_horizontal"
-            android:text="Cadastrar Funcionário"
+            android:text=" Funcionário"
             android:textAllCaps="false"
+            android:textColor="@color/roxo"
             android:textSize="16sp" />
 
         <Button
@@ -140,8 +142,9 @@
             android:drawableRight="@drawable/ic_arrow"
             android:drawablePadding="8dp"
             android:gravity="left|center_horizontal"
-            android:text="Cadastrar Serviço"
+            android:text=" Serviço"
             android:textAllCaps="false"
+            android:textColor="@color/roxo"
             android:textSize="16sp" />
 
         <Button
@@ -156,8 +159,9 @@
             android:drawableRight="@drawable/ic_arrow"
             android:drawablePadding="8dp"
             android:gravity="left|center_horizontal"
-            android:text="Cadastrar Agendamento"
+            android:text=" Agendamento"
             android:textAllCaps="false"
+            android:textColor="@color/roxo"
             android:textSize="16sp" />
 
     </LinearLayout>

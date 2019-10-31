@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -16,24 +13,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.evo.belezaonline_2.Activis.MainActivity;
-import com.evo.belezaonline_2.Activis.MainActivityEmp;
 import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.EspeAgendActivity;
-import com.evo.belezaonline_2.Metodos.Config;
-import com.evo.belezaonline_2.Metodos.StringFormate;
 import com.evo.belezaonline_2.R;
 
 import org.json.JSONArray;
@@ -44,21 +30,25 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class CadAgenda extends AppCompatActivity {
 
-    Spinner tiposervico;
-    TextView tvData;
+    TextView tvNomeCB,tvData,tvHoraIT,tvHoraFT;
     String idg, nome, tipos, idemp, nomeemp, url;
     Calendar calendar;
     DatePickerDialog data;
-    Button btCadAgd;
+    TimePickerDialog horad;
+    Button btCadAgd,btFav,tvDataB,btHoraIB,btHoraFB;
     ListView lvAgenda;
 
-    private ArrayList<String> servico =  new ArrayList<String>();
-    private JSONArray tipo_servico;
+    String paramentrosv = "";
+    String urlv="https://belezaonline2019.000webhostapp.com/favoritos.php";
+    String paramentros="";
+    int Confe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +58,13 @@ public class CadAgenda extends AppCompatActivity {
         lvAgenda= findViewById(R.id.lvAgenda);
         btCadAgd = findViewById(R.id.btCadAgd);
         tvData = findViewById(R.id.tvData);
-        tiposervico = findViewById(R.id.tiposervicoagend);
+        tvDataB = findViewById(R.id.tvDataB);
+        tvNomeCB = findViewById(R.id.tvNomeCB);
+        btFav = findViewById(R.id.btFav);
+        tvHoraIT = findViewById(R.id.tvHoraIT);
+        tvHoraFT=findViewById(R.id.tvHoraT);
+        btHoraIB= findViewById(R.id.btHoraIB);
+        btHoraFB= findViewById(R.id.btHoraFB);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -77,8 +73,36 @@ public class CadAgenda extends AppCompatActivity {
         idemp = bundle.getString("idemp");
         nomeemp = bundle.getString("nomeemp");
 
+        tvNomeCB.setText(nomeemp);
 
-        tvData.setOnClickListener(new View.OnClickListener() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        String dataFormada = dateFormat.format(date);
+        tvData.setText(dataFormada);
+
+        int id_cliente= Integer.parseInt(idg);
+        int id_centros_de_beleza = Integer.parseInt(idemp);
+        paramentrosv = "id_cliente="+ id_cliente + "&id_centros_de_beleza=" + id_centros_de_beleza;
+        new VerificarFav().execute(urlv);
+
+        btFav.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int id_cliente= Integer.parseInt(idg);
+                int id_centros_de_beleza = Integer.parseInt(idemp);
+                url = "https://belezaonline2019.000webhostapp.com/CadFavorito.php";
+                paramentros = "id_cliente="+ id_cliente + "&id_centros_de_beleza=" + id_centros_de_beleza;
+                new AddFav().execute(url);
+                if(Confe == 1){
+                    btFav.setBackgroundResource(R.drawable.custom_buttonp);
+                }else{
+                    btFav.setBackgroundResource(R.drawable.custom_buttony);
+                }
+            }
+        });
+
+
+        tvDataB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calendar = Calendar.getInstance();
@@ -100,85 +124,62 @@ public class CadAgenda extends AppCompatActivity {
             }
         });
 
-        getSepinnerServico();
+        btHoraIB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int hora = calendar.get(Calendar.HOUR_OF_DAY);
+                int minuto = calendar.get(Calendar.MINUTE);
+                boolean is24Hours = DateFormat.is24HourFormat(CadAgenda.this);
+
+                horad = new TimePickerDialog(CadAgenda.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        if(minute>=10){
+                            tvHoraIT.setText(hourOfDay+":"+minute);
+                        }else {
+                            tvHoraIT.setText(hourOfDay+":0"+minute);
+                        }
+                    }
+                }, hora, minuto, is24Hours);
+                horad.show();
+            }
+        });
+
+        btHoraFB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                int hora = calendar.get(Calendar.HOUR_OF_DAY);
+                int minuto = calendar.get(Calendar.MINUTE);
+                boolean is24Hours = DateFormat.is24HourFormat(CadAgenda.this);
+
+                horad = new TimePickerDialog(CadAgenda.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        if(minute>=10){
+                            tvHoraFT.setText(hourOfDay+":"+minute);
+                        }else {
+                            tvHoraFT.setText(hourOfDay+":0"+minute);
+                        }
+                    }
+                }, hora, minuto, is24Hours);
+                horad.show();
+            }
+        });
+
 
         btCadAgd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(tvData.getText()==null|| tipos.isEmpty()){
+                if(tvData.getText()==null||tvHoraIT.getText()==null || tvHoraFT.getText()==null){
                     Toast.makeText(getBaseContext(),"A campos vazios.",Toast.LENGTH_LONG).show();
                 }else {
-                    String[] aux = tipos.split(" R|  R|R");
-                    tipos = aux[0];
-                    url = "https://belezaonline2019.000webhostapp.com/getAgendamento.php?vari=" + tipos + "," + tvData.getText() + "," + idemp;
+                    url = "https://belezaonline2019.000webhostapp.com/getAgendamento.php?vari=" + tvHoraIT.getText() + ","+tvHoraFT.getText()+"," + tvData.getText() + "," + idemp;
                     getJSON(url);
                 }
             }
         });
-    }
-
-    private void getSepinnerServico(){
-        StringRequest stringRequest = new StringRequest(Config.DATA_URL+idemp,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject = new JSONObject(response);
-                            tipo_servico = jsonObject.getJSONArray(Config.JSON_ARRAY);
-                            getServico(tipo_servico);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                    }
-                });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-    private void getServico(JSONArray jsonArray){
-        for (int i=0; i<jsonArray.length();i++){
-            try{
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                servico.add(jsonObject.getString(Config.TAG_TIPOSERVICO1));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-        tiposervico.setAdapter(new ArrayAdapter<String>(CadAgenda.this, android.R.layout.simple_spinner_dropdown_item, servico));
-        AdapterView.OnItemSelectedListener servicoad = new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position > 0) {
-                    tipos = getTipoServico(position);
-                    //Toast.makeText(getBaseContext(), tipos, Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        };
-        tiposervico.setOnItemSelectedListener(servicoad);
-    }
-
-    private String getTipoServico(int position){
-        String tipo_servicoa="";
-        try {
-            //Getting object of given index
-            JSONObject json = tipo_servico.getJSONObject(position);
-            //Fetching name from that object
-            tipo_servicoa = json.getString(Config.TAG_TIPOSERVICO1);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        //Returning the name
-        return tipo_servicoa;
     }
 
     private void getJSON(final String urlAPI){
@@ -267,5 +268,42 @@ public class CadAgenda extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private class VerificarFav extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Conexao.postDados(urls[0], paramentrosv);
+        }
+        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        @Override
+        protected void onPostExecute(String resultado) {
+            if(resultado != null && !resultado.isEmpty() && resultado.contains("Favorito_Sim")) {
+                btFav.setBackgroundResource(R.drawable.custom_buttony);
+                Confe = 1;
+            }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Favorito_Nao")){
+                btFav.setBackgroundResource(R.drawable.custom_buttonp);
+                Confe = 2;
+            }
+        }
+
+    }
+
+    private class AddFav extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Conexao.postDados(urls[0], paramentros);
+        }
+        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        @Override
+        protected void onPostExecute(String resultado) {
+            if(resultado != null && !resultado.isEmpty() && resultado.contains("Apagar_Ok")) {
+                btFav.setBackgroundResource(R.drawable.custom_buttonp);
+                Confe = 1;
+            }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Resgistro_ok")){
+                btFav.setBackgroundResource(R.drawable.custom_buttony);
+                Confe = 2;
+            }
+        }
     }
 }

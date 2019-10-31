@@ -1,6 +1,5 @@
 package com.evo.belezaonline_2.Fragemnts;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,13 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.evo.belezaonline_2.EspeAgendActivity;
-import com.evo.belezaonline_2.ListPromoActivity;
 import com.evo.belezaonline_2.R;
-import com.evo.belezaonline_2.UpdateServicoActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +43,7 @@ public class HomeFragment extends Fragment {
         id = bundle.getString("id");
         nome = bundle.getString("nome");
 
-        Toast.makeText(getContext(), id, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getContext(), id, Toast.LENGTH_LONG).show();
 
 
 

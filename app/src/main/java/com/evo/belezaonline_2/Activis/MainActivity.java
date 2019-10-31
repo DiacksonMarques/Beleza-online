@@ -1,26 +1,32 @@
 package com.evo.belezaonline_2.Activis;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.evo.belezaonline_2.Controller.VeriCriMapsActivity;
 import com.evo.belezaonline_2.Fragemnts.AreaUsuFragment;
 import com.evo.belezaonline_2.Fragemnts.HomeFragment;
 import com.evo.belezaonline_2.R;
-import com.evo.belezaonline_2.Controller.VeriCriMapsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.bottomnavigation.BottomNavigationView.OnNavigationItemSelectedListener;
+
+import java.nio.channels.Channel;
 
 public class MainActivity extends AppCompatActivity {
 
     String id;
     String nome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
+        assert bundle != null;
         id = bundle.getString("id");
         nome = bundle.getString("nome");
         //String tipo_usuario = bundle.getString("tipo_usuario");
@@ -38,13 +45,12 @@ public class MainActivity extends AppCompatActivity {
         openFragment(homeFragment);
     }
 
-    private OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;
-
-    {
+    private OnNavigationItemSelectedListener mOnNavigationItemSelectedListener;{
         mOnNavigationItemSelectedListener = new OnNavigationItemSelectedListener() {
 
             @Override
             public boolean onNavigationItemSelected(@Nullable MenuItem item) {
+                assert item != null;
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         Fragment homeFragment = HomeFragment.newInstance();

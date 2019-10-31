@@ -7,10 +7,11 @@
     android:orientation="vertical"
     android:background="@drawable/fundologin"
     tools:context=".Activis.LoginActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="310dp"
         android:orientation="vertical">
 
         <EditText
@@ -72,16 +73,6 @@
                 android:text="Esqueceu a sua senha? "
                 android:textColor="#3D0D4E" />
 
-            <TextView
-                android:id="@+id/btIrCad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Não tem conta? Cadastre-se"
-                android:textColor="#3D0D4E" />
         </LinearLayout>
 
     </LinearLayout>

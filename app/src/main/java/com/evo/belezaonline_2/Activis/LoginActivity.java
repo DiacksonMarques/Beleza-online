@@ -31,18 +31,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btIrCad= findViewById(R.id.btIrCad);
         btLogin= findViewById(R.id.btLogin);
         ctUsuario= findViewById(R.id.ctUsu);
         ctSenha= findViewById(R.id.ctSenhal);
-
-        btIrCad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intentircad = new Intent(getBaseContext(), EsCadActivity.class);
-                startActivity(intentircad);
-            }
-        });
+        
 
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override

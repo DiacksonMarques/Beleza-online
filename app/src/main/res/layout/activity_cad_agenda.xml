@@ -6,56 +6,148 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@drawable/fundo"
+    android:background="@color/cardview_light_background"
     tools:context=".Cadastros.CadAgenda">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="390dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:orientation="horizontal">
+        android:background="@color/cardview_light_background"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/Esc"
-            android:layout_width="91dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Escolha o serviço"
-            android:textColor="@color/roxo"
-            android:textSize="15sp"
-            android:textStyle="bold|italic" />
+            android:id="@+id/textView13"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/custom_button" />
+
+        <Button
+            android:id="@+id/btFav"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/custom_buttonp"
+            android:drawableRight="@drawable/ic_star" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvNomeCB"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Escolha a data"
-            android:textColor="@color/roxo"
-            android:textSize="15sp"
-            android:textStyle="bold|italic" />
-    </LinearLayout>
+            android:layout_height="30dp"
+            android:layout_below="@+id/textView13"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="165dp"
+            android:layout_marginTop="9dp"
+            android:text="Salão"
+            android:textColor="#1D1C1C"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <Spinner
-            android:id="@+id/tiposervicoagend"
-            android:layout_width="203dp"
-            android:layout_height="wrap_content"
-            android:scrollbarThumbHorizontal="@drawable/custom_gradientrounded"
-            android:scrollbarThumbVertical="@drawable/custom_gradientt"></Spinner>
-
-        <TextView
-            android:id="@+id/tvData"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="DD/MM/AAAA"
-            android:textColor="@color/roxo"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/tvDataB"
+                android:layout_width="175dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/roxo"
+                android:text="@string/selecionar_a_data"
+                android:textColor="#FAFAFA" />
+
+            <TextView
+                android:id="@+id/tvData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:text="dd/MM/yyyy"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btHoraIB"
+                android:layout_width="175dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/roxo"
+                android:text="Horario Inicial"
+                android:textColor="#FAFAFA" />
+
+            <TextView
+                android:id="@+id/tvHoraIT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:text="00:00"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btHoraFB"
+                android:layout_width="175dp"
+                android:layout_height="37dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/custom_button"
+                android:backgroundTint="@color/roxo"
+                android:text="Horario Final"
+                android:textColor="#FAFAFA" />
+
+            <TextView
+                android:id="@+id/tvHoraT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:text="00:00"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -64,15 +156,17 @@
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:textColor="#FAFAFA"
-        android:backgroundTint="@color/roxo"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/custom_button"
-        android:text="Salvar" />
+        android:backgroundTint="@color/roxo"
+        android:text="Buscar"
+        android:textColor="#FAFAFA" />
 
     <ListView
         android:id="@+id/lvAgenda"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="@drawable/custom_gradientt" />
 
 </LinearLayout>
