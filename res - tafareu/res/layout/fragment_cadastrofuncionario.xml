@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="320dp"
+    android:layout_height="320dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="100dp"
+    android:background="@drawable/custom_box"
+    android:backgroundTint="@color/branco"
+    android:elevation="2dp"
+    android:orientation="vertical"
+    tools:context=".cadastrofuncionario">
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Cadastrar funcionário"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#2E2C2C"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:text="Nome"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/custom_buttonstroke"
+        android:drawableLeft="@drawable/ic_usuario"
+        android:paddingStart="3dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="2dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Telefone"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/custom_buttonstroke"
+        android:drawableLeft="@drawable/ic_tel"
+        android:drawablePadding="3dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="2dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Email"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/editText11"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/custom_buttonstroke"
+        android:drawableLeft="@drawable/ic_email"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="2dp"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/roxo"
+            android:text="Salvar"
+            android:textAllCaps="false"
+            android:textColor="#fafafa"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/custom_buttonstroke"
+            android:text="cancelar"
+            android:textAllCaps="false"
+            android:textColor="@color/roxo"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

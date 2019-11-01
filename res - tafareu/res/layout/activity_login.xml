@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="330dp"
         android:orientation="vertical">
 
         <EditText
@@ -27,7 +27,8 @@
             android:drawablePadding="4dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="#2E2C2C" />
 
         <EditText
             android:id="@+id/editText8"
@@ -41,7 +42,8 @@
             android:drawablePadding="4dp"
             android:ems="10"
             android:inputType="textPassword"
-            android:padding="10dp" />
+            android:padding="10dp"
+            android:textColor="#2E2C2C" />
 
         <Button
             android:id="@+id/button3"

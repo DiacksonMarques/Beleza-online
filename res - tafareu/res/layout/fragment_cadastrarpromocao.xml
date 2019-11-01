@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="340dp"
+    android:layout_height="340dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginTop="100dp"
+    android:background="@drawable/custom_box"
+    android:backgroundTint="@color/branco"
+    android:elevation="2dp"
+    android:orientation="vertical"
+    tools:context=".cadastrarpromocao">
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Cadastrar Promoção
+"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#2E2C2C"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:text="Serviço em promoção"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/custom_buttonstroke"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="2dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Descrição"
+        android:textStyle="italic" />
+
+    <EditText
+        android:id="@+id/editText9"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/custom_buttonstroke"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingLeft="2dp"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="Data de Expição"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/editText6"
+        android:layout_width="match_parent"
+        android:layout_height="26dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/custom_buttonstroke"
+        android:drawableLeft="@drawable/ic_date"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="DD/MM/AAAA"
+        android:inputType="textPersonName"
+        android:paddingLeft="2dp"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/roxo"
+            android:text="Salvar"
+            android:textAllCaps="false"
+            android:textColor="#fafafa"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/button10"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/custom_buttonstroke"
+            android:text="cancelar"
+            android:textAllCaps="false"
+            android:textColor="@color/roxo"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

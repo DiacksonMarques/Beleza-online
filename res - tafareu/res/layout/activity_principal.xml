@@ -31,7 +31,8 @@
             android:backgroundTint="@color/roxo"
             android:text="Entrar"
             android:textAllCaps="false"
-            android:textColor="#FAFAFA" />
+            android:textColor="#FAFAFA"
+            android:textSize="18sp" />
 
         <Button
             android:id="@+id/button4"
@@ -39,11 +40,12 @@
             android:layout_height="35dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/roxo"
+            android:background="@drawable/custom_buttonstroke"
+
             android:text="Cadastre-se"
             android:textAllCaps="false"
-            android:textColor="#FAFAFA" />
+            android:textColor="#3D0D4E"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textView2"
@@ -53,6 +55,7 @@
             android:layout_marginTop="10dp"
             android:text="Ou"
             android:textColor="#474747"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <Button
@@ -65,7 +68,8 @@
             android:backgroundTint="@color/lilas"
             android:text="Entrar com o facebook"
             android:textAllCaps="false"
-            android:textColor="#FDFDFE" />
+            android:textColor="#FDFDFE"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>

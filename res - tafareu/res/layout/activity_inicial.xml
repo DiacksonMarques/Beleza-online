@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fundo"
+    android:orientation="vertical"
     tools:context=".telainicial">
 
     <LinearLayout
@@ -20,90 +21,122 @@
             android:layout_marginTop="15dp"
             app:srcCompat="@drawable/logo" />
 
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="240dp"
-            android:layout_height="50dp"
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="28dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/gelo"
-            android:drawableLeft="@drawable/ic_promocoes"
-            android:padding="5dp"
-            android:text="Promoções"
-            android:textAllCaps="false" />
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="10dp"
+            android:text="Pesquise serviços em promoção"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+            android:textColor="#302F2F"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        <Button
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/gelo"
-            android:drawableLeft="@drawable/ic_barba"
-            android:padding="5dp"
-            android:text="Barbearia"
-            android:textAllCaps="false" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/gelo"
-            android:drawableLeft="@drawable/ic_manicure"
-            android:padding="5dp"
-            android:text="Manicure"
-            android:textAllCaps="false" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-        <Button
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/gelo"
-            android:drawableLeft="@drawable/ic_centro"
-            android:padding="5dp"
-            android:text="Salão"
-            android:textAllCaps="false" />
+                <Button
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/custom_button"
+                    android:backgroundTint="@color/gelo"
+                    android:drawableLeft="@drawable/ic_maquiagem"
+                    android:padding="5dp"
+                    android:text="Manicure"
+                    android:textAllCaps="false"
+                    android:textSize="20sp" />
 
-        <Button
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/gelo"
-            android:drawableLeft="@drawable/ic_estetica"
-            android:padding="5dp"
-            android:text="Estética"
-            android:textAllCaps="false" />
+                <Button
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/custom_button"
+                    android:backgroundTint="@color/gelo"
+                    android:drawableLeft="@drawable/ic_centro"
+                    android:padding="5dp"
+                    android:text="Salão"
+                    android:textAllCaps="false"
+                    android:textSize="18sp" />
 
-        <Button
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/gelo"
-            android:drawableLeft="@drawable/ic_depilacao"
-            android:padding="5dp"
-            android:text="Depilação"
-            android:textAllCaps="false" />
+                <Button
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/custom_button"
+                    android:backgroundTint="@color/gelo"
+                    android:drawableLeft="@drawable/ic_estetica"
+                    android:padding="5dp"
+                    android:text="Estética"
+                    android:textAllCaps="false"
+                    android:textSize="18sp" />
 
-        <Button
-            android:layout_width="240dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/gelo"
-            android:drawableLeft="@drawable/ic_maquiagem"
-            android:padding="5dp"
-            android:text="Manicure"
-            android:textAllCaps="false" />
+                <Button
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/custom_button"
+                    android:backgroundTint="@color/gelo"
+                    android:drawableLeft="@drawable/ic_barba"
+                    android:padding="5dp"
+                    android:text="Barbearia"
+                    android:textAllCaps="false"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/custom_button"
+                    android:backgroundTint="@color/gelo"
+                    android:drawableLeft="@drawable/ic_promocoes"
+                    android:padding="5dp"
+                    android:text="Promoções"
+                    android:textAllCaps="false"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/custom_button"
+                    android:backgroundTint="@color/gelo"
+                    android:drawableLeft="@drawable/ic_depilacao"
+                    android:padding="5dp"
+                    android:text="Depilação"
+                    android:textAllCaps="false"
+                    android:textSize="18sp" />
+
+                <Button
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/custom_button"
+                    android:backgroundTint="@color/gelo"
+                    android:drawableLeft="@drawable/ic_manicure"
+                    android:padding="5dp"
+                    android:text="Manicure"
+                    android:textAllCaps="false"
+                    android:textSize="18sp" />
+            </LinearLayout>
+        </ScrollView>
 
     </LinearLayout>
 </LinearLayout>

@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".cadastro"
+    android:layout_height="wrap_content"
+    android:background="@drawable/fundocadastro"
     android:orientation="vertical"
-    android:background="@drawable/fundocadastro">
+    tools:context=".cadastro">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="290dp"
         android:orientation="vertical">
 
@@ -26,8 +26,10 @@
             android:drawableLeft="@drawable/ic_user"
             android:drawablePadding="4dp"
             android:ems="10"
+            android:hint="Usuário"
             android:inputType="textPersonName"
             android:padding="10dp" />
+
 
         <EditText
             android:id="@+id/editText10"
@@ -37,28 +39,43 @@
             android:layout_marginBottom="10dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/grey"
-            android:drawableLeft="@drawable/ic_mail"
+            android:drawableLeft="@drawable/ic_cnpj"
             android:drawablePadding="4dp"
             android:ems="10"
+            android:hint="CNPJ"
             android:inputType="textPersonName"
             android:padding="10dp" />
 
         <EditText
-            android:id="@+id/editText8"
             android:layout_width="260dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="10dp"
             android:background="@drawable/custom_button"
             android:backgroundTint="@color/grey"
-            android:drawableLeft="@drawable/ic_password"
+            android:drawableLeft="@drawable/ic_mail"
             android:drawablePadding="4dp"
             android:ems="10"
-            android:inputType="textPassword"
+            android:hint="Email"
+            android:inputType="textPersonName"
+            android:padding="10dp" />
+
+
+        <EditText
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/grey"
+            android:drawableLeft="@drawable/ic_salao"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:hint="Nome do negócio"
+            android:inputType="textPersonName"
             android:padding="10dp" />
 
         <EditText
-            android:id="@+id/editText0"
             android:layout_width="260dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
@@ -68,39 +85,56 @@
             android:drawableLeft="@drawable/ic_password"
             android:drawablePadding="4dp"
             android:ems="10"
+            android:hint="Senha"
             android:inputType="textPassword"
             android:padding="10dp" />
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="200dp"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/roxo"
-            android:text="Cadastrar"
-            android:textAllCaps="false"
-            android:textColor="#FAFAFA" />
 
-        <LinearLayout
+        <EditText
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/custom_button"
+            android:backgroundTint="@color/grey"
+            android:drawableLeft="@drawable/ic_password"
+            android:drawablePadding="4dp"
+            android:ems="10"
+            android:hint="Repetir Senha"
+            android:inputType="textPassword"
+            android:padding="10dp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="200dp"
+        android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/roxo"
+        android:text="Cadastrar"
+        android:textAllCaps="false"
+        android:textColor="#FAFAFA" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Esqueceu a sua senha? "
-                android:textColor="#3D0D4E" />
-        </LinearLayout>
-
+            android:layout_marginTop="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Esqueceu a sua senha? "
+            android:textColor="#3D0D4E" />
     </LinearLayout>
+
 </LinearLayout>
