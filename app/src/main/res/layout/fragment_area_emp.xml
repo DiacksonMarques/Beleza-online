@@ -47,7 +47,7 @@
                         android:textSize="24sp" />
 
                     <Button
-                        android:id="@+id/btPerfCen"
+                        android:id="@+id/btPerfCli"
                         android:layout_width="match_parent"
                         android:layout_height="32dp"
                         android:layout_marginTop="10dp"

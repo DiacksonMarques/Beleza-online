@@ -9,6 +9,8 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
@@ -21,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activis.LoginActivity"></activity>
+        <activity android:name=".Editperfactivity"></activity>
+        <activity android:name=".Activis.LoginActivity" />
         <activity android:name=".InfoAgdEmpActivity" />
         <activity android:name=".AgendDesvActivity" />
         <activity android:name=".UpdatePromocaoActivity" />
@@ -76,4 +79,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

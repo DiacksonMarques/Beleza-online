@@ -10,14 +10,14 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="332dp"
+        android:layout_height="370dp"
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
             android:layout_width="320dp"
             android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="224dp"
+            android:layout_marginTop="270dp"
             app:cardBackgroundColor="@color/gelo">
 
             <LinearLayout
@@ -112,6 +112,13 @@
                 android:textColor="#F3F3F3"
                 android:textSize="24sp" />
 
+            <Button
+                android:id="@+id/btPerfCli"
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginTop="10dp"
+                android:text="Perfil"
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -120,6 +127,6 @@
     <ListView
         android:id="@+id/lvAgendaCli"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="329dp" />
 
 </LinearLayout>

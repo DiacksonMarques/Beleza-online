@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import androidx.fragment.app.Fragment;
 import com.evo.belezaonline_2.Activis.MainActivity;
 import com.evo.belezaonline_2.Activis.MainActivityEmp;
 import com.evo.belezaonline_2.Banco.Conexao;
+import com.evo.belezaonline_2.Editperfactivity;
 import com.evo.belezaonline_2.EspeAgendActivity;
 import com.evo.belezaonline_2.R;
 import com.evo.belezaonline_2.UpdateAgendActivity;
@@ -41,6 +43,7 @@ public class AreaUsuFragment extends Fragment {
     TextView tvFavQt,tvAgdQt,tvNomeCB;
     ListView lvAgendaCli;
     AlertDialog alerta;
+    Button btPerfCli;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup fgContainer, Bundle savedInstanceState){
@@ -50,6 +53,7 @@ public class AreaUsuFragment extends Fragment {
         tvAgdQt= v.findViewById(R.id.tvAgdQt);
         lvAgendaCli = v.findViewById(R.id.lvAgendaCli);
         tvNomeCB = v.findViewById(R.id.tvNomeCB);
+        btPerfCli = v.findViewById(R.id.btPerfCli);
 
         Intent intent = this.getActivity().getIntent();
         Bundle bundle = intent.getExtras();
@@ -66,6 +70,16 @@ public class AreaUsuFragment extends Fragment {
 
         url2 = "https://belezaonline2019.000webhostapp.com/getAgendCli.php?id="+idg;
         getJSON2(url2);
+
+        btPerfCli.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent abreInicio = new Intent(getContext(), Editperfactivity.class);
+                abreInicio.putExtra("id",idg);
+                abreInicio.putExtra("nome",nome);
+                startActivity(abreInicio);
+            }
+        });
 
         return v;
     }
