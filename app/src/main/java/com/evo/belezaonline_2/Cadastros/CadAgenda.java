@@ -1,9 +1,11 @@
 package com.evo.belezaonline_2.Cadastros;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -42,12 +44,14 @@ public class CadAgenda extends AppCompatActivity {
     Calendar calendar;
     DatePickerDialog data;
     TimePickerDialog horad;
-    Button btCadAgd,btFav,tvDataB,btHoraIB,btHoraFB;
+    Button btCadAgd,btFav;
     ListView lvAgenda;
 
     String paramentrosv = "";
     String urlv="https://belezaonline2019.000webhostapp.com/favoritos.php";
     String paramentros="";
+    String parametros="";
+    AlertDialog alerta;
     int Confe;
 
     @Override
@@ -58,13 +62,10 @@ public class CadAgenda extends AppCompatActivity {
         lvAgenda= findViewById(R.id.lvAgenda);
         btCadAgd = findViewById(R.id.btCadAgd);
         tvData = findViewById(R.id.tvData);
-        tvDataB = findViewById(R.id.tvDataB);
         tvNomeCB = findViewById(R.id.tvNomeCB);
         btFav = findViewById(R.id.btFav);
         tvHoraIT = findViewById(R.id.tvHoraIT);
         tvHoraFT=findViewById(R.id.tvHoraT);
-        btHoraIB= findViewById(R.id.btHoraIB);
-        btHoraFB= findViewById(R.id.btHoraFB);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -75,14 +76,14 @@ public class CadAgenda extends AppCompatActivity {
 
         tvNomeCB.setText(nomeemp);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-        String dataFormada = dateFormat.format(date);
+        final String dataFormada = dateFormat.format(date);
+
         tvData.setText(dataFormada);
 
         int id_cliente= Integer.parseInt(idg);
-        int id_centros_de_beleza = Integer.parseInt(idemp);
-        paramentrosv = "id_cliente="+ id_cliente + "&id_centros_de_beleza=" + id_centros_de_beleza;
+        paramentrosv = "id_cliente="+ id_cliente + "&id_centros_de_beleza=" + idemp;
         new VerificarFav().execute(urlv);
 
         btFav.setOnClickListener(new View.OnClickListener() {
@@ -102,21 +103,103 @@ public class CadAgenda extends AppCompatActivity {
         });
 
 
-        tvDataB.setOnClickListener(new View.OnClickListener() {
+        tvData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calendar = Calendar.getInstance();
-                int dia = calendar.get(Calendar.DAY_OF_MONTH);
+                final int dia = calendar.get(Calendar.DAY_OF_MONTH);
                 final int mes = calendar.get(Calendar.MONTH);
-                int ano = calendar.get(Calendar.YEAR);
+                final int ano = calendar.get(Calendar.YEAR);
 
                 data = new DatePickerDialog(CadAgenda.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int mAno, int mMes, int mDia) {
-                        if((mMes+1)>=10){
-                            tvData.setText(mDia+"/"+(mMes+1)+"/"+mAno);
+                        String datafor[] = dataFormada.split("/");
+                        int anol = Integer.parseInt(datafor[2]);
+                        if (mAno > anol ) {
+                            if((mMes+1) >= 10 && mDia <10){
+                                tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                            }else{
+                                if((mMes+1) < 10 && mDia <10){
+                                    tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                                }else{
+                                    tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                                }
+                            }
                         }else{
-                            tvData.setText(mDia+"/0"+(mMes+1)+"/"+mAno);
+                            if ((mMes + 1) >= 10) {
+                                if (anol <= mAno) {
+                                    int mesl = Integer.parseInt(datafor[1]);
+                                    if (mesl <= (mMes + 1)) {
+                                        int dial = Integer.parseInt(datafor[0]);
+                                        if (dial <= mDia) {
+                                            if((mMes+1) >= 10 && mDia <10){
+                                                tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                                            }else{
+                                                if((mMes+1) < 10 && mDia <10){
+                                                    tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                                                }else{
+                                                    tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                                                }
+                                            }
+                                        } else {
+                                            Toast.makeText(getBaseContext(), "Escolha uam data valida(Dia)", Toast.LENGTH_LONG).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Escolha uam data valida(Mês)", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    if (anol > mAno) {
+                                        if((mMes+1) >= 10 && mDia <10){
+                                            tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                                        }else{
+                                            if((mMes+1) < 10 && mDia <10){
+                                                tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                                            }else{
+                                                tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                                            }
+                                        }
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Escolha uam data valida(Ano)", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            } else {
+                                if (anol <= mAno) {
+                                    int mesl = Integer.parseInt(datafor[1]);
+                                    if (mesl <= (mMes + 1)) {
+                                        int dial = Integer.parseInt(datafor[0]);
+                                        if (dial <= mDia) {
+                                            if((mMes+1) >= 10 && mDia <10){
+                                                tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                                            }else{
+                                                if((mMes+1) < 10 && mDia <10){
+                                                    tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                                                }else{
+                                                    tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                                                }
+                                            }
+                                        } else {
+                                            Toast.makeText(getBaseContext(), "Escolha uam data valida(Dia)", Toast.LENGTH_LONG).show();
+                                        }
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Escolha uam data valida(Mês)", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    if (anol > mAno) {
+                                        if((mMes+1) >= 10 && mDia <10){
+                                            tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                                        }else{
+                                            if((mMes+1) < 10 && mDia <10){
+                                                tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                                            }else{
+                                                tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                                            }
+                                        }
+                                    } else {
+                                        Toast.makeText(getBaseContext(), "Escolha uam data valida(Ano)", Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            }
                         }
                     }
                 }, ano, mes, dia);
@@ -124,7 +207,7 @@ public class CadAgenda extends AppCompatActivity {
             }
         });
 
-        btHoraIB.setOnClickListener(new View.OnClickListener() {
+        tvHoraIT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar calendar = Calendar.getInstance();
@@ -132,13 +215,45 @@ public class CadAgenda extends AppCompatActivity {
                 int minuto = calendar.get(Calendar.MINUTE);
                 boolean is24Hours = DateFormat.is24HourFormat(CadAgenda.this);
 
+                final SimpleDateFormat horaat = new SimpleDateFormat("HH:mm");
+                Date data = calendar.getTime();
+                final String horaatual = horaat.format(data);
+                //Toast.makeText(getBaseContext(), horaatual,Toast.LENGTH_LONG).show();
+
                 horad = new TimePickerDialog(CadAgenda.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if(minute>=10){
-                            tvHoraIT.setText(hourOfDay+":"+minute);
-                        }else {
-                            tvHoraIT.setText(hourOfDay+":0"+minute);
+                        if(dataFormada.equals(tvData.getText())){
+                            String horal[] = horaatual.split(":");
+                            int hora = Integer.parseInt(horal[0]);
+                            if (hourOfDay > hora){
+                                if(minute>=10){
+                                    tvHoraIT.setText(hourOfDay+":"+minute);
+                                }else {
+                                    tvHoraIT.setText(hourOfDay+":0"+minute);
+                                }
+                            }else{
+                                int minu = Integer.parseInt(horal[1]);
+                                if(hourOfDay == hora){
+                                    if(minute>=minu){
+                                        if(minute>=10){
+                                            tvHoraIT.setText(hourOfDay+":"+minute);
+                                        }else {
+                                            tvHoraIT.setText(hourOfDay+":0"+minute);
+                                        }
+                                    }else{
+                                        Toast.makeText(getBaseContext(), "Selecione uma hora maior que atual", Toast.LENGTH_LONG).show();
+                                    }
+                                }else{
+                                    Toast.makeText(getBaseContext(), "Selecione uma hora maior que atual", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }else{
+                            if(minute>=10){
+                                tvHoraIT.setText(hourOfDay+":"+minute);
+                            }else {
+                                tvHoraIT.setText(hourOfDay+":0"+minute);
+                            }
                         }
                     }
                 }, hora, minuto, is24Hours);
@@ -146,25 +261,64 @@ public class CadAgenda extends AppCompatActivity {
             }
         });
 
-        btHoraFB.setOnClickListener(new View.OnClickListener() {
+        tvHoraFT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int hora = calendar.get(Calendar.HOUR_OF_DAY);
-                int minuto = calendar.get(Calendar.MINUTE);
-                boolean is24Hours = DateFormat.is24HourFormat(CadAgenda.this);
+                if(tvHoraIT.getText().equals("00:00")){
+                    Toast.makeText(getBaseContext(), "Selecione a hora inicial", Toast.LENGTH_LONG).show();
+                }else{
+                    Calendar calendar = Calendar.getInstance();
+                    int hora = calendar.get(Calendar.HOUR_OF_DAY);
+                    int minuto = calendar.get(Calendar.MINUTE);
+                    boolean is24Hours = DateFormat.is24HourFormat(CadAgenda.this);
 
-                horad = new TimePickerDialog(CadAgenda.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if(minute>=10){
-                            tvHoraFT.setText(hourOfDay+":"+minute);
-                        }else {
-                            tvHoraFT.setText(hourOfDay+":0"+minute);
+                    final SimpleDateFormat horaat = new SimpleDateFormat("HH:mm");
+                    Date data = calendar.getTime();
+                    final String horaatual = horaat.format(data);
+
+                    horad = new TimePickerDialog(CadAgenda.this, new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                           if(tvHoraIT.getText() == null || tvHoraIT.getText().equals("00:00")){
+                               Toast.makeText(getBaseContext(), "Selecione uma hora maior que a de inico", Toast.LENGTH_LONG).show();
+                           }else{
+                               if(dataFormada.equals(tvData.getText())){
+                                   String horal[] = horaatual.split(":");
+                                   int hora = Integer.parseInt(horal[0]);
+                                   if (hourOfDay > hora){
+                                       if(minute>=10){
+                                           tvHoraFT.setText(hourOfDay+":"+minute);
+                                       }else {
+                                           tvHoraFT.setText(hourOfDay+":0"+minute);
+                                       }
+                                   }else{
+                                       int minu = Integer.parseInt(horal[1]);
+                                       if(hourOfDay == hora){
+                                           if(minute>=minu){
+                                               if(minute>=10){
+                                                   tvHoraFT.setText(hourOfDay+":"+minute);
+                                               }else {
+                                                   tvHoraFT.setText(hourOfDay+":0"+minute);
+                                               }
+                                           }else{
+                                               Toast.makeText(getBaseContext(), "Selecione uma hora maior que atual", Toast.LENGTH_LONG).show();
+                                           }
+                                       }else{
+                                           Toast.makeText(getBaseContext(), "Selecione uma hora maior que atual", Toast.LENGTH_LONG).show();
+                                       }
+                                   }
+                               }else{
+                                   if(minute>=10){
+                                       tvHoraFT.setText(hourOfDay+":"+minute);
+                                   }else {
+                                       tvHoraFT.setText(hourOfDay+":0"+minute);
+                                   }
+                               }
+                           }
                         }
-                    }
-                }, hora, minuto, is24Hours);
-                horad.show();
+                    }, hora, minuto, is24Hours);
+                    horad.show();
+                }
             }
         });
 
@@ -255,18 +409,41 @@ public class CadAgenda extends AppCompatActivity {
         lvAgenda.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String Sele = ((TextView) view).getText().toString();
+                final String Sele = ((TextView) view).getText().toString();
                 if (Sele.equals("Não Tem nenhum serviço cadastrado")){
                     Toast.makeText(getBaseContext(), "Não função", Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(getBaseContext(), Sele, Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getBaseContext(), EspeAgendActivity.class);
-                    intent.putExtra("id",idg);
-                    intent.putExtra("nome",nome);
-                    intent.putExtra("coda",Sele);
-                    startActivity(intent);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(CadAgenda.this);
+                    builder.setTitle("Oque deseja fazer com a Agenda?");
+                    builder.setMessage("");
+                    builder.setPositiveButton("Ver mais", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent abrecadagend = new Intent(getBaseContext(), EspeAgendActivity.class);
+                            abrecadagend.putExtra("id",idg);
+                            abrecadagend.putExtra("nome",nome);
+                            abrecadagend.putExtra("coda",Sele);
+                            startActivity(abrecadagend);
+                        }
+                    });
+                    builder.setNegativeButton("Agendar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String[] ida = Sele.split("\n| \n ");
+                            String auxid =  ida[0];
+
+                            String[] idag = auxid.split(":|: ");
+                            String idaf =  idag[1];
+
+                            url = "https://belezaonline2019.000webhostapp.com/updateAgendS.php";
+                            parametros ="id="+idaf+"&id_cliente="+idg;
+                            new SolicitaDados().execute(url);
+                        }
+                    });
+                    alerta = builder.create();
+                    alerta.show();
                 }
-            }
+                }
         });
     }
 
@@ -305,5 +482,33 @@ public class CadAgenda extends AppCompatActivity {
                 Confe = 2;
             }
         }
+    }
+
+    private class SolicitaDados extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            return Conexao.postDados(urls[0], parametros);
+        }
+
+        // onPostExecute mostra os resultados obtidos com a classe AsyncTask.
+        @Override
+        protected void onPostExecute(String resultado) {
+            if (resultado != null && !resultado.isEmpty() && resultado.contains("Update_Ok")) {
+                Toast.makeText(getBaseContext(), "Agendamento feito com sucesso!", Toast.LENGTH_LONG).show();
+                //Intent abreInicio = new Intent(getBaseContext(), CadAgenda.class);
+                //abreInicio.putExtra("id", idg);
+                //abreInicio.putExtra("nome", nome);
+                //startActivity(abreInicio);
+            } else {
+                Toast.makeText(getBaseContext(), "Ocorreu um erro: " + resultado, Toast.LENGTH_LONG).show();
+            }
+        }
+
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        finish();
     }
 }

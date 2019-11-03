@@ -30,12 +30,12 @@ public class CadEmpresaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cad_empresa);
 
         btCademp= findViewById(R.id.btCadfunc);
-        ctNomeemp= findViewById(R.id.ctNomefunc);
+        ctNomeemp= findViewById(R.id.ctNomeemp);
         ctCnpj= findViewById(R.id.ctCnpj);
         ctDescricao= findViewById(R.id.ctDescricao);
         ctUsuarioemp= findViewById(R.id.ctUsuarioemp);
         ctSenhaemp= findViewById(R.id.ctSenhaemp);
-        ctRepSenhaemp= findViewById(R.id.ctSenhaemp);
+        ctRepSenhaemp= findViewById(R.id.ctRepSenhaemp);
 
         btCademp.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -75,7 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Bundle bundle = intent.getExtras();
         id = bundle.getString("id");
         nome = bundle.getString("nome");
-        Toast.makeText(getBaseContext(),id,Toast.LENGTH_LONG).show();
+        //Toast.makeText(getBaseContext(),id,Toast.LENGTH_LONG).show();
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -250,6 +250,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         title = jsonObject.getString(TITLE);
                         snippet = jsonObject.getString(ID);
+                        Toast.makeText(getBaseContext(), snippet, Toast.LENGTH_LONG).show();
                         latLng = new LatLng(Double.parseDouble(jsonObject.getString(LAT)), Double.parseDouble(jsonObject.getString(LNG)));
 
                         // Menambah data marker untuk di tampilkan ke google map

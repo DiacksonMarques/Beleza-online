@@ -9,26 +9,18 @@
 
     <Button
         android:id="@+id/btCadLocaEmp"
-        android:layout_width="173dp"
-        android:layout_height="30dp"
-        android:layout_alignStart="@+id/map"
-        android:layout_alignLeft="@+id/map"
-        android:layout_alignTop="@+id/map"
+        android:layout_width="222dp"
+        android:layout_height="36dp"
         android:layout_alignEnd="@+id/map"
         android:layout_alignRight="@+id/map"
         android:layout_alignBottom="@+id/map"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="129dp"
-        android:layout_marginLeft="129dp"
-        android:layout_marginTop="659dp"
-        android:layout_marginEnd="109dp"
-        android:layout_marginRight="109dp"
-        android:layout_marginBottom="42dp"
-        android:background="@drawable/custom_button"
-        android:backgroundTint="@color/roxo"
+        android:layout_marginEnd="90dp"
+        android:layout_marginRight="90dp"
+        android:layout_marginBottom="33dp"
+        android:background="@drawable/custom_gradientrounded"
         android:text="Cadastar Localização"
-        android:textAllCaps="false"
-        android:textColor="#FAFAFA" />
+        android:textColor="@color/branco"
+        android:textStyle="normal" />
 
     <fragment
         android:id="@+id/map"

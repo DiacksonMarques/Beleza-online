@@ -21,8 +21,7 @@
         android:id="@+id/lvPromoHome"
         android:layout_width="match_parent"
         android:layout_height="257dp"
-        android:layout_margin="10dp"
-        android:background="@drawable/custom_gradientt"></ListView>
+        android:layout_margin="10dp"></ListView>
 
     <TextView
         android:id="@+id/textView10"
@@ -40,7 +39,6 @@
         android:id="@+id/lvAgendaDia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:background="@drawable/custom_gradientt"></ListView>
+        android:layout_margin="10dp"></ListView>
 
 </LinearLayout>

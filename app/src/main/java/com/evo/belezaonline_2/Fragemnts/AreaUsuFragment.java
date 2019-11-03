@@ -199,8 +199,12 @@ public class AreaUsuFragment extends Fragment {
             funcionario = jsonObject.getString("funcionario");
             id_centro_de_beleza = jsonObject.getString("id_centro_de_beleza");
 
-            dados.add("Código: "+idp+"\nSalão:"+centro_de_beleza+"\nServiço:"+servico+"\nData:"+data+"\nHora:"+hora_i+"ás"+hora_f);
-            idct = id_centro_de_beleza;
+            if(idp.equals("Não")){
+                dados.add(idp+" "+centro_de_beleza+" "+servico+" "+data+" "+hora_i+" "+hora_f+" "+id_centro_de_beleza);
+            }else{
+                dados.add("Código: "+idp+"\nSalão:"+centro_de_beleza+"\nServiço:"+servico+"\nData:"+data+"\nHora:"+hora_i+"ás"+hora_f);
+                idct = id_centro_de_beleza;
+            }
         }
 
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,dados);

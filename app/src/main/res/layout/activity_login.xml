@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/fundologin"
+    android:orientation="vertical"
     tools:context=".Activis.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginTop="310dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
         android:orientation="vertical">
 
         <EditText
@@ -30,7 +30,7 @@
             android:padding="10dp" />
 
         <EditText
-            android:id="@+id/ctSenhal"
+            android:id="@+id/ctSenhalo"
             android:layout_width="260dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
@@ -55,25 +55,17 @@
             android:textAllCaps="false"
             android:textColor="#FAFAFA" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Esqueceu a sua senha? "
-                android:textColor="#3D0D4E" />
-
-        </LinearLayout>
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Esqueceu a sua senha? "
+            android:textColor="#3D0D4E" />
 
     </LinearLayout>
+
 </LinearLayout>

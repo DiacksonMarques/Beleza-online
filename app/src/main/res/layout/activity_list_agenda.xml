@@ -8,48 +8,50 @@
     android:background="@drawable/fundo"
     tools:context=".Activis.ListAgendaActivity">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Agendamentos"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textColor="#2E2C2C"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="4dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btCadAgdList"
-            android:layout_width="161dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/roxo"
-            android:text="Cadastar Agenda"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/custom_buttonstroke"
+            android:text="Cadastrar Agendamento "
             android:textAllCaps="false"
-            android:textColor="#FAFAFA" />
+            android:textColor="#691581"
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/btAgdDisp"
-            android:layout_width="223dp"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="5dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/roxo"
-            android:text=" Agendamentos disponiveis"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/custom_buttonstroke"
+            android:text="Agendamentos"
             android:textAllCaps="false"
-            android:textColor="#FAFAFA" />
+            android:textColor="#691581"
+            android:textSize="15sp" />
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="Serviço agendados por data"
-        android:textColor="@color/roxo"
-        android:textSize="24sp"
-        android:textStyle="bold" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,9 +61,11 @@
 
         <TextView
             android:id="@+id/Esc"
-            android:layout_width="91dp"
+            android:layout_width="116dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:layout_weight="1"
+            android:drawableLeft="@drawable/ic_salao"
             android:text="Escolha o serviço"
             android:textColor="@color/roxo"
             android:textSize="15sp"
@@ -74,6 +78,7 @@
             android:layout_weight="1"
             android:text="Escolha a data"
             android:textColor="@color/roxo"
+            android:drawableLeft="@drawable/ic_data"
             android:textSize="15sp"
             android:textStyle="bold|italic" />
     </LinearLayout>
@@ -85,8 +90,9 @@
 
         <Spinner
             android:id="@+id/tiposervicoagend"
-            android:layout_width="203dp"
-            android:layout_height="wrap_content"></Spinner>
+            android:layout_width="204dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"></Spinner>
 
         <TextView
             android:id="@+id/tvDataListem"
@@ -113,9 +119,9 @@
         android:textColor="#FAFAFA" />
 
     <ListView
-        android:id="@+id/lvAgenda"
         android:layout_width="match_parent"
-        android:layout_height="532dp"
-        android:background="@drawable/custom_gradientt" />
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"/>
 
 </LinearLayout>

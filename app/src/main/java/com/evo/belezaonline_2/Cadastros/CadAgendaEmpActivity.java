@@ -78,7 +78,7 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date date = new Date();
-        String dataFormada = dateFormat.format(date);
+        final String dataFormada = dateFormat.format(date);
         tvData.setText(dataFormada);
 
         tvData.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +92,92 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
                data = new DatePickerDialog(CadAgendaEmpActivity.this, new DatePickerDialog.OnDateSetListener() {
                    @Override
                    public void onDateSet(DatePicker view, int mAno, int mMes, int mDia) {
-                       if((mMes+1)>=10){
-                           tvData.setText(mDia+"/"+(mMes+1)+"/"+mAno);
+                       String datafor[] = dataFormada.split("/");
+                       int anol = Integer.parseInt(datafor[2]);
+                       if (mAno > anol ) {
+                           if((mMes+1) >= 10 && mDia <10){
+                               tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                           }else{
+                               if((mMes+1) < 10 && mDia <10){
+                                   tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                               }else{
+                                   tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                               }
+                           }
                        }else{
-                           tvData.setText(mDia+"/0"+(mMes+1)+"/"+mAno);
+                           if ((mMes + 1) >= 10) {
+                               if (anol <= mAno) {
+                                   int mesl = Integer.parseInt(datafor[1]);
+                                   if (mesl <= (mMes + 1)) {
+                                       int dial = Integer.parseInt(datafor[0]);
+                                       if (dial <= mDia) {
+                                           if((mMes+1) >= 10 && mDia <10){
+                                               tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                                           }else{
+                                               if((mMes+1) < 10 && mDia <10){
+                                                   tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                                               }else{
+                                                   tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                                               }
+                                           }
+                                       } else {
+                                           Toast.makeText(getBaseContext(), "Escolha uam data valida(Dia)", Toast.LENGTH_LONG).show();
+                                       }
+                                   } else {
+                                       Toast.makeText(getBaseContext(), "Escolha uam data valida(Mês)", Toast.LENGTH_LONG).show();
+                                   }
+                               } else {
+                                   if (anol > mAno) {
+                                       if((mMes+1) >= 10 && mDia <10){
+                                           tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                                       }else{
+                                           if((mMes+1) < 10 && mDia <10){
+                                               tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                                           }else{
+                                               tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                                           }
+                                       }
+                                   } else {
+                                       Toast.makeText(getBaseContext(), "Escolha uam data valida(Ano)", Toast.LENGTH_LONG).show();
+                                   }
+                               }
+                           } else {
+                               if (anol <= mAno) {
+                                   int mesl = Integer.parseInt(datafor[1]);
+                                   if (mesl <= (mMes + 1)) {
+                                       int dial = Integer.parseInt(datafor[0]);
+                                       if (dial <= mDia) {
+                                           if((mMes+1) >= 10 && mDia <10){
+                                               tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                                           }else{
+                                               if((mMes+1) < 10 && mDia <10){
+                                                   tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                                               }else{
+                                                   tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                                               }
+                                           }
+                                       } else {
+                                           Toast.makeText(getBaseContext(), "Escolha uam data valida(Dia)", Toast.LENGTH_LONG).show();
+                                       }
+                                   } else {
+                                       Toast.makeText(getBaseContext(), "Escolha uam data valida(Mês)", Toast.LENGTH_LONG).show();
+                                   }
+                               } else {
+                                   if (anol > mAno) {
+                                       if((mMes+1) >= 10 && mDia <10){
+                                           tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
+                                       }else{
+                                           if((mMes+1) < 10 && mDia <10){
+                                               tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                                           }else{
+                                               tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                                           }
+                                       }
+                                   } else {
+                                       Toast.makeText(getBaseContext(), "Escolha uam data valida(Ano)", Toast.LENGTH_LONG).show();
+                                   }
+                               }
+                           }
                        }
                    }
                }, ano, mes, dia);
@@ -111,13 +193,45 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
                 int minuto = calendar.get(Calendar.MINUTE);
                 boolean is24Hours = DateFormat.is24HourFormat(CadAgendaEmpActivity.this);
 
+                final SimpleDateFormat horaat = new SimpleDateFormat("HH:mm");
+                Date data = calendar.getTime();
+                final String horaatual = horaat.format(data);
+                //Toast.makeText(getBaseContext(), horaatual,Toast.LENGTH_LONG).show();
+
                 horad = new TimePickerDialog(CadAgendaEmpActivity.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if(minute>=10){
-                            tvHora.setText(hourOfDay+":"+minute);
-                        }else {
-                            tvHora.setText(hourOfDay+":0"+minute);
+                        if(dataFormada.equals(tvData.getText())){
+                            String horal[] = horaatual.split(":");
+                            int hora = Integer.parseInt(horal[0]);
+                            if (hourOfDay > hora){
+                                if(minute>=10){
+                                    tvHora.setText(hourOfDay+":"+minute);
+                                }else {
+                                    tvHora.setText(hourOfDay+":0"+minute);
+                                }
+                            }else{
+                                int minu = Integer.parseInt(horal[1]);
+                                if(hourOfDay == hora){
+                                    if(minute>=minu){
+                                        if(minute>=10){
+                                            tvHora.setText(hourOfDay+":"+minute);
+                                        }else {
+                                            tvHora.setText(hourOfDay+":0"+minute);
+                                        }
+                                    }else{
+                                        Toast.makeText(getBaseContext(), "Selecione uma hora maior que atual", Toast.LENGTH_LONG).show();
+                                    }
+                                }else{
+                                    Toast.makeText(getBaseContext(), "Selecione uma hora maior que atual", Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        }else{
+                            if(minute>=10){
+                                tvHora.setText(hourOfDay+":"+minute);
+                            }else {
+                                tvHora.setText(hourOfDay+":0"+minute);
+                            }
                         }
                     }
                 }, hora, minuto, is24Hours);
@@ -128,22 +242,61 @@ public class CadAgendaEmpActivity extends AppCompatActivity{
         tvHora2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                int hora = calendar.get(Calendar.HOUR_OF_DAY);
-                int minuto = calendar.get(Calendar.MINUTE);
-                boolean is24Hours = DateFormat.is24HourFormat(CadAgendaEmpActivity.this);
+                if(tvHora.getText().equals("00:00")){
+                    Toast.makeText(getBaseContext(), "Selecione a hora inicial", Toast.LENGTH_LONG).show();
+                }else{
+                    Calendar calendar = Calendar.getInstance();
+                    int hora = calendar.get(Calendar.HOUR_OF_DAY);
+                    int minuto = calendar.get(Calendar.MINUTE);
+                    boolean is24Hours = DateFormat.is24HourFormat(CadAgendaEmpActivity.this);
 
-                horad = new TimePickerDialog(CadAgendaEmpActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        if(minute>=10){
-                            tvHora2.setText(hourOfDay+":"+minute);
-                        }else {
-                            tvHora2.setText(hourOfDay+":0"+minute);
+                    final SimpleDateFormat horaat = new SimpleDateFormat("HH:mm");
+                    Date data = calendar.getTime();
+                    final String horaatual = horaat.format(data);
+
+                    horad = new TimePickerDialog(CadAgendaEmpActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                        @Override
+                        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                            if(tvHora.getText() == null || tvHora.getText().equals("00:00")){
+                                Toast.makeText(getBaseContext(), "Selecione uma hora maior que a de inico", Toast.LENGTH_LONG).show();
+                            }else{
+                                if(dataFormada.equals(tvData.getText())){
+                                    String horal[] = horaatual.split(":");
+                                    int hora = Integer.parseInt(horal[0]);
+                                    if (hourOfDay > hora){
+                                        if(minute>=10){
+                                            tvHora2.setText(hourOfDay+":"+minute);
+                                        }else {
+                                            tvHora2.setText(hourOfDay+":0"+minute);
+                                        }
+                                    }else{
+                                        int minu = Integer.parseInt(horal[1]);
+                                        if(hourOfDay == hora){
+                                            if(minute>=minu){
+                                                if(minute>=10){
+                                                    tvHora2.setText(hourOfDay+":"+minute);
+                                                }else {
+                                                    tvHora2.setText(hourOfDay+":0"+minute);
+                                                }
+                                            }else{
+                                                Toast.makeText(getBaseContext(), "Selecione uma hora maior que atual", Toast.LENGTH_LONG).show();
+                                            }
+                                        }else{
+                                            Toast.makeText(getBaseContext(), "Selecione uma hora maior que atual", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+                                }else{
+                                    if(minute>=10){
+                                        tvHora2.setText(hourOfDay+":"+minute);
+                                    }else {
+                                        tvHora2.setText(hourOfDay+":0"+minute);
+                                    }
+                                }
+                            }
                         }
-                    }
-                }, hora, minuto, is24Hours);
-                horad.show();
+                    }, hora, minuto, is24Hours);
+                    horad.show();
+                }
             }
         });
 

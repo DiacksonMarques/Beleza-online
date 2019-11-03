@@ -83,10 +83,14 @@ public class UpdatePromocaoActivity extends AppCompatActivity {
                 data = new DatePickerDialog(UpdatePromocaoActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int mAno, int mMes, int mDia) {
-                        if((mMes+1)>=10){
-                            tvDataUp.setText(mDia+"/"+(mMes+1)+"/"+mAno);
+                        if((mMes+1) >= 10 && mDia <10){
+                            tvDataUp.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
                         }else{
-                            tvDataUp.setText(mDia+"/0"+(mMes+1)+"/"+mAno);
+                            if((mMes+1) < 10 && mDia <10){
+                                tvDataUp.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                            }else{
+                                tvDataUp.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                            }
                         }
                     }
                 }, ano, mes, dia);

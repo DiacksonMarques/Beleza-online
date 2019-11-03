@@ -8,41 +8,34 @@
     tools:context=".ListServicoActivity"
     android:background="@drawable/fundo">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btCadSerLi"
-            android:layout_width="133dp"
-            android:layout_height="29dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/roxo"
-            android:text="Cadastar Serviço"
-            android:textAllCaps="false"
-            android:textColor="#FAFAFA" />
-    </LinearLayout>
-
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/tvData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:gravity="center_horizontal"
-        android:text="Lista de serviço"
+        android:layout_marginBottom="10dp"
+        android:text="Serviço"
+        android:textAlignment="center"
         android:textAllCaps="true"
-        android:textColor="@color/roxo"
-        android:textSize="26sp"
-        android:textStyle="bold|italic" />
+        android:textColor="#2E2C2C"
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
     <ListView
         android:id="@+id/lvServico"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/custom_gradientt" />
+        android:layout_height="513dp"/>
+
+    <Button
+        android:id="@+id/btCadSerLi"
+        android:layout_width="133dp"
+        android:layout_height="29dp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/roxo"
+        android:text="Cadastar Serviço"
+        android:textAllCaps="false"
+        android:textColor="#FAFAFA" />
 
 </LinearLayout>

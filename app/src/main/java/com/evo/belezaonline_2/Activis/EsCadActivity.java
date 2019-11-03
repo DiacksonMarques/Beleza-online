@@ -29,6 +29,7 @@ public class EsCadActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentt = new Intent(getBaseContext() , CadClienteActivity.class);
                 startActivity(intentt);
+                finish();
             }
         });
 
@@ -37,6 +38,7 @@ public class EsCadActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intentt = new Intent(getBaseContext() , CadEmpresaActivity.class);
                 startActivity(intentt);
+                finish();
             }
         });
     }

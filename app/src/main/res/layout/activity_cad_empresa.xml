@@ -4,125 +4,118 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fundocadastro"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="@drawable/fundocadastro"
     tools:context=".Cadastros.CadEmpresaActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
-        android:orientation="vertical">
+    <EditText
+        android:id="@+id/ctNomeemp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@android:dimen/thumbnail_height"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_salao"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="Nome do negócio"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColorHint="@color/colorPrimary" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/ctCnpj"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_salao"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="@string/cnpj"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColorHint="@color/colorPrimary" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+    <EditText
+        android:id="@+id/ctDescricao"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_mode_edit_black_24dp"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="Descrição"
+        android:inputType="textPersonName"
+        android:padding="4dp"
+        android:textColorHint="@color/colorPrimary" />
 
-                <EditText
-                    android:id="@+id/ctCnpj"
-                    android:layout_width="250dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_button"
-                    android:backgroundTint="@color/grey"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:drawablePadding="4dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:padding="10dp" />
+    <EditText
+        android:id="@+id/ctUsuarioemp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_user"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="@string/usu"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColorHint="@color/colorPrimary" />
 
-                <EditText
-                    android:id="@+id/ctDescricao"
-                    android:layout_width="250dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_button"
-                    android:backgroundTint="@color/grey"
-                    android:drawableLeft="@drawable/ic_mode_edit_black_24dp"
-                    android:drawablePadding="4dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:padding="4dp"
-                    android:textColorHint="@color/colorPrimaryDark" />
+    <EditText
+        android:id="@+id/ctSenhaemp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_password"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="@string/senha"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColorHint="@color/colorPrimary" />
 
-                <EditText
-                    android:id="@+id/ctRepSenhaemp"
-                    android:layout_width="250dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_button"
-                    android:backgroundTint="@color/grey"
-                    android:drawableLeft="@drawable/ic_password"
-                    android:drawablePadding="4dp"
-                    android:ems="10"
-                    android:inputType="textPassword"
-                    android:padding="10dp" />
+    <EditText
+        android:id="@+id/ctRepSenhaemp"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/grey"
+        android:drawableLeft="@drawable/ic_password"
+        android:drawablePadding="4dp"
+        android:ems="10"
+        android:hint="@string/comfsenha"
+        android:inputType="textPassword"
+        android:padding="10dp"
+        android:textColorHint="@color/colorPrimary" />
 
-                <EditText
-                    android:id="@+id/ctUsuarioemp"
-                    android:layout_width="250dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_button"
-                    android:backgroundTint="@color/grey"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:drawablePadding="4dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:padding="10dp" />
-
-                <EditText
-                    android:id="@+id/ctSenhaemp"
-                    android:layout_width="250dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_button"
-                    android:backgroundTint="@color/grey"
-                    android:drawableLeft="@drawable/ic_password"
-                    android:drawablePadding="4dp"
-                    android:ems="10"
-                    android:inputType="textPassword"
-                    android:padding="10dp" />
-
-                <EditText
-                    android:id="@+id/ctNomefunc"
-                    android:layout_width="250dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/custom_button"
-                    android:backgroundTint="@color/grey"
-                    android:drawableLeft="@drawable/ic_user"
-                    android:drawablePadding="4dp"
-                    android:ems="10"
-                    android:inputType="textPersonName"
-                    android:padding="10dp" />
-            </LinearLayout>
-        </ScrollView>
-
-
-        <Button
-            android:id="@+id/btCadfunc"
-            android:layout_width="151dp"
-            android:layout_height="29dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/custom_button"
-            android:backgroundTint="@color/roxo"
-            android:text="Cadastrar"
-            android:textAllCaps="false"
-            android:textColor="#FAFAFA" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/btCadfunc"
+        android:layout_width="151dp"
+        android:layout_height="29dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/custom_button"
+        android:backgroundTint="@color/roxo"
+        android:text="Cadastrar"
+        android:textAllCaps="false"
+        android:textColor="#FAFAFA" />
 
 </LinearLayout>

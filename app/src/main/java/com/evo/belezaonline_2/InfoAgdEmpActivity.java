@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -20,6 +22,7 @@ public class InfoAgdEmpActivity extends AppCompatActivity {
 
     String id, nome, id_agd, url, idc;
     TextView tvCodLA, tvHoraF, tvDataLA, tvHoraLA, tvFuncAL, tvServLA,tvClieLA, tvValorLA;
+    Button btFechar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class InfoAgdEmpActivity extends AppCompatActivity {
         tvServLA = findViewById(R.id.tvServLA);
         tvClieLA = findViewById(R.id.tvClieLA);
         tvValorLA = findViewById(R.id.tvValorLA);
+        btFechar = findViewById(R.id.btFechar);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -50,6 +54,13 @@ public class InfoAgdEmpActivity extends AppCompatActivity {
         url = "https://belezaonline2019.000webhostapp.com/getAgendamentoUniEmp.php?id="+idaf;
 
         getJSON(url);
+
+        btFechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

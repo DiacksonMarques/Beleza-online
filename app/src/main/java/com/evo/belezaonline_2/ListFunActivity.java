@@ -132,7 +132,7 @@ public class ListFunActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final String Sele = ((TextView) view).getText().toString();
-                Toast.makeText(getBaseContext(), Sele, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), Sele, Toast.LENGTH_LONG).show();
                 AlertDialog.Builder builder = new AlertDialog.Builder(ListFunActivity.this);
                 builder.setTitle("Oque deseja fazer com o funcionário?");
                 builder.setMessage("Aperte o botão para excução");

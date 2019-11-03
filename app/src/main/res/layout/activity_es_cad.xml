@@ -8,127 +8,56 @@
     android:orientation="vertical"
     tools:context=".Activis.EsCadActivity">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="240dp"
-        android:layout_height="180dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        app:srcCompat="@drawable/logo" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="250dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="153dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp"
-            app:cardBackgroundColor="#691580"
-            app:cardCornerRadius="10dp">
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="202dp"
+                android:layout_height="148dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/logo" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/custom_gradientrounded"
+                android:layout_height="543dp"
+                android:gravity="center"
                 android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:text="CLIENTE"
-                    android:textAlignment="center"
-                    android:textColor="#FAFAFA"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="52dp"
-                    android:layout_height="62dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    app:srcCompat="@drawable/pc_user" />
-
-                <Button
-                    android:id="@+id/btCliente"
-                    android:layout_width="140dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/custom_button"
-                    android:text="Escolher"
-                    android:textAllCaps="false"
-                    android:textColor="@color/roxo" />
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="153dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="8dp"
-            app:cardBackgroundColor="#691580"
-            app:cardCornerRadius="10dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/custom_gradientrounded"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="4dp"
-                    android:text="NEGÓCIO"
-                    android:textAlignment="center"
-                    android:textColor="#FAFAFA"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="56dp"
-                    android:layout_height="59dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="8dp"
-                    app:srcCompat="@drawable/ic_negocio" />
 
                 <Button
                     android:id="@+id/btNegocio"
-                    android:layout_width="140dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/custom_button"
-                    android:text="Escolher"
-                    android:textAllCaps="false"
-                    android:textColor="@color/roxo" />
+                    android:layout_width="252dp"
+                    android:layout_height="180dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_gradientrounded"
+                    android:drawableBottom="@drawable/ic_negocio"
+                    android:text="NEGÓCIO"
+                    android:textColor="@color/branco"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-
+                <Button
+                    android:id="@+id/btCliente"
+                    android:layout_width="252dp"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/custom_gradientrounded"
+                    android:drawableBottom="@drawable/pc_user"
+                    android:text="CLIENTE"
+                    android:textColor="@color/branco"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
             </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"/>
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

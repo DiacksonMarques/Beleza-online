@@ -62,10 +62,14 @@ public class CadPromocaoActivity extends AppCompatActivity {
                 data = new DatePickerDialog(CadPromocaoActivity.this, new DatePickerDialog.OnDateSetListener() {
                     @Override
                     public void onDateSet(DatePicker view, int mAno, int mMes, int mDia) {
-                        if((mMes+1)>=10){
-                            tvDataP.setText(mDia+"/"+(mMes+1)+"/"+mAno);
+                        if((mMes+1) >= 10 && mDia <10){
+                            tvDataP.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
                         }else{
-                            tvDataP.setText(mDia+"/0"+(mMes+1)+"/"+mAno);
+                            if((mMes+1) < 10 && mDia <10){
+                                tvDataP.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
+                            }else{
+                                tvDataP.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
+                            }
                         }
                     }
                 }, ano, mes, dia);

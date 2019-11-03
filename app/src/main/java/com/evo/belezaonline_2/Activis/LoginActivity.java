@@ -21,7 +21,6 @@ import com.evo.belezaonline_2.R;
 public class LoginActivity extends AppCompatActivity {
     Button btLogin;
     EditText ctUsuario,ctSenha;
-    TextView btIrCad;
 
     String url="";
     String paramentros="";
@@ -33,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
 
         btLogin= findViewById(R.id.btLogin);
         ctUsuario= findViewById(R.id.ctUsu);
-        ctSenha= findViewById(R.id.ctSenhal);
+        ctSenha= findViewById(R.id.ctSenhalo);
         
 
         btLogin.setOnClickListener(new View.OnClickListener() {
@@ -43,15 +42,18 @@ public class LoginActivity extends AppCompatActivity {
                 NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
                 if(networkInfo != null && networkInfo.isConnected()){
-                    String usuario = ctUsuario.getText().toString();
-                    String senha = ctSenha.getText().toString();
-
-                    if(usuario.isEmpty() || senha.isEmpty()){
+                    if(ctUsuario.getText().length() == 0 || ctSenha.getText().length() == 0){
                         Toast.makeText(getBaseContext(),"Há Campo(s) vazio(s)",Toast.LENGTH_SHORT).show();
                     }else{
-                        url = "https://belezaonline2019.000webhostapp.com/logar.php";
-                        paramentros = "usuario="+ usuario + "&senha=" + senha;
-                        new SolicitaDados().execute(url);
+                        //if (ctSenha.getText().length()<8){
+                            //Toast.makeText(getBaseContext(),"Senha está muito curta",Toast.LENGTH_SHORT).show();
+                        //}else{
+                            String usuario = ctUsuario.getText().toString();
+                            String senha = ctSenha.getText().toString();
+                            url = "https://belezaonline2019.000webhostapp.com/logar.php";
+                            paramentros = "usuario="+ usuario + "&senha=" + senha;
+                            new SolicitaDados().execute(url);
+                       // }
                     }
                 }else {
                     Toast.makeText(getBaseContext(),"Não há conexão com a internet.",Toast.LENGTH_LONG).show();
