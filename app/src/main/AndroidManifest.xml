@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Editperfactivity"></activity>
+        <activity android:name=".ImgCActivity"></activity>
+        <activity android:name=".Editperfactivity" />
         <activity android:name=".Activis.LoginActivity" />
         <activity android:name=".InfoAgdEmpActivity" />
         <activity android:name=".AgendDesvActivity" />
