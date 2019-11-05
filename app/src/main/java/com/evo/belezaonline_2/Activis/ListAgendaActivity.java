@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.evo.belezaonline_2.AgendDesvActivity;
 import com.evo.belezaonline_2.Cadastros.CadAgenda;
 import com.evo.belezaonline_2.Cadastros.CadAgendaEmpActivity;
+import com.evo.belezaonline_2.DuplicateActivity;
 import com.evo.belezaonline_2.EspeAgendActivity;
 import com.evo.belezaonline_2.InfoAgdEmpActivity;
 import com.evo.belezaonline_2.Metodos.Config;
@@ -102,7 +103,7 @@ public class ListAgendaActivity extends AppCompatActivity {
         btCadAgdList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent abrecadagend = new Intent(getBaseContext(), CadAgendaEmpActivity.class);
+                Intent abrecadagend = new Intent(getBaseContext(), DuplicateActivity.class);
                 abrecadagend.putExtra("id",id);
                 startActivity(abrecadagend);
             }

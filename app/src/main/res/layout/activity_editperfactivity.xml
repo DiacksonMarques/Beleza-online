@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <ImageButton
-            android:id="@+id/btImgPerf"
+            android:id="@+id/ImgPerf"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_gravity="center"
@@ -23,12 +23,11 @@
             tools:srcCompat="@mipmap/ic_launcher_round" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/tvNomePerf"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="4dp"
-            android:text="Maria"
             android:textColor="#F3F3F3"
             android:textSize="24sp" />
     </LinearLayout>

@@ -66,7 +66,6 @@ public class ImgCActivity extends AppCompatActivity {
         btUpimg = findViewById(R.id.btUpimg);
         imPerf = findViewById(R.id.imPerf);
 
-        CarregarImg();
         requestMultiplePermissions();
 
         Intent intent = this.getIntent();
@@ -74,6 +73,7 @@ public class ImgCActivity extends AppCompatActivity {
         idg = bundle.getString("id");
         nome = bundle.getString("nome");
 
+        CarregarImg();
 
         btUpimg.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -184,6 +184,6 @@ public class ImgCActivity extends AppCompatActivity {
     }
 
     private void CarregarImg(){
-        Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/1.JPG").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imPerf);
+        Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/"+idg+".JPG").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imPerf);
     }
 }

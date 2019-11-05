@@ -23,7 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ImgCActivity"></activity>
+        <activity android:name=".CadEmpresaActivity"></activity>
+        <activity android:name=".CadClienteActivity" />
+        <activity android:name=".DuplicateActivity" />
+        <activity android:name=".ImgCActivity" />
         <activity android:name=".Editperfactivity" />
         <activity android:name=".Activis.LoginActivity" />
         <activity android:name=".InfoAgdEmpActivity" />
@@ -65,8 +68,6 @@
         <activity
             android:name=".Maps.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Cadastros.CadEmpresaActivity" />
-        <activity android:name=".Cadastros.CadClienteActivity" />
         <activity android:name=".Activis.EsCadActivity" />
         <activity android:name=".Activis.MainActivity" />
         <activity android:name=".Activis.MainActivityEmp" />

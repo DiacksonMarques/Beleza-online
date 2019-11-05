@@ -13,6 +13,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.evo.belezaonline_2.Banco.Conexao;
+import com.evo.belezaonline_2.Activis.LoginActivity;
+import com.evo.belezaonline_2.R;
+import com.evo.belezaonline_2.Metodos.StringFormate;
+
 public class CadClienteActivity extends AppCompatActivity {
     Button btCadas;
     EditText ctNome,ctEmail,ctUsu,ctSenha,ctRepSenha;
@@ -58,7 +63,7 @@ public class CadClienteActivity extends AppCompatActivity {
                         if (!senha.equals(repsenha)){
                             Toast.makeText(getBaseContext(),"As senha não coincidem",Toast.LENGTH_SHORT).show();
                         }else{
-                            url = "https://beleza-online.000webhostapp.com/cadastro.php";
+                            url = "https://belezaonline2019.000webhostapp.com/cadastro.php";
                             paramentros = "nome=" + nome +"&email="+email+ "&usuario=" + usuario + "&senha=" + senha+"&tipo_usuario="+tipo_usuario;
                             new SolicitaDados().execute(url);
                         }
@@ -79,10 +84,10 @@ public class CadClienteActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String resultado) {
             if(resultado != null && !resultado.isEmpty() && resultado.contains("Usuario_Erro")){
-                Toast.makeText(getBaseContext(),"Este e-mail já está cadastrado",Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(),"Este usuário já está cadastrado",Toast.LENGTH_LONG).show();
             }else if(resultado != null && !resultado.isEmpty() && resultado.contains("Registro_Ok")){
                 Toast.makeText(getBaseContext(),"Registro concluído com sucesso!",Toast.LENGTH_LONG).show();
-                Intent abreInicio = new Intent(getBaseContext(),LoginActivity.class);
+                Intent abreInicio = new Intent(getBaseContext(), LoginActivity.class);
                 startActivity(abreInicio);
             }if(resultado != null && !resultado.isEmpty() && resultado.contains("Email_Erro")){
                 Toast.makeText(getBaseContext(),"Verifique o campo email a algo errado!",Toast.LENGTH_LONG).show();

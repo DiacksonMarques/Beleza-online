@@ -6,11 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
-
-import com.evo.belezaonline_2.Cadastros.CadClienteActivity;
-import com.evo.belezaonline_2.Cadastros.CadEmpresaActivity;
 import com.evo.belezaonline_2.R;
+
+import com.evo.belezaonline_2.CadEmpresaActivity;
+import com.evo.belezaonline_2.CadClienteActivity;
 
 public class EsCadActivity extends AppCompatActivity {
 

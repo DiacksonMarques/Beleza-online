@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,9 @@ import com.evo.belezaonline_2.Editperfactivity;
 import com.evo.belezaonline_2.EspeAgendActivity;
 import com.evo.belezaonline_2.R;
 import com.evo.belezaonline_2.UpdateAgendActivity;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +48,7 @@ public class AreaUsuFragment extends Fragment {
     ListView lvAgendaCli;
     AlertDialog alerta;
     Button btPerfCli;
+    ImageView ImgPerf;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup fgContainer, Bundle savedInstanceState){
@@ -54,11 +59,14 @@ public class AreaUsuFragment extends Fragment {
         lvAgendaCli = v.findViewById(R.id.lvAgendaCli);
         tvNomeCB = v.findViewById(R.id.tvNomeCB);
         btPerfCli = v.findViewById(R.id.btPerfCli);
+        ImgPerf = v.findViewById(R.id.ImgPerf);
 
         Intent intent = this.getActivity().getIntent();
         Bundle bundle = intent.getExtras();
         idg = bundle.getString("id");
         nome = bundle.getString("nome");
+
+        CarregarImg();
 
         String[] ida = nome.split("L| L ");
         String auxid =  ida[0];
@@ -271,5 +279,9 @@ public class AreaUsuFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+    }
+
+    private void CarregarImg(){
+        Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/"+idg+".JPG").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ImgPerf);
     }
 }

@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fundocadastro"
     android:orientation="vertical"
-    tools:context=".Cadastros.CadClienteActivity">
+    tools:context=".CadClienteActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

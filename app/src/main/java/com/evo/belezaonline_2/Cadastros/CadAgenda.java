@@ -116,16 +116,8 @@ public class CadAgenda extends AppCompatActivity {
                     public void onDateSet(DatePicker view, int mAno, int mMes, int mDia) {
                         String datafor[] = dataFormada.split("/");
                         int anol = Integer.parseInt(datafor[2]);
-                        if (mAno > anol ) {
-                            if((mMes+1) >= 10 && mDia <10){
-                                tvData.setText("0"+mDia + "/" +(mMes + 1) + "/" + mAno);
-                            }else{
-                                if((mMes+1) < 10 && mDia <10){
-                                    tvData.setText("0"+mDia + "/"+"0"+(mMes + 1) + "/" + mAno);
-                                }else{
-                                    tvData.setText(mDia + "/" +(mMes + 1) + "/" + mAno);
-                                }
-                            }
+                        if (mAno < anol ) {
+                            Toast.makeText(getBaseContext(), "Escolha uam data valida(Ano)", Toast.LENGTH_LONG).show();
                         }else{
                             if ((mMes + 1) >= 10) {
                                 if (anol <= mAno) {

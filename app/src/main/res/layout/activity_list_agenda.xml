@@ -36,7 +36,7 @@
             android:layout_marginRight="4dp"
             android:layout_weight="1"
             android:background="@drawable/custom_buttonstroke"
-            android:text="Cadastrar Agendamento "
+            android:text="Duplicar  Agendamento "
             android:textAllCaps="false"
             android:textColor="#691581"
             android:textSize="15sp" />
@@ -119,9 +119,10 @@
         android:textColor="#FAFAFA" />
 
     <ListView
+        android:id="@+id/lvAgenda"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
 
 </LinearLayout>

@@ -49,7 +49,7 @@ public class InfoAgdEmpActivity extends AppCompatActivity {
         String auxid =  ida[0];
 
         String[] idag = auxid.split(":|: ");
-        final String idaf =  idag[1];
+        final String idaf = idag[1];
 
         url = "https://belezaonline2019.000webhostapp.com/getAgendamentoUniEmp.php?id="+idaf;
 
