@@ -1,6 +1,5 @@
 package com.evo.belezaonline_2;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,23 +36,19 @@ import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Calendar;
 import java.util.List;
 
-public class ImgCActivity extends AppCompatActivity {
-
+public class ImgCentroActivity extends AppCompatActivity {
     Button btUpimg;
     ImageView imPerf;
 
     private final int GALLERY = 1;
-    private String upload_URL = "https://belezaonline2019.000webhostapp.com/uploadImg.php";
+    private String upload_URL = "https://belezaonline2019.000webhostapp.com/uploadImgCenter.php";
     String idg, nome;
     JSONObject jsonObject;
     RequestQueue rQueue;
@@ -80,8 +75,7 @@ public class ImgCActivity extends AppCompatActivity {
         btUpimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                Intent galleryIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
                 startActivityForResult(galleryIntent, GALLERY);
             }
@@ -107,7 +101,7 @@ public class ImgCActivity extends AppCompatActivity {
 
                 } catch (IOException e) {
                     e.printStackTrace();
-                    Toast.makeText(ImgCActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ImgCentroActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -144,7 +138,7 @@ public class ImgCActivity extends AppCompatActivity {
             }
         });
 
-        rQueue = Volley.newRequestQueue(ImgCActivity.this);
+        rQueue = Volley.newRequestQueue(ImgCentroActivity.this);
         rQueue.add(jsonObjectRequest);
 
     }
@@ -186,20 +180,20 @@ public class ImgCActivity extends AppCompatActivity {
     }
 
     private void CarregarImg(){
-        Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/"+idg+".JPG").into(new Target() {
+        Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcentro/"+idg+".JPG").into(new Target() {
             @Override
             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/"+idg+".JPG").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imPerf);
+                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcentro/"+idg+".JPG").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imPerf);
             }
 
             @Override
             public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/0.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imPerf);
+                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcentro/0.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imPerf);
             }
 
             @Override
             public void onPrepareLoad(Drawable placeHolderDrawable) {
-                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/0.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imPerf);
+                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcentro/0.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imPerf);
             }
         });
     }

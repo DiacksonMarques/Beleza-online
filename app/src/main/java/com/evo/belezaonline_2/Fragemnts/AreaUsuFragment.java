@@ -2,6 +2,8 @@ package com.evo.belezaonline_2.Fragemnts;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,15 +20,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.evo.belezaonline_2.Activis.MainActivity;
-import com.evo.belezaonline_2.Activis.MainActivityEmp;
 import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.Editperfactivity;
-import com.evo.belezaonline_2.EspeAgendActivity;
 import com.evo.belezaonline_2.R;
-import com.evo.belezaonline_2.UpdateAgendActivity;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +38,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class AreaUsuFragment extends Fragment {
 
     String url, idg, nome, url2, parametros,idct;
@@ -48,7 +49,7 @@ public class AreaUsuFragment extends Fragment {
     ListView lvAgendaCli;
     AlertDialog alerta;
     Button btPerfCli;
-    ImageView ImgPerf;
+    CircleImageView ImgPerf;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup fgContainer, Bundle savedInstanceState){
@@ -66,7 +67,6 @@ public class AreaUsuFragment extends Fragment {
         idg = bundle.getString("id");
         nome = bundle.getString("nome");
 
-        CarregarImg();
 
         String[] ida = nome.split("L| L ");
         String auxid =  ida[0];
@@ -78,6 +78,8 @@ public class AreaUsuFragment extends Fragment {
 
         url2 = "https://belezaonline2019.000webhostapp.com/getAgendCli.php?id="+idg;
         getJSON2(url2);
+
+        CarregarImg();
 
         btPerfCli.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -282,6 +284,21 @@ public class AreaUsuFragment extends Fragment {
     }
 
     private void CarregarImg(){
-        Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/"+idg+".JPG").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ImgPerf);
+        Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/"+idg+".JPG").into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/"+idg+".JPG").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ImgPerf);
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/0.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ImgPerf);
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcli/0.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ImgPerf);
+            }
+        });
     }
 }

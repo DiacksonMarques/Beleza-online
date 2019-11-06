@@ -7,6 +7,8 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.format.DateFormat;
@@ -22,7 +24,12 @@ import android.widget.Toast;
 
 import com.evo.belezaonline_2.Banco.Conexao;
 import com.evo.belezaonline_2.EspeAgendActivity;
+import com.evo.belezaonline_2.PreAgendActivity;
 import com.evo.belezaonline_2.R;
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -37,15 +44,18 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class CadAgenda extends AppCompatActivity {
 
     TextView tvNomeCB,tvData,tvHoraIT,tvHoraFT;
-    String idg, nome, tipos, idemp, nomeemp, url;
+    String idg, nome, idemp, nomeemp, url;
     Calendar calendar;
     DatePickerDialog data;
     TimePickerDialog horad;
     Button btCadAgd,btFav;
     ListView lvAgenda;
+    CircleImageView ImgPerf;
 
     String paramentrosv = "";
     String urlv="https://belezaonline2019.000webhostapp.com/favoritos.php";
@@ -66,6 +76,7 @@ public class CadAgenda extends AppCompatActivity {
         btFav = findViewById(R.id.btFav);
         tvHoraIT = findViewById(R.id.tvHoraIT);
         tvHoraFT=findViewById(R.id.tvHoraT);
+        ImgPerf = findViewById(R.id.ImgPerf);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -81,6 +92,7 @@ public class CadAgenda extends AppCompatActivity {
         final String dataFormada = dateFormat.format(date);
 
         tvData.setText(dataFormada);
+        CarregarImg();
 
         int id_cliente= Integer.parseInt(idg);
         paramentrosv = "id_cliente="+ id_cliente + "&id_centros_de_beleza=" + idemp;
@@ -326,6 +338,7 @@ public class CadAgenda extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void getJSON(final String urlAPI){
@@ -402,8 +415,17 @@ public class CadAgenda extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final String Sele = ((TextView) view).getText().toString();
+                String horai = String.valueOf(tvHoraIT.getText());
+                String horaf = String.valueOf(tvHoraFT.getText());
                 if (Sele.equals("Não Tem nenhum serviço cadastrado")){
-                    Toast.makeText(getBaseContext(), "Não função", Toast.LENGTH_LONG).show();
+                    Intent abrecadagend = new Intent(getBaseContext(), PreAgendActivity.class);
+                    abrecadagend.putExtra("id",idg);
+                    abrecadagend.putExtra("nome",nome);
+                    abrecadagend.putExtra("data",tvData.getText());
+                    abrecadagend.putExtra("horai",horai);
+                    abrecadagend.putExtra("horaf",horaf);
+                    abrecadagend.putExtra("id_ce",idemp);
+                    startActivity(abrecadagend);
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(CadAgenda.this);
                     builder.setTitle("Oque deseja fazer com a Agenda?");
@@ -487,10 +509,8 @@ public class CadAgenda extends AppCompatActivity {
         protected void onPostExecute(String resultado) {
             if (resultado != null && !resultado.isEmpty() && resultado.contains("Update_Ok")) {
                 Toast.makeText(getBaseContext(), "Agendamento feito com sucesso!", Toast.LENGTH_LONG).show();
-                //Intent abreInicio = new Intent(getBaseContext(), CadAgenda.class);
-                //abreInicio.putExtra("id", idg);
-                //abreInicio.putExtra("nome", nome);
-                //startActivity(abreInicio);
+                url = "https://belezaonline2019.000webhostapp.com/getAgendamento.php?vari=" + tvHoraIT.getText() + ","+tvHoraFT.getText()+"," + tvData.getText() + "," + idemp;
+                getJSON(url);
             } else {
                 Toast.makeText(getBaseContext(), "Ocorreu um erro: " + resultado, Toast.LENGTH_LONG).show();
             }
@@ -502,5 +522,24 @@ public class CadAgenda extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         finish();
+    }
+
+    private void CarregarImg(){
+        Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcentro/"+idemp+".JPG").into(new Target() {
+            @Override
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcentro/"+idemp+".JPG").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ImgPerf);
+            }
+
+            @Override
+            public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcentro/0.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ImgPerf);
+            }
+
+            @Override
+            public void onPrepareLoad(Drawable placeHolderDrawable) {
+                Picasso.get().load("https://belezaonline2019.000webhostapp.com/img/perfcentro/0.png").networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(ImgPerf);
+            }
+        });
     }
 }

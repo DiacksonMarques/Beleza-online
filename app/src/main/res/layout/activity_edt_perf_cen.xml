@@ -4,15 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fundo"
     android:orientation="vertical"
-    tools:context=".Editperfactivity">
+    tools:context=".EdtPerfCenActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:background="@drawable/custom_gradientt"
         android:orientation="vertical">
-
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ImgPerf"
@@ -26,7 +27,7 @@
             app:civ_circle_background_color="@color/gelo" />
 
         <TextView
-            android:id="@+id/tvNomePerf"
+            android:id="@+id/edNomeCentro"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"
@@ -38,6 +39,7 @@
     <LinearLayout
         android:layout_width="330dp"
         android:layout_height="wrap_content"
+
         android:layout_gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -63,7 +65,7 @@
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/edNome"
+            android:id="@+id/edNomeC"
             android:layout_width="300dp"
             android:layout_height="26dp"
             android:layout_marginLeft="13dp"
@@ -82,11 +84,11 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"
-            android:text="Email"
+            android:text="@string/cnpj"
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/edEmail"
+            android:id="@+id/edCNPJ"
             android:layout_width="300dp"
             android:layout_height="26dp"
             android:layout_marginLeft="13dp"
@@ -100,7 +102,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/textView230"
+            android:id="@+id/textView26"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -109,7 +111,7 @@
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/edUsu"
+            android:id="@+id/edUsuCen"
             android:layout_width="300dp"
             android:layout_height="26dp"
             android:layout_marginLeft="13dp"
@@ -123,7 +125,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/textView26"
+            android:id="@+id/textView25"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -132,13 +134,13 @@
             android:textStyle="italic" />
 
         <EditText
-            android:id="@+id/edSenha"
+            android:id="@+id/edSenhaC"
             android:layout_width="300dp"
             android:layout_height="26dp"
             android:layout_marginLeft="13dp"
             android:layout_marginTop="4dp"
             android:background="@drawable/custom_buttonstroke"
-            android:drawableLeft="@drawable/ic_date"
+            android:drawableLeft="@drawable/ic_tel"
             android:drawablePadding="4dp"
             android:ems="10"
             android:inputType="textPassword"
@@ -146,7 +148,7 @@
             android:textSize="14sp" />
 
         <Button
-            android:id="@+id/btAltPerf"
+            android:id="@+id/btPerfCen"
             android:layout_width="180dp"
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal"

@@ -23,7 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".CadEmpresaActivity"></activity>
+        <activity android:name=".PreAgendActivity"></activity>
+        <activity android:name=".ImgCentroActivity" />
+        <activity android:name=".EdtPerfCenActivity" />
+        <activity android:name=".CadEmpresaActivity" />
         <activity android:name=".CadClienteActivity" />
         <activity android:name=".DuplicateActivity" />
         <activity android:name=".ImgCActivity" />

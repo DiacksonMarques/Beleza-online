@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:background="@drawable/fundo"
+    tools:context=".PreAgendActivity">
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center_horizontal"
+        android:text="Pre-Agendamento"
+        android:textAllCaps="true"
+        android:textColor="@color/roxo"
+        android:textSize="26sp"
+        android:textStyle="bold|italic" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Selecione os tipos de serviços do estabelecimento"
+        android:textColor="@color/roxo"
+        android:textSize="14sp"
+        android:textStyle="italic" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="360dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="60dp"
+            android:drawableLeft="@drawable/ic_data"
+            android:drawablePadding="4dp"
+            android:textColor="@color/roxo"
+            android:textStyle="bold|italic"
+            android:text="Escolha uma data"/>
+
+        <TextView
+            android:id="@+id/tvData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="10dp"
+            android:text="DD/MM/AAAA"
+            android:textColor="@color/roxo" />
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="60dp"
+            android:drawableLeft="@drawable/ic_clock"
+            android:drawablePadding="4dp"
+            android:text="Selecione a hora de ínicio e termino"
+            android:textColor="@color/roxo"
+            android:textStyle="bold|italic" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:text="Início:"
+                android:textColor="@color/roxo"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/tvHoraIn"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:text="00:00"
+                android:textColor="@color/roxo"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:text="Término:"
+                android:textColor="@color/roxo"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/tvHoraTe"
+                android:layout_width="44dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:text="00:00"
+                android:textColor="@color/roxo"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/ic_user"
+            android:drawablePadding="4dp"
+            android:text="Funcionário Para o Serviço"
+            android:textColor="@color/roxo"
+            android:textStyle="bold|italic" />
+
+        <Spinner
+            android:id="@+id/funcionario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/editText"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="21dp"
+            android:drawableLeft="@drawable/ic_salao"
+            android:drawablePadding="4dp"
+            android:text="Cadastrar serviços disponíveis"
+            android:textColor="@color/roxo"
+            android:textStyle="bold|italic" />
+
+        <Spinner
+            android:id="@+id/tiposervicoagend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/valor"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvValor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:layout_marginTop="200dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
+
+        <CheckBox
+            android:id="@+id/checkBox15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="252dp"
+            android:layout_marginTop="302dp"
+            android:layout_weight="1"
+            android:buttonTint="#FAFAFA"
+            android:text="CheckBox"
+            android:textColor="#FAFAFA" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btCadAgend"
+        android:layout_width="120dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textColor="#FAFAFA"
+        android:backgroundTint="@color/roxo"
+        android:background="@drawable/custom_button"
+        android:text="Salvar" />
+
+</LinearLayout>
