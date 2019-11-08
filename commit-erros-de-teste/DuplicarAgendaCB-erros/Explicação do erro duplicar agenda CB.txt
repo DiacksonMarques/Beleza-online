@@ -1,0 +1,2 @@
+Erro. Sistema emite mensagem de erro("Data já foi duplicada") mesmo quando a data nunca foi duplicada. 
+Ou seja, sistema não está duplicando a data.
