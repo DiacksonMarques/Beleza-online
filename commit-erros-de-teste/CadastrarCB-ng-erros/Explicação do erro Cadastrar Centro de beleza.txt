@@ -1,0 +1,2 @@
+Ao tentar realizar o teste de cadastro de beleza - negativo, o usuário ao informar senhas diferentes e clicar
+para cadastrar um novo centro de beleza, o sistema registra e salva mesmo com senhas diferentes.
