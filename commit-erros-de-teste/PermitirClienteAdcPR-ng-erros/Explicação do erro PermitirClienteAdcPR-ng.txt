@@ -1,0 +1,2 @@
+O usuário ao tentar fazer um pré agendamento não informando os dados e clicando em "salvar",
+o sistema trava e para de funcionar.
