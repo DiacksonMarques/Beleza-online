@@ -1,0 +1,2 @@
+Sistema com falha. O usuário ao tentar fazer a alteração do e-mail sem o @ e clica em "Salvar",
+o sistema registra o e-mail sem o @ e salva as alterações. Ou seja, sistema com erro na alteração de email.
