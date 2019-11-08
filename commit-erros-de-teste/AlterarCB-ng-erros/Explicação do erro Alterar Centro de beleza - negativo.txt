@@ -1,0 +1,2 @@
+O usuário ao tentar fazer a alteração do centro de beleza e clicar em "Salvar", o sistema não registra e emite
+uma mensagem de bug no servidor.
